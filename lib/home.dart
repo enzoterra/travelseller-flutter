@@ -11,7 +11,7 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: TopBar(),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(120.0), child: TopBar()),
       bottomNavigationBar: BottomNavigation(),
     );
   }
@@ -22,22 +22,18 @@ class TopBar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50.0),
-          child: AppBar(
+    return AppBar(
             flexibleSpace: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/viagens_topbar.jpg'),
-                  fit: BoxFit.fill
+                  fit: BoxFit.cover
                 )
               )
             ),
-            title: Text("Viagens Programadas"),
-          )
-        )
-    );
+            title: const Text("Viagens Programadas"),
+            elevation: 0,
+          );
   }
 
 }
@@ -47,13 +43,11 @@ class BottomNavigation extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(currentIndex: 1, items: const [
+    return BottomNavigationBar(currentIndex: 1, items: const [
         BottomNavigationBarItem(label: "Clientes", icon: Icon(Icons.people)),
         BottomNavigationBarItem(label: "Viagens", icon: Icon(Icons.flight_takeoff)),
         BottomNavigationBarItem(label: "Estatísticas", icon: Icon(Icons.calendar_today))
-      ])
-    );
+      ]);
   }
 
 }
