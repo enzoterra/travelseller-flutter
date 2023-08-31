@@ -16,7 +16,7 @@ class TopBar extends StatelessWidget{
                 )
               )
             ),
-            title: Text(titulo),
+            title: Text(titulo, style: const TextStyle(fontWeight: FontWeight.bold)),
             elevation: 0,
           );
   }

@@ -8,25 +8,24 @@ class BottomNavigation extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: GNav(
-        rippleColor: Colors.grey[800], // tab button ripple color when pressed
-        hoverColor: Colors.grey[700], // tab button hover color
-        tabBorderRadius: 15, 
-        tabActiveBorder: Border.all(color: Colors.black, width: 1), // tab button border
-        tabBorder: Border.all(color: Colors.grey, width: 1), // tab button border
-        selectedIndex: index,
-        iconSize: 24,
-        padding: const EdgeInsets.all(16),
-        gap: 10,
-        tabs: const [
-          GButton(icon: Icons.people, text: "Clientes",),
-          GButton(icon: Icons.flight_takeoff, text: "Viagens",),
-          GButton(icon: Icons.calendar_today, text: "Estatísticas",),
-        ]
-      )
+    return GNav(
+      backgroundColor: const Color.fromARGB(255, 19, 28, 110),
+      rippleColor: const Color.fromARGB(61, 41, 41, 41),
+      color: const Color.fromARGB(255, 212, 212, 212),
+      activeColor: Colors.white,
+      tabBorderRadius: 15, 
+      selectedIndex: index,
+      iconSize: 24,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      gap: 10,
+      tabs: const [
+        GButton(icon: Icons.people, text: "Clientes",),
+        GButton(icon: Icons.flight_takeoff, text: "Viagens",),
+        GButton(icon: Icons.calendar_today, text: "Estatísticas",),
+      ]
     );
   }
+}
 
   /*
   bottomNavigationBar: BottomNavigationBar(currentIndex: index, items: const [
@@ -35,5 +34,3 @@ class BottomNavigation extends StatelessWidget{
     BottomNavigationBarItem(label: "Estatísticas", icon: Icon(Icons.calendar_today))
   ])
   */
-
-}
