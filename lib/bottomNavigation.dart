@@ -8,12 +8,21 @@ class BottomNavigation extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       bottomNavigationBar: GNav(
-        tabs: [
-          GButton(icon: Icons.people),
-          GButton(icon: Icons.flight_takeoff),
-          GButton(icon: Icons.calendar_today),
+        rippleColor: Colors.grey[800], // tab button ripple color when pressed
+        hoverColor: Colors.grey[700], // tab button hover color
+        tabBorderRadius: 15, 
+        tabActiveBorder: Border.all(color: Colors.black, width: 1), // tab button border
+        tabBorder: Border.all(color: Colors.grey, width: 1), // tab button border
+        selectedIndex: index,
+        iconSize: 24,
+        padding: const EdgeInsets.all(16),
+        gap: 10,
+        tabs: const [
+          GButton(icon: Icons.people, text: "Clientes",),
+          GButton(icon: Icons.flight_takeoff, text: "Viagens",),
+          GButton(icon: Icons.calendar_today, text: "Estatísticas",),
         ]
       )
     );
