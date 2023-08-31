@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'bottomNavigation.dart';
 import 'topBar.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Viagens extends StatefulWidget {
+  const Viagens({super.key});
 
   @override
-  HomeState createState() => HomeState();
+  ViagensState createState() => ViagensState();
 }
 
-class HomeState extends State<Home> {
+class ViagensState extends State<Viagens> {
   static const String titulo = "Viagens Programadas";
   static const String imagem = "assets/images/viagens_topbar.jpg";
 
