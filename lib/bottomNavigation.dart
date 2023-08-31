@@ -9,14 +9,16 @@ class BottomNavigation extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return GNav(
-      backgroundColor: const Color.fromARGB(255, 19, 28, 110),
+      selectedIndex: index,
+      backgroundColor: const Color.fromARGB(255, 240, 240, 240),
       rippleColor: const Color.fromARGB(61, 41, 41, 41),
-      color: const Color.fromARGB(255, 212, 212, 212),
+      color: const Color.fromARGB(255, 51, 51, 51),
       activeColor: Colors.white,
       tabBorderRadius: 15, 
-      selectedIndex: index,
       iconSize: 24,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      textSize: 12,
+      tabBackgroundGradient: const LinearGradient(colors: [Color.fromRGBO(2, 52, 139, 1), Color.fromRGBO(76, 0, 108, 1)]),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
       gap: 10,
       tabs: const [
         GButton(icon: Icons.people, text: "Clientes",),
