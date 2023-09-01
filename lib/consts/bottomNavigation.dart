@@ -27,24 +27,32 @@ class BottomNavigation extends StatelessWidget {
             rippleColor: const Color.fromARGB(61, 41, 41, 41),
             color: const Color.fromARGB(255, 51, 51, 51),
             activeColor: Colors.white,
-            tabBackgroundGradient: const LinearGradient(colors: [
-              Color.fromRGBO(2, 52, 139, 1),
-              Color.fromRGBO(76, 0, 108, 1)
-            ]),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             gap: 10,
             tabs: const [
               GButton(
                 icon: Icons.people,
                 text: "Clientes",
+                backgroundGradient: LinearGradient(colors: [
+                  Color.fromRGBO(50, 153, 172, 1),
+                  Color.fromRGBO(35, 168, 103, 1)
+                ]),
               ),
               GButton(
                 icon: Icons.flight_takeoff,
                 text: "Viagens",
+                backgroundGradient: LinearGradient(colors: [
+                  Color.fromRGBO(2, 52, 139, 1),
+                  Color.fromRGBO(76, 0, 108, 1)
+                ]),
               ),
               GButton(
                 icon: Icons.calendar_today,
                 text: "Estatísticas",
+                backgroundGradient: LinearGradient(colors: [
+                  Color.fromRGBO(33, 41, 166, 1),
+                  Color.fromRGBO(226, 193, 4, 1)
+                ]),
               ),
             ],
             /*onTabChange: (index) {
