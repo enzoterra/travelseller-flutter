@@ -14,12 +14,36 @@ class ViagensState extends State<Viagens> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: TopBar(
-            imagem: imagem,
-            titulo: titulo,
+    return Column(
+      children: [
+        const TopBar(
+          imagem: imagem,
+          titulo: titulo,
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(children: [
+                Text("Próximas Viagens",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5))
+              ]),
+              Column(children: [
+                Text("CONF",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
+              ]),
+            ],
           ),
-      //bottomNavigationBar: BottomNavigation(indexPag: 1,),
+        ),
+        Container(
+          height: 480,
+          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10, top: 5),
+          child: Container(
+            decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5)), color: Color.fromARGB(255, 233, 233, 233)),
+            ),
+        ),
+      ],
     );
   }
 }

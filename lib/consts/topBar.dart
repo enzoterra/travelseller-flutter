@@ -14,17 +14,18 @@ class TopBar extends StatelessWidget {
       child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(imagem), fit: BoxFit.cover)),
+                image: AssetImage(imagem), fit: BoxFit.cover)),
           child: Container(
             alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(titulo,
                   style: const TextStyle(
-                      color: Colors.white,
-                      height: 1.5,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      letterSpacing: 1)))),
+                    shadows: [Shadow(color: Color.fromARGB(120, 0, 0, 0), offset: Offset(0, 0), blurRadius: 30)],
+                    color: Colors.white,
+                    height: 1.5,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    letterSpacing: 1)))),
     );
   }
 }

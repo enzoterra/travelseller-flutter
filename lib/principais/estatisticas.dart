@@ -9,7 +9,7 @@ class Estatisticas extends StatefulWidget {
 }
 
 class EstatisticasState extends State<Estatisticas> {
-  static const String titulo = "Estatísticas";
+  static const String titulo = "Financeiro e\nEstatísticas";
   static const String imagem = "assets/images/estatisticas_topbar.jpg";
 
   @override
