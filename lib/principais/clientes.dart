@@ -9,19 +9,16 @@ class Clientes extends StatefulWidget {
 }
 
 class ClientesState extends State<Clientes> {
-  static const String titulo = "Clientes Cadastrados";
+  static const String titulo = "Clientes\nCadastrados";
   static const String imagem = "assets/images/clientes_topbar.jpg";
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(120.0),
-          child: TopBar(
+      body: TopBar(
             imagem: imagem,
             titulo: titulo,
-          )),
-      //bottomNavigationBar: BottomNavigation(indexPag: 0),
+          ),
     );
   }
 }

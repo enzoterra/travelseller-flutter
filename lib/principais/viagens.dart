@@ -9,19 +9,27 @@ class Viagens extends StatefulWidget {
 }
 
 class ViagensState extends State<Viagens> {
-  static const String titulo = "Viagens Programadas";
+  static const String titulo = "Viagens\nProgramadas";
   static const String imagem = "assets/images/viagens_topbar.jpg";
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(120.0),
-          child: TopBar(
+      body: TopBar(
             imagem: imagem,
             titulo: titulo,
-          )),
+          ),
       //bottomNavigationBar: BottomNavigation(indexPag: 1,),
     );
   }
 }
+
+//bottomNavigationBar: BottomNavigation(indexPag: 1,),
+/*
+  appBar: PreferredSize(
+      preferredSize: Size.fromHeight(120.0),
+      child: TopBar(
+      imagem: imagem,
+      titulo: titulo,
+  )),
+*/

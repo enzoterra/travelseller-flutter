@@ -6,9 +6,6 @@ import 'package:travelseller/principais/viagens.dart';
 
 class BottomNavigation extends StatelessWidget {
   final int indexPag;
-  static const Widget clientes = Clientes();
-  static const Widget viagens = Viagens();
-  static const Widget estatisticas = Estatisticas();
 
   const BottomNavigation({
     Key? key,
@@ -27,7 +24,7 @@ class BottomNavigation extends StatelessWidget {
             rippleColor: const Color.fromARGB(61, 41, 41, 41),
             color: const Color.fromARGB(255, 51, 51, 51),
             activeColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             gap: 10,
             tabs: const [
               GButton(
@@ -55,25 +52,26 @@ class BottomNavigation extends StatelessWidget {
                 ]),
               ),
             ],
-            /*onTabChange: (index) {
+            onTabChange: (index) {
               switch (index) {
                 case 0:
-                  return Layoutclientes;
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Clientes()),
+                  );
                 case 1:
-                  return viagens;
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Viagens()),
+                  );
                 case 2:
-                  return estatisticas;
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Estatisticas()),
+                  );
               }
-            },*/
+            },
           )),
     );
   }
 }
-
-  /*
-  bottomNavigationBar: BottomNavigationBar(currentIndex: index, items: const [
-    BottomNavigationBarItem(label: "Clientes", icon: Icon(Icons.people)),
-    BottomNavigationBarItem(label: "Viagens", icon: Icon(Icons.flight_takeoff)),
-    BottomNavigationBarItem(label: "Estatísticas", icon: Icon(Icons.calendar_today))
-  ])
-  */

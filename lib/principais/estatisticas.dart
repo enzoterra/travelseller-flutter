@@ -15,13 +15,10 @@ class EstatisticasState extends State<Estatisticas> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(120.0),
-          child: TopBar(
+      body: TopBar(
             imagem: imagem,
             titulo: titulo,
-          )),
-      //bottomNavigationBar: BottomNavigation(indexPag: 2),
+          ),
     );
   }
 }

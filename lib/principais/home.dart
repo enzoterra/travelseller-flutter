@@ -27,7 +27,7 @@ class HomeState extends State<Home> {
           color: const Color.fromARGB(255, 240, 240, 240),
           child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
               child: GNav(
                   selectedIndex: currentIndex,
                   backgroundColor: const Color.fromARGB(255, 240, 240, 240),
@@ -35,7 +35,7 @@ class HomeState extends State<Home> {
                   color: const Color.fromARGB(255, 51, 51, 51),
                   activeColor: Colors.white,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   gap: 10,
                   tabs: const [
                     GButton(

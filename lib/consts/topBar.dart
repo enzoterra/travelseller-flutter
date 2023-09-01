@@ -9,7 +9,28 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return SizedBox(
+      height: 150,
+      child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(imagem), fit: BoxFit.cover)),
+          child: Container(
+            alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(titulo,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      height: 1.5,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      letterSpacing: 1)))),
+    );
+  }
+}
+
+/*
+return AppBar(
       flexibleSpace: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -17,5 +38,4 @@ class TopBar extends StatelessWidget {
       title: Text(titulo, style: const TextStyle(fontWeight: FontWeight.bold)),
       elevation: 0,
     );
-  }
-}
+*/
