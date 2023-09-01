@@ -16,8 +16,13 @@ class ClientesState extends State<Clientes> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(120.0), child: TopBar(imagem: imagem, titulo: titulo,)),
-      bottomNavigationBar: BottomNavigation(index: 0),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(120.0),
+          child: TopBar(
+            imagem: imagem,
+            titulo: titulo,
+          )),
+      bottomNavigationBar: BottomNavigation(indexPag: 0),
     );
   }
 }
