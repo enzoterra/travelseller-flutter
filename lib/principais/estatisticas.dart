@@ -10,7 +10,7 @@ class Estatisticas extends StatefulWidget {
 
 class EstatisticasState extends State<Estatisticas> {
   static const String titulo = "Estatísticas";
-  static const String imagem = "assets/images/viagens_topbar.jpg";
+  static const String imagem = "assets/images/estatisticas_topbar.jpg";
 
   @override
   Widget build(BuildContext context) {

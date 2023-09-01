@@ -10,7 +10,7 @@ class Clientes extends StatefulWidget {
 
 class ClientesState extends State<Clientes> {
   static const String titulo = "Clientes Cadastrados";
-  static const String imagem = "assets/images/viagens_topbar.jpg";
+  static const String imagem = "assets/images/clientes_topbar.jpg";
 
   @override
   Widget build(BuildContext context) {
