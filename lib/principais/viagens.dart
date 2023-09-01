@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/clientes.dart';
-import 'package:travelseller/estatisticas.dart';
-import 'bottomNavigation.dart';
-import 'topBar.dart';
+import 'package:travelseller/consts/bottomNavigation.dart';
+import 'package:travelseller/consts/topBar.dart';
 
 class Viagens extends StatefulWidget {
   const Viagens({super.key});

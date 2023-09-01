@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:travelseller/clientes.dart';
-import 'package:travelseller/estatisticas.dart';
-import 'package:travelseller/viagens.dart';
+import 'package:travelseller/principais/clientes.dart';
+import 'package:travelseller/principais/estatisticas.dart';
+import 'package:travelseller/principais/viagens.dart';
 
 class BottomNavigation extends StatelessWidget {
   final int indexPag;
@@ -17,8 +17,7 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        bottomNavigationBar: Container(
+    return Container(
       color: const Color.fromARGB(255, 240, 240, 240),
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
@@ -48,7 +47,7 @@ class BottomNavigation extends StatelessWidget {
                 text: "Estatísticas",
               ),
             ],
-            onTabChange: (index) {
+            /*onTabChange: (index) {
               switch (index) {
                 case 0:
                   return Layoutclientes;
@@ -57,9 +56,9 @@ class BottomNavigation extends StatelessWidget {
                 case 2:
                   return estatisticas;
               }
-            },
+            },*/
           )),
-    ));
+    );
   }
 }
 

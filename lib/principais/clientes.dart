@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'bottomNavigation.dart';
-import 'topBar.dart';
+import 'package:travelseller/consts/bottomNavigation.dart';
+import 'package:travelseller/consts/topBar.dart';
 
 class Clientes extends StatefulWidget {
   const Clientes({super.key});

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/viagens.dart';
-import 'package:travelseller/theme.dart';
+import 'package:travelseller/principais/viagens.dart';
 
 void main() {
   runApp(const App());
