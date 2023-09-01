@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/principais/viagens.dart';
+import 'package:travelseller/principais/home.dart';
 
 void main() {
   runApp(const App());
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return const MaterialApp(
       title: 'TravelSeller',
       //theme: tema,
-      home: Viagens(),
+      home: Home(),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/consts/bottomNavigation.dart';
 import 'package:travelseller/consts/topBar.dart';
 
 class Clientes extends StatefulWidget {
@@ -22,7 +21,7 @@ class ClientesState extends State<Clientes> {
             imagem: imagem,
             titulo: titulo,
           )),
-      bottomNavigationBar: BottomNavigation(indexPag: 0),
+      //bottomNavigationBar: BottomNavigation(indexPag: 0),
     );
   }
 }
