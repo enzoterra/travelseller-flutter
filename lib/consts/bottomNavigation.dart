@@ -24,7 +24,7 @@ class BottomNavigation extends StatelessWidget {
             rippleColor: const Color.fromARGB(61, 41, 41, 41),
             color: const Color.fromARGB(255, 51, 51, 51),
             activeColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             gap: 10,
             tabs: const [
               GButton(
@@ -56,18 +56,19 @@ class BottomNavigation extends StatelessWidget {
               switch (index) {
                 case 0:
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Clientes()),
+                    context,
+                    MaterialPageRoute(builder: (context) => const Clientes()),
                   );
                 case 1:
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Viagens()),
+                    context,
+                    MaterialPageRoute(builder: (context) => const Viagens()),
                   );
                 case 2:
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Estatisticas()),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Estatisticas()),
                   );
               }
             },
