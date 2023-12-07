@@ -19,13 +19,15 @@ class BottomNavigation extends StatelessWidget {
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
           child: GNav(
-            selectedIndex: indexPag,
+            selectedIndex: 1,
             backgroundColor: const Color.fromARGB(255, 240, 240, 240),
             rippleColor: const Color.fromARGB(61, 41, 41, 41),
             color: const Color.fromARGB(255, 51, 51, 51),
             activeColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            padding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             gap: 10,
+            tabBorderRadius: 6,
             tabs: const [
               GButton(
                 icon: Icons.people,

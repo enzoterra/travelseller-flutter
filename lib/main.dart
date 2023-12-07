@@ -10,10 +10,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'TravelSeller',
-      //theme: tema,
-      home: Home(),
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(fontFamily: 'Montserrat'),
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: Color.fromARGB(255, 24, 134, 108),
+            foregroundColor: Colors.white,
+            elevation: 10),
+      ),
+      home: const Home(),
     );
   }
 }

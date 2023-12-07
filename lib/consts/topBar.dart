@@ -20,7 +20,7 @@ class TopBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(titulo,
                   style: const TextStyle(
-                    shadows: [Shadow(color: Color.fromARGB(120, 0, 0, 0), offset: Offset(0, 0), blurRadius: 30)],
+                    shadows: [Shadow(color: Color.fromARGB(120, 0, 0, 0), offset: Offset(0, 0), blurRadius: 0)],
                     color: Colors.white,
                     height: 1.5,
                     fontWeight: FontWeight.bold,

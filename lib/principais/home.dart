@@ -37,6 +37,7 @@ class HomeState extends State<Home> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   gap: 10,
+                  tabBorderRadius: 6,
                   tabs: const [
                     GButton(
                       icon: Icons.people,
