@@ -1,0 +1,19 @@
+ " id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                " nomeCliente VARCHAR," +
+                " cpfCliente VARCHAR," +
+                " rgCliente VARCHAR," +
+                " dataNascimentoCliente VARCHAR," +
+                " hotel VARCHAR," +
+                " localizador VARCHAR," +
+                " companhiaAerea VARCHAR," +
+                " numeroVenda VARCHAR," +
+                " cidade VARCHAR," +
+                " embarqueHora VARCHAR," +
+                " embarqueData DATE," +
+                " desembarqueHora VARCHAR," +
+                " desembarqueData DATE," +
+                " observacoes VARCHAR," +
+                " valorComissao REAL," +
+                " valorTotal REAL," +
+                " ano INTEGER," +
+                " mes VARCHAR" +
