@@ -1,10 +1,17 @@
+import 'package:objectbox/objectbox.dart';
 
-                " id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                " embarque INTEGER," +
-                " desembarque INTEGER," +
-                " umaHora INTEGER," +
-                " umDia INTEGER," +
-                " doisDias INTEGER, " +
-                " limpar INTEGER, " +
-                " passar INTEGER " +
-                "); ";
+@Entity()
+class Configuracao {
+  int id = 0;
+
+  bool? embarque, desembarque, umaHora, umDia, doisDias, limpar, passar;
+
+  Configuracao(
+      {this.embarque,
+      this.desembarque,
+      this.umaHora,
+      this.umDia,
+      this.doisDias,
+      this.limpar,
+      this.passar});
+}

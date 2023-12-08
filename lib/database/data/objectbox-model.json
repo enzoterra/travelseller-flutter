@@ -1,0 +1,199 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:446337380928197497",
+      "lastPropertyId": "6:4656028769602788357",
+      "name": "Cliente",
+      "properties": [
+        {
+          "id": "1:6019846342213800650",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5411521047163594512",
+          "name": "nome",
+          "type": 9
+        },
+        {
+          "id": "3:7640529606025858835",
+          "name": "cpf",
+          "type": 9
+        },
+        {
+          "id": "4:6915073908453583017",
+          "name": "rg",
+          "type": 9
+        },
+        {
+          "id": "5:5896868949603357767",
+          "name": "dataNascimento",
+          "type": 9
+        },
+        {
+          "id": "6:4656028769602788357",
+          "name": "idViagem",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:8704420658972717166",
+      "lastPropertyId": "8:9080014239953687816",
+      "name": "Configuracao",
+      "properties": [
+        {
+          "id": "1:9209227434755086418",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8434292295345784956",
+          "name": "embarque",
+          "type": 1
+        },
+        {
+          "id": "3:6944274004183171058",
+          "name": "desembarque",
+          "type": 1
+        },
+        {
+          "id": "4:5720675008323258392",
+          "name": "umaHora",
+          "type": 1
+        },
+        {
+          "id": "5:4573726933321614618",
+          "name": "umDia",
+          "type": 1
+        },
+        {
+          "id": "6:4029908415469939955",
+          "name": "doisDias",
+          "type": 1
+        },
+        {
+          "id": "7:860365948440945975",
+          "name": "limpar",
+          "type": 1
+        },
+        {
+          "id": "8:9080014239953687816",
+          "name": "passar",
+          "type": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:2935190040635580541",
+      "lastPropertyId": "4:8912131180113027183",
+      "name": "Estatistica",
+      "properties": [
+        {
+          "id": "1:3212242004553106188",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7109374658562194535",
+          "name": "idViagem",
+          "type": 6
+        },
+        {
+          "id": "3:4308688019729433112",
+          "name": "ano",
+          "type": 6
+        },
+        {
+          "id": "4:8912131180113027183",
+          "name": "mes",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:3210152066353303584",
+      "lastPropertyId": "11:7233628024383519044",
+      "name": "Viagem",
+      "properties": [
+        {
+          "id": "1:7848884446378969696",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1138104878953333342",
+          "name": "codigoVenda",
+          "type": 9
+        },
+        {
+          "id": "3:5594036630440184699",
+          "name": "localizador",
+          "type": 9
+        },
+        {
+          "id": "4:722214352566392117",
+          "name": "companhiaAerea",
+          "type": 9
+        },
+        {
+          "id": "5:3144454909408258581",
+          "name": "cidade",
+          "type": 9
+        },
+        {
+          "id": "6:4298239653469246644",
+          "name": "hotel",
+          "type": 9
+        },
+        {
+          "id": "7:4032427064739268194",
+          "name": "embarqueData",
+          "type": 9
+        },
+        {
+          "id": "8:394485262493999735",
+          "name": "embarqueHora",
+          "type": 9
+        },
+        {
+          "id": "9:8368951665724994579",
+          "name": "observacoes",
+          "type": 9
+        },
+        {
+          "id": "10:229649082967091177",
+          "name": "valorTotal",
+          "type": 8
+        },
+        {
+          "id": "11:7233628024383519044",
+          "name": "valorComissao",
+          "type": 8
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:3210152066353303584",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
