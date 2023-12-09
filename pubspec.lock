@@ -395,14 +395,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  objectbox_sync_flutter_libs:
-    dependency: "direct main"
-    description:
-      name: objectbox_sync_flutter_libs
-      sha256: a9e2a9ecaa93d246bc41cd9cdb84655a9add018f9163ea8b312a51fe5b4dc40d
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.1"
   package_config:
     dependency: transitive
     description:

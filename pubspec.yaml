@@ -38,7 +38,6 @@ dependencies:
   google_nav_bar: ^5.0.6
   objectbox: ^2.3.1
   objectbox_flutter_libs: any
-  objectbox_sync_flutter_libs: any
 
 dev_dependencies:
   flutter_test:
