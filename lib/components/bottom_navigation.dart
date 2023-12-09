@@ -8,9 +8,9 @@ class BottomNavigation extends StatelessWidget {
   final int indexPag;
 
   const BottomNavigation({
-    Key? key,
+    super.key,
     required this.indexPag,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,7 @@ class BottomNavigation extends StatelessWidget {
             rippleColor: const Color.fromARGB(61, 41, 41, 41),
             color: const Color.fromARGB(255, 51, 51, 51),
             activeColor: Colors.white,
-            padding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             gap: 10,
             tabBorderRadius: 6,
             tabs: const [

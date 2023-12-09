@@ -14,6 +14,9 @@ class ViagensState extends State<Viagens> {
 
   @override
   Widget build(BuildContext context) {
+    final altura = MediaQuery.of(context).size.height;
+    final largura = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         const TopBar(
@@ -21,13 +24,17 @@ class ViagensState extends State<Viagens> {
           titulo: titulo,
         ),
         Container(
+          height: altura * 0.1,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(children: [
                 Text("Próximas Viagens",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5))
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        letterSpacing: 1.5))
               ]),
               Column(children: [
                 Text("CONF",
@@ -36,24 +43,17 @@ class ViagensState extends State<Viagens> {
             ],
           ),
         ),
-        Container(
-          height: 480,
-          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10, top: 5),
+        SizedBox(
+          height: altura * 0.65,
+          width: largura * 0.92,
+          //padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10, top: 5),
           child: Container(
-            decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5)), color: Color.fromARGB(255, 233, 233, 233)),
-            ),
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: Color.fromARGB(255, 233, 233, 233)),
+          ),
         ),
       ],
     );
   }
 }
-
-//bottomNavigationBar: BottomNavigation(indexPag: 1,),
-/*
-  appBar: PreferredSize(
-      preferredSize: Size.fromHeight(120.0),
-      child: TopBar(
-      imagem: imagem,
-      titulo: titulo,
-  )),
-*/
