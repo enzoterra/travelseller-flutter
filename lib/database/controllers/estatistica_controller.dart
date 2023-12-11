@@ -1,10 +1,10 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:travelseller/database/controller.dart';
+import 'package:travelseller/database/object-box.dart';
 import 'package:travelseller/database/model/estatistica.dart';
 
 class EstatisticaController {
   List<Estatistica> lista = [];
-  late final Controller controller;
+  late final ObjectBox controller;
 
   EstatisticaController(this.controller);
 
@@ -38,6 +38,8 @@ class EstatisticaController {
     final box = await getBox();
 
     lista = box.getAll() as List<Estatistica>;
+
+    return lista;
   }
 
   delete(Estatistica estatistica) async {

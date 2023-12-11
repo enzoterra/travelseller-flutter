@@ -4,6 +4,8 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
+import 'package:travelseller/database/controllers/cliente_controller.dart';
+import 'package:travelseller/database/model/cliente.dart';
 
 class Clientes extends StatefulWidget {
   const Clientes({super.key});
@@ -13,10 +15,13 @@ class Clientes extends StatefulWidget {
 }
 
 class ClientesState extends State<Clientes> {
+  late final ClienteController controller;
+
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
+    List<Cliente> lista = controller.readAll();
 
     return Column(
       children: [
@@ -32,11 +37,9 @@ class ClientesState extends State<Clientes> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(children: [
-                  Text(Titles.subTituloClientes,
-                      style: Styles.subTituloPagina)
+                  Text(Titles.subTituloClientes, style: Styles.subTituloPagina)
                 ]),
-                Row(
-                  children: [
+                Row(children: [
                   Text("CONF",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
@@ -50,21 +53,16 @@ class ClientesState extends State<Clientes> {
           width: largura * 0.92,
           child: Container(
             decoration: Styles.decorationTile,
-            child: Center(
-              child: ListView(
-                padding: const EdgeInsets.all(10),
-                children: const [
-                  Card(
-                    child: ListTile(
-                      leading: CustomIcons.iconeClienteTile,
-                      title: Text('Enzo Andrade Terra'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            child:
+                Center(child: ListView.builder(itemBuilder: (context, index) {
+              return Card(
+                  child: ListTile(
+                leading: CustomIcons.iconeClienteTile,
+                title: Text(lista[index].nome.toString()),
+              ));
+            })),
           ),
-        ),
+        )
       ],
     );
   }

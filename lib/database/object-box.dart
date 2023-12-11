@@ -1,6 +1,6 @@
 import 'package:travelseller/database/data/objectbox.g.dart';
 
-class Controller {
+class ObjectBox {
   Store? store;
 
   Future<Store> getStore() async {

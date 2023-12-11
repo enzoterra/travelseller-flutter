@@ -1,10 +1,10 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:travelseller/database/controller.dart';
+import 'package:travelseller/database/object-box.dart';
 import 'package:travelseller/database/model/viagem.dart';
 
 class ViagemController {
   List<Viagem> lista = [];
-  late final Controller controller;
+  late final ObjectBox controller;
 
   ViagemController(this.controller);
 
@@ -58,6 +58,8 @@ class ViagemController {
     final box = await getBox();
 
     lista = box.getAll() as List<Viagem>;
+
+    return lista;
   }
 
   delete(Viagem viagem) async {
