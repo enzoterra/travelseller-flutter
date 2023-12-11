@@ -3,6 +3,16 @@ import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/pages/home.dart';
 import 'components/custom/theme.dart';
 
+/*late ObjectBox objectbox;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  objectbox = await ObjectBox.getStore();
+
+  runApp(const App());
+}*/
+
 void main() {
   runApp(const App());
 }

@@ -4,14 +4,14 @@ import 'package:travelseller/database/model/cliente.dart';
 
 class ClienteController {
   List<Cliente> lista = [];
-  late final ObjectBox controller;
+  late final ObjectBox objectBox;
 
-  ClienteController(this.controller);
+  ClienteController(this.objectBox);
 
   Future<Box> getBox() async {
-    final store = await controller.getStore();
+    objectBox = await ObjectBox.getStore();
 
-    return store.box<Cliente>();
+    return objectBox.store.box<Cliente>();
   }
 
   create(String? nome, cpf, rg, dataNascimento, int? idViagem) async {
