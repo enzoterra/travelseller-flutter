@@ -4,9 +4,7 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
-import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
-import 'package:travelseller/database/object-box.dart';
 
 class Clientes extends StatefulWidget {
   const Clientes({super.key});
@@ -20,8 +18,7 @@ class ClientesState extends State<Clientes> {
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    List<Cliente> lista = getLista();
-    /*[
+    List<Cliente> lista = <Cliente>[
       Cliente(
           nome: "Enzo Andrade Terra",
           cpf: "08412684109",
@@ -40,7 +37,7 @@ class ClientesState extends State<Clientes> {
           rg: "2390557",
           dataNascimento: "12/04/2004",
           idViagem: 1),
-    ];*/
+    ];
     //List<Cliente> lista = ClienteController().readAll() as List<Cliente>;
 
     return Column(
@@ -72,24 +69,26 @@ class ClientesState extends State<Clientes> {
           height: altura * 0.58,
           width: largura * 0.92,
           child: Container(
-            decoration: Styles.decorationTile,
-            child:
-                Center(child: ListView.builder(itemBuilder: (context, index) {
-              return Card(
-                  child: ListTile(
-                leading: CustomIcons.iconeClienteTile,
-                title: Text(lista[index].nome.toString()),
-              ));
-            })),
-          ),
-        )
+              decoration: Styles.decorationTile,
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(7),
+                  itemCount: lista.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                        child: ListTile(
+                      leading: CustomIcons.iconeClienteTile,
+                      title: Text(lista[index].nome.toString()),
+                    ));
+                  })),
+        ),
       ],
     );
   }
 
-  getLista() {
-    List<Cliente> listaFunc = [];
+  /*List<Cliente> getLista() {
     ClienteController controller = ClienteController(ObjectBox());
-    return listaFunc = controller.readAll();
-  }
+    List<Cliente> listaFunc = controller.readAll() as List<Cliente>;
+
+    return listaFunc;
+  }*/
 }

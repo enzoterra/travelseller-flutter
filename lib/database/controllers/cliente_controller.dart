@@ -1,5 +1,5 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:travelseller/database/object-box.dart';
+import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/cliente.dart';
 
 class ClienteController {
@@ -39,10 +39,10 @@ class ClienteController {
     return box.get(id) as Cliente;
   }
 
-  readAll() async {
+  Future<List<Cliente>> readAll() async {
     final box = await getBox();
 
-    lista = box.getAll() as List<Cliente>;
+    List<Cliente> lista = box.getAll() as List<Cliente>;
 
     return lista;
   }

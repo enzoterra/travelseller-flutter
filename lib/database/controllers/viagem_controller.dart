@@ -1,5 +1,5 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:travelseller/database/object-box.dart';
+import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/viagem.dart';
 
 class ViagemController {
