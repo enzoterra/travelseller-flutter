@@ -4,7 +4,9 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
+import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
+import 'package:travelseller/database/object-box.dart';
 
 class Clientes extends StatefulWidget {
   const Clientes({super.key});
@@ -18,7 +20,8 @@ class ClientesState extends State<Clientes> {
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    List<Cliente> lista = [
+    List<Cliente> lista = getLista();
+    /*[
       Cliente(
           nome: "Enzo Andrade Terra",
           cpf: "08412684109",
@@ -37,7 +40,7 @@ class ClientesState extends State<Clientes> {
           rg: "2390557",
           dataNascimento: "12/04/2004",
           idViagem: 1),
-    ];
+    ];*/
     //List<Cliente> lista = ClienteController().readAll() as List<Cliente>;
 
     return Column(
@@ -82,5 +85,11 @@ class ClientesState extends State<Clientes> {
         )
       ],
     );
+  }
+
+  getLista() {
+    List<Cliente> listaFunc = [];
+    ClienteController controller = ClienteController(ObjectBox());
+    return listaFunc = controller.readAll();
   }
 }

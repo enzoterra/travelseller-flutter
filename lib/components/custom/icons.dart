@@ -8,4 +8,9 @@ abstract class CustomIcons {
     Icons.person,
     color: Colors.black87,
   );
+
+  static const Icon iconeConfiguracao = Icon(
+    Icons.settings,
+    color: Colors.black87,
+  );
 }

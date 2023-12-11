@@ -9,9 +9,9 @@ class ClienteController {
   ClienteController(this.objectBox);
 
   Future<Box> getBox() async {
-    objectBox = await ObjectBox.getStore();
+    final store = await objectBox.getStore();
 
-    return objectBox.store.box<Cliente>();
+    return store.box<Cliente>();
   }
 
   create(String? nome, cpf, rg, dataNascimento, int? idViagem) async {
