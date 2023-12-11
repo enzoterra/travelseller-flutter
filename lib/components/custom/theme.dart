@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Tema extends StatelessWidget {
-  final tema = ThemeData(
+abstract class Tema {
+  static ThemeData tema = ThemeData(
     textTheme: const TextTheme(
-      bodyMedium: TextStyle(fontFamily: 'Montserrat', fontSize: 24),
+      bodyMedium: TextStyle(fontFamily: 'Montserrat'),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color.fromARGB(255, 24, 134, 108),
         foregroundColor: Colors.white,
         elevation: 10),
   );
-
-  Tema({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    throw UnimplementedError();
-  }
 }

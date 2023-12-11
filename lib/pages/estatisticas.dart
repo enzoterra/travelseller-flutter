@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/images.dart';
+import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 
 class Estatisticas extends StatefulWidget {
@@ -9,15 +11,12 @@ class Estatisticas extends StatefulWidget {
 }
 
 class EstatisticasState extends State<Estatisticas> {
-  static const String titulo = "Financeiro e\nEstatísticas";
-  static const String imagem = "assets/images/estatisticas_topbar_darken.jpg";
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: TopBar(
-            imagem: imagem,
-            titulo: titulo,
+            imagem: Images.imagemEstatisticas,
+            titulo: Titles.tituloEstatisticas,
           ),
     );
   }

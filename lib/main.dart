@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/pages/home.dart';
+import 'components/custom/theme.dart';
 
 void main() {
   runApp(const App());
@@ -11,16 +13,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TravelSeller',
-      theme: ThemeData(
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(fontFamily: 'Montserrat'),
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Color.fromARGB(255, 24, 134, 108),
-            foregroundColor: Colors.white,
-            elevation: 10),
-      ),
+      title: Titles.tituloApp,
+      theme: Tema.tema,
       home: const Home(),
     );
   }

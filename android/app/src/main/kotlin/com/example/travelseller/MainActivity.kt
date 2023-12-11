@@ -1,4 +1,4 @@
-package com.example.travelseller
+package com.enzoterra.travelseller
 
 import io.flutter.embedding.android.FlutterActivity
 

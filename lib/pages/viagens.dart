@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/images.dart';
+import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
+import 'package:travelseller/components/tiles/viagem_tile.dart';
 
 class Viagens extends StatefulWidget {
   const Viagens({super.key});
@@ -9,9 +13,6 @@ class Viagens extends StatefulWidget {
 }
 
 class ViagensState extends State<Viagens> {
-  static const String titulo = "Viagens\nProgramadas";
-  static const String imagem = "assets/images/viagens_topbar.jpg";
-
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
@@ -20,37 +21,46 @@ class ViagensState extends State<Viagens> {
     return Column(
       children: [
         const TopBar(
-          imagem: imagem,
-          titulo: titulo,
+          imagem: Images.imagemViagens,
+          titulo: Titles.tituloViagens,
         ),
         Container(
-          height: altura * 0.1,
+          height: altura * 0.11,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(children: [
-                Text("Próximas Viagens",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        letterSpacing: 1.5))
-              ]),
-              Column(children: [
-                Text("CONF",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
-              ]),
-            ],
+          child: const Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(children: [
+                  Text(Titles.subTituloViagens,
+                      style: Styles.subTituloPagina)
+                ]),
+                Column(children: [
+                  Text("CONF",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
+                ]),
+              ],
+            ),
           ),
         ),
         SizedBox(
-          height: altura * 0.65,
+          height: altura * 0.62,
           width: largura * 0.92,
-          //padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10, top: 5),
           child: Container(
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: Color.fromARGB(255, 233, 233, 233)),
+            decoration: Styles.decorationTile,
+            child: Center(
+              child: ListView(
+                padding: const EdgeInsets.all(10),
+                children: const [
+                  ViagemListTile(
+                      nome: "Enzo Terra",
+                      destino: "Natal/RN",
+                      embarque: "21/10/2024",
+                      desembarque: "30/10/2024"),
+                ],
+              ),
+            ),
           ),
         ),
       ],

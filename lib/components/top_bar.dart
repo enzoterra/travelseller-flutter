@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/styles.dart';
 
 class TopBar extends StatelessWidget {
   final String imagem;
@@ -11,7 +12,7 @@ class TopBar extends StatelessWidget {
     final altura = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      height: altura * 0.16,
+      height: altura * 0.18,
       child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -20,18 +21,7 @@ class TopBar extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(titulo,
-                  style: const TextStyle(
-                      shadows: [
-                        Shadow(
-                            color: Color.fromARGB(120, 0, 0, 0),
-                            offset: Offset(0, 0),
-                            blurRadius: 0)
-                      ],
-                      color: Colors.white,
-                      height: 1.5,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      letterSpacing: 1)))),
+                  style: Styles.tituloPagina))),
     );
   }
 }
