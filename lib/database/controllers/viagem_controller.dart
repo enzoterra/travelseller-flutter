@@ -40,31 +40,32 @@ class ViagemController {
     final box = await getBox();
 
     box.put(viagem);
+    controller.closeStore();
   }
 
   update(Viagem viagem) async {
     final box = await getBox();
-
     box.put(viagem);
+    controller.closeStore();
   }
 
   Future<Viagem> read(int id) async {
     final box = await getBox();
-
-    return box.get(id) as Viagem;
+    Viagem viagem = box.get(id) as Viagem;
+    controller.closeStore();
+    return viagem;
   }
 
-  readAll() async {
+  Future<List<Viagem>> readAll() async {
     final box = await getBox();
-
     lista = box.getAll() as List<Viagem>;
-
+    controller.closeStore();
     return lista;
   }
 
   delete(Viagem viagem) async {
     final box = await getBox();
-
     box.remove(viagem.id);
+    controller.closeStore();
   }
 }

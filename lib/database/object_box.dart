@@ -4,7 +4,11 @@ class ObjectBox {
   Store? store;
 
   Future<Store> getStore() async {
-    return store ??= await openStore();
+    return store = await openStore();
+  }
+
+  closeStore(){
+    store!.close();
   }
   
   /*late final Store store;

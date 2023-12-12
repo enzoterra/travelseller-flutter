@@ -4,12 +4,12 @@ import 'package:travelseller/database/model/cliente.dart';
 
 class ClienteController {
   List<Cliente> lista = [];
-  late final ObjectBox objectBox;
+  late final ObjectBox controller;
 
-  ClienteController(this.objectBox);
+  ClienteController(this.controller);
 
   Future<Box> getBox() async {
-    final store = await objectBox.getStore();
+    final store = await controller.getStore();
 
     return store.box<Cliente>();
   }
@@ -25,31 +25,32 @@ class ClienteController {
     final box = await getBox();
 
     box.put(cliente);
+    controller.closeStore();
   }
 
   update(Cliente cliente) async {
     final box = await getBox();
-
     box.put(cliente);
+    controller.closeStore();
   }
 
   Future<Cliente> read(int id) async {
     final box = await getBox();
-
-    return box.get(id) as Cliente;
+    Cliente cliente = box.get(id) as Cliente;
+    controller.closeStore();
+    return cliente;
   }
 
   Future<List<Cliente>> readAll() async {
     final box = await getBox();
-
     List<Cliente> lista = box.getAll() as List<Cliente>;
-
+    controller.closeStore();
     return lista;
   }
 
   delete(Cliente cliente) async {
     final box = await getBox();
-
     box.remove(cliente.id);
+    controller.closeStore();
   }
 }

@@ -26,33 +26,33 @@ class ConfiguracaoController {
         passar: passar);
 
     final box = await getBox();
-
     box.put(configuracao);
+    controller.closeStore();
   }
 
   update(Configuracao configuracao) async {
     final box = await getBox();
-
     box.put(configuracao);
+    controller.closeStore();
   }
 
   Future<Configuracao> read(int id) async {
     final box = await getBox();
-
-    return box.get(id) as Configuracao;
+    Configuracao configuracao = box.get(id) as Configuracao;
+    controller.closeStore();
+    return configuracao;
   }
 
-  readAll() async {
+  Future<List<Configuracao>> readAll() async {
     final box = await getBox();
-
     lista = box.getAll() as List<Configuracao>;
-
+    controller.closeStore();
     return lista;
   }
 
   delete(Configuracao configuracao) async {
     final box = await getBox();
-
     box.remove(configuracao.id);
+    controller.closeStore();
   }
 }

@@ -6,6 +6,9 @@ import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
 
+import '../database/controllers/cliente_controller.dart';
+import '../database/object_box.dart';
+
 class Clientes extends StatefulWidget {
   const Clientes({super.key});
 
@@ -14,11 +17,23 @@ class Clientes extends StatefulWidget {
 }
 
 class ClientesState extends State<Clientes> {
+  Future<List<Cliente>>? futureClientes;
+  final controller = ClienteController(ObjectBox());
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      futureClientes = controller.readAll();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    List<Cliente> lista = <Cliente>[
+    /*List<Cliente> lista = <Cliente>[
       Cliente(
           nome: "Enzo Andrade Terra",
           cpf: "08412684109",
@@ -37,10 +52,10 @@ class ClientesState extends State<Clientes> {
           rg: "2390557",
           dataNascimento: "12/04/2004",
           idViagem: 1),
-    ];
+    ];*/
     //List<Cliente> lista = ClienteController().readAll() as List<Cliente>;
 
-    return Column(
+    return Scaffold(body: Column(
       children: [
         const TopBar(
           imagem: Images.imagemClientes,
@@ -70,25 +85,41 @@ class ClientesState extends State<Clientes> {
           width: largura * 0.92,
           child: Container(
               decoration: Styles.decorationTile,
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(7),
-                  itemCount: lista.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                        child: ListTile(
-                      leading: CustomIcons.iconeClienteTile,
-                      title: Text(lista[index].nome.toString()),
-                    ));
-                  })),
+              child: FutureBuilder<List<Cliente>>(
+                future: futureClientes,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    final listaClientes = snapshot.data!;
+
+                    return listaClientes.isEmpty
+                        ? const Center(child: Text("Sem clientes ..."))
+                        : ListView.builder(
+                            padding: const EdgeInsets.all(7),
+                            itemCount: listaClientes.length,
+                            itemBuilder: (context, index) {
+                              final cliente = listaClientes[index];
+                              return Card(
+                                  child: ListTile(
+                                leading: CustomIcons.iconeClienteTile,
+                                title: Text(cliente.nome.toString()),
+                              ));
+                            });
+                  }
+                },
+              )),
         ),
       ],
+    ),
+    floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.create("Enzo Andrade Terra", "08412684109", "2390557", "12/04/2004", 1);
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
-
-  /*List<Cliente> getLista() {
-    ClienteController controller = ClienteController(ObjectBox());
-    List<Cliente> listaFunc = controller.readAll() as List<Cliente>;
-
-    return listaFunc;
-  }*/
 }

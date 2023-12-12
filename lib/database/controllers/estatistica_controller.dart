@@ -18,33 +18,33 @@ class EstatisticaController {
     final estatistica = Estatistica(idViagem: idViagem, ano: ano, mes: mes);
 
     final box = await getBox();
-
     box.put(estatistica);
+    controller.closeStore();
   }
 
   update(Estatistica estatistica) async {
     final box = await getBox();
-
     box.put(estatistica);
+    controller.closeStore();
   }
 
   Future<Estatistica> read(int id) async {
     final box = await getBox();
-
-    return box.get(id) as Estatistica;
+    Estatistica estatistica = box.get(id) as Estatistica;
+    controller.closeStore();
+    return estatistica;
   }
 
-  readAll() async {
+  Future<List<Estatistica>> readAll() async {
     final box = await getBox();
-
     lista = box.getAll() as List<Estatistica>;
-
+    controller.closeStore();
     return lista;
   }
 
   delete(Estatistica estatistica) async {
     final box = await getBox();
-
     box.remove(estatistica.id);
+    controller.closeStore();
   }
 }

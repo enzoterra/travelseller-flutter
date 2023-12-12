@@ -4,6 +4,9 @@ import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/components/tiles/viagem_tile.dart';
+import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/database/model/viagem.dart';
+import '../database/object_box.dart';
 
 class Viagens extends StatefulWidget {
   const Viagens({super.key});
@@ -13,6 +16,18 @@ class Viagens extends StatefulWidget {
 }
 
 class ViagensState extends State<Viagens> {
+  Future<List<Viagem>>? futureViagens;
+  final controller = ViagemController(ObjectBox());
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      futureViagens = controller.readAll();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
@@ -32,8 +47,7 @@ class ViagensState extends State<Viagens> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(children: [
-                  Text(Titles.subTituloViagens,
-                      style: Styles.subTituloPagina)
+                  Text(Titles.subTituloViagens, style: Styles.subTituloPagina)
                 ]),
                 Column(children: [
                   Text("CONF",
@@ -48,20 +62,39 @@ class ViagensState extends State<Viagens> {
           height: altura * 0.62,
           width: largura * 0.92,
           child: Container(
-            decoration: Styles.decorationTile,
-            child: Center(
-              child: ListView(
-                padding: const EdgeInsets.all(10),
-                children: const [
-                  ViagemListTile(
-                      nome: "Enzo Terra",
-                      destino: "Natal/RN",
-                      embarque: "21/10/2024",
-                      desembarque: "30/10/2024"),
-                ],
-              ),
-            ),
-          ),
+              decoration: Styles.decorationTile,
+              child: FutureBuilder<List<Viagem>>(
+                future: futureViagens,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    final listaViagens = snapshot.data!;
+
+                    return listaViagens.isEmpty
+                        ? const Center(child: Text("Sem viagens marcadas ..."))
+                        : ListView.builder(
+                            padding: const EdgeInsets.all(7),
+                            itemCount: listaViagens.length,
+                            itemBuilder: (context, index) {
+                              //final cliente = listaViagens[index];
+                              return Center(
+                                  child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: const [
+                                  ViagemListTile(
+                                      nome: "Enzo Terra",
+                                      destino: "Natal/RN",
+                                      embarque: "21/10/2024",
+                                      desembarque: "30/10/2024"),
+                                ],
+                              ));
+                            });
+                  }
+                },
+              )),
         ),
       ],
     );

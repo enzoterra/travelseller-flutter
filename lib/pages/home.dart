@@ -27,7 +27,7 @@ class HomeState extends State<Home> {
           color: const Color.fromARGB(255, 240, 240, 240),
           child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               child: GNav(
                   selectedIndex: currentIndex,
                   backgroundColor: const Color.fromARGB(255, 240, 240, 240),
