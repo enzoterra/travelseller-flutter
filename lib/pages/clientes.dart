@@ -5,6 +5,7 @@ import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
+import 'package:travelseller/pages/cadastro.dart';
 
 import '../database/controllers/cliente_controller.dart';
 import '../database/object_box.dart';
@@ -116,7 +117,8 @@ class ClientesState extends State<Clientes> {
     ),
     floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.create("Enzo Andrade Terra", "08412684109", "2390557", "12/04/2004", 1);
+          Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => const Cadastro())));
         },
         child: const Icon(Icons.add),
       ),

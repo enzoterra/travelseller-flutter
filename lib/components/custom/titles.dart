@@ -10,4 +10,6 @@ abstract class Titles {
 
   static const String tituloEstatisticas = "Financeiro e\nEstatísticas";
   static const String subTituloEstatisticas = "Próximas Viagens";
+
+  static const String tituloCadastro = "Novo cadastro";
 }

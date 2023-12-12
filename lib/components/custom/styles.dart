@@ -27,4 +27,24 @@ abstract class Styles {
   static const BoxDecoration decorationTile = BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       color: Color.fromARGB(255, 233, 233, 233));
+
+  static const TextStyle tituloCadastro = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 26,
+    letterSpacing: 1.5,
+    color: Colors.white,
+    shadows: [
+      Shadow(
+          color: Color.fromARGB(120, 0, 0, 0),
+          offset: Offset(0, 0),
+          blurRadius: 12)
+    ],
+  );
+
+  static const TextStyle subTituloCadastro = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+    letterSpacing: 1.5,
+    color: Color.fromARGB(255, 24, 134, 108),
+  );
 }
