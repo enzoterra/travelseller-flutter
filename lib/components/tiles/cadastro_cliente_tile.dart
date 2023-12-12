@@ -10,80 +10,90 @@ class CadastroClienteTile extends StatelessWidget {
     final largura = MediaQuery.of(context).size.width;
 
     return SizedBox(
-        height: altura * 0.4,
-        width: largura * 1,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Dados do Cliente",
+          style: Styles.subTituloCadastro,
+        ),
+        Row(
           children: [
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                  "Nome",
+                  style: Styles.tituloAtributoCadastro,
+                ),
                 SizedBox(
-                    height: altura * 0.3,
-                    width: largura * 1,
-                    child: Column(
-                      children: [
-                        const Text(
-                          "Nome",
-                          style: Styles.subTituloCadastro,
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                              border: UnderlineInputBorder()),
-                        )
-                      ],
-                    ))
-              ],
-            ),
-            SizedBox(
-                height: altura * 0.3,
-                width: largura * 1,
-                child: Row(
-                  children: [
-                    const Text(
-                      "CPF",
-                      style: Styles.subTituloCadastro,
-                    ),
-                    TextFormField(
+                    width: largura * 0.7,
+                    height: 30,
+                    child: TextFormField(
+                      style: Styles.textoAtributoCadastro,
                       decoration:
                           const InputDecoration(border: UnderlineInputBorder()),
-                    )
-                  ],
-                )),
-            Row(
+                    ))
+              ],
+            )
+          ],
+        ),
+        Row(
+          children: [
+            const Text(
+              "CPF",
+              style: Styles.tituloAtributoCadastro,
+            ),
+            SizedBox(
+                width: largura * 0.5,
+                height: 30,
+                child: TextFormField(
+                  style: Styles.textoAtributoCadastro,
+                  decoration:
+                      const InputDecoration(border: UnderlineInputBorder()),
+                ))
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                  "RG",
+                  style: Styles.tituloAtributoCadastro,
+                ),
                 SizedBox(
-                    height: altura * 0.3,
-                    width: largura * 0.4,
-                    child: Column(
-                      children: [
-                        const Text(
-                          "RG",
-                          style: Styles.subTituloCadastro,
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                              border: UnderlineInputBorder()),
-                        )
-                      ],
-                    )),
-                SizedBox(
-                    height: altura * 0.3,
-                    width: largura * 0.4,
-                    child: Column(
-                      children: [
-                        const Text(
-                          "Data de Nascimento",
-                          style: Styles.subTituloCadastro,
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                              border: UnderlineInputBorder()),
-                        )
-                      ],
+                    width: largura * 0.3,
+                    height: 30,
+                    child: TextFormField(
+                      style: Styles.textoAtributoCadastro,
+                      decoration:
+                          const InputDecoration(border: UnderlineInputBorder()),
                     ))
               ],
             ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Data de Nascimento",
+                  style: Styles.tituloAtributoCadastro,
+                ),
+                SizedBox(
+                    width: largura * 0.3,
+                    height: 30,
+                    child: TextFormField(
+                      style: Styles.textoAtributoCadastro,
+                      decoration:
+                          const InputDecoration(border: UnderlineInputBorder()),
+                    ))
+              ],
+            )
           ],
-        ));
+        ),
+      ],
+    ));
   }
 }

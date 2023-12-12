@@ -47,4 +47,14 @@ abstract class Styles {
     letterSpacing: 1.5,
     color: Color.fromARGB(255, 24, 134, 108),
   );
+
+  static const TextStyle tituloAtributoCadastro = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+    letterSpacing: 1.5,
+  );
+
+  static const TextStyle textoAtributoCadastro = TextStyle(
+    fontSize: 16,
+  );
 }
