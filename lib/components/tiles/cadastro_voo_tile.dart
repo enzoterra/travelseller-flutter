@@ -3,7 +3,23 @@ import 'package:flutter/material.dart';
 import '../custom/styles.dart';
 
 class CadastroVooTile extends StatelessWidget {
-  const CadastroVooTile({super.key});
+  const CadastroVooTile(
+      {super.key,
+      required this.localizadorController,
+      required this.codigoController,
+      required this.dataIdaController,
+      required this.horaIdaController,
+      required this.dataVoltaController,
+      required this.horaVoltaController,
+      required this.companhiaController});
+
+  final TextEditingController localizadorController;
+  final TextEditingController companhiaController;
+  final TextEditingController codigoController;
+  final TextEditingController dataIdaController;
+  final TextEditingController horaIdaController;
+  final TextEditingController dataVoltaController;
+  final TextEditingController horaVoltaController;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +48,32 @@ class CadastroVooTile extends StatelessWidget {
                     width: 80,
                     height: 40,
                     child: TextFormField(
+                      controller: localizadorController,
                       keyboardType: TextInputType.number,
                       style: Styles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. 000000",
+                          border: UnderlineInputBorder()),
+                    ))
+              ],
+            ),
+            const SizedBox(height: 0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Companhia Aérea",
+                  style: Styles.tituloAtributoCadastro,
+                ),
+                SizedBox(
+                    width: 100,
+                    height: 40,
+                    child: TextFormField(
+                      controller: companhiaController,
+                      keyboardType: TextInputType.number,
+                      style: Styles.textoAtributoCadastro,
+                      decoration: const InputDecoration(
+                          hintText: "Ex. Latam",
                           border: UnderlineInputBorder()),
                     ))
               ],
@@ -52,6 +90,7 @@ class CadastroVooTile extends StatelessWidget {
                     width: 120,
                     height: 40,
                     child: TextFormField(
+                      controller: codigoController,
                       keyboardType: TextInputType.number,
                       style: Styles.textoAtributoCadastro,
                       decoration: const InputDecoration(
@@ -88,6 +127,7 @@ class CadastroVooTile extends StatelessWidget {
                                 width: 100,
                                 height: 40,
                                 child: TextFormField(
+                                  controller: dataIdaController,
                                   keyboardType: TextInputType.datetime,
                                   style: Styles.textoAtributoCadastro,
                                   decoration: const InputDecoration(
@@ -110,6 +150,7 @@ class CadastroVooTile extends StatelessWidget {
                                 width: 60,
                                 height: 40,
                                 child: TextFormField(
+                                  controller: horaIdaController,
                                   keyboardType: TextInputType.datetime,
                                   style: Styles.textoAtributoCadastro,
                                   decoration: const InputDecoration(
@@ -152,6 +193,7 @@ class CadastroVooTile extends StatelessWidget {
                                 width: 100,
                                 height: 40,
                                 child: TextFormField(
+                                  controller: dataVoltaController,
                                   keyboardType: TextInputType.datetime,
                                   style: Styles.textoAtributoCadastro,
                                   decoration: const InputDecoration(
@@ -174,6 +216,7 @@ class CadastroVooTile extends StatelessWidget {
                                 width: 60,
                                 height: 40,
                                 child: TextFormField(
+                                  controller: horaVoltaController,
                                   keyboardType: TextInputType.datetime,
                                   style: Styles.textoAtributoCadastro,
                                   decoration: const InputDecoration(

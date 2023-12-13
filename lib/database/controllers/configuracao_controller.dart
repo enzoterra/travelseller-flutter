@@ -26,8 +26,9 @@ class ConfiguracaoController {
         passar: passar);
 
     final box = await getBox();
-    box.put(configuracao);
+    int id = box.put(configuracao);
     controller.closeStore();
+    return id;
   }
 
   update(Configuracao configuracao) async {

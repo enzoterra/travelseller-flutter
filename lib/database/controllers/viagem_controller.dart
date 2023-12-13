@@ -39,8 +39,9 @@ class ViagemController {
 
     final box = await getBox();
 
-    box.put(viagem);
+    int id = box.put(viagem);
     controller.closeStore();
+    return id;
   }
 
   update(Viagem viagem) async {

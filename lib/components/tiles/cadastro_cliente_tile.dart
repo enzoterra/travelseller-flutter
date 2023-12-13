@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import '../custom/styles.dart';
 
 class CadastroClienteTile extends StatelessWidget {
-  const CadastroClienteTile({super.key});
+  const CadastroClienteTile(
+      {super.key,
+      required this.nomeController,
+      required this.cpfController,
+      required this.rgController,
+      required this.nascimentoController});
+
+  final TextEditingController nomeController;
+  final TextEditingController cpfController;
+  final TextEditingController rgController;
+  final TextEditingController nascimentoController;
 
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
-
     return SizedBox(
         height: 330,
         child: Column(
@@ -31,6 +40,7 @@ class CadastroClienteTile extends StatelessWidget {
                     width: largura * 0.7,
                     height: 40,
                     child: TextFormField(
+                      controller: nomeController,
                       style: Styles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. José Almeida da Silva",
@@ -50,6 +60,7 @@ class CadastroClienteTile extends StatelessWidget {
                     width: 140,
                     height: 40,
                     child: TextFormField(
+                      controller: cpfController,
                       keyboardType: TextInputType.number,
                       style: Styles.textoAtributoCadastro,
                       decoration: const InputDecoration(
@@ -72,6 +83,7 @@ class CadastroClienteTile extends StatelessWidget {
                         width: 80,
                         height: 40,
                         child: TextFormField(
+                          controller: rgController,
                           keyboardType: TextInputType.number,
                           style: Styles.textoAtributoCadastro,
                           decoration: const InputDecoration(
@@ -94,6 +106,7 @@ class CadastroClienteTile extends StatelessWidget {
                         width: 120,
                         height: 40,
                         child: TextFormField(
+                          controller: nascimentoController,
                           keyboardType: TextInputType.datetime,
                           style: Styles.textoAtributoCadastro,
                           decoration: const InputDecoration(

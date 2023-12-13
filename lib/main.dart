@@ -25,7 +25,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: Titles.tituloApp,
       theme: Tema.tema,
-      home: const Home(),
+      home: const Home(currentIndex: 1,),
     );
   }
 }

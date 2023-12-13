@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import '../custom/styles.dart';
 
 class CadastroInformacoesTile extends StatelessWidget {
-  const CadastroInformacoesTile({super.key});
+  const CadastroInformacoesTile(
+      {super.key,
+      required this.valorVendaController,
+      required this.comissaoController,
+      required this.observacoesController});
+
+  final TextEditingController valorVendaController;
+  final TextEditingController comissaoController;
+  final TextEditingController observacoesController;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +42,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                         width: 100,
                         height: 40,
                         child: TextFormField(
+                          controller: valorVendaController,
                           keyboardType: TextInputType.number,
                           style: Styles.textoAtributoCadastro,
                           decoration: const InputDecoration(
@@ -56,6 +65,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                         width: 100,
                         height: 40,
                         child: TextFormField(
+                          controller: comissaoController,
                           keyboardType: TextInputType.number,
                           style: Styles.textoAtributoCadastro,
                           decoration: const InputDecoration(
@@ -80,11 +90,13 @@ class CadastroInformacoesTile extends StatelessWidget {
                 SizedBox(
                     width: largura * 1,
                     height: 120,
-                    child: const TextField(
+                    child: TextField(
+                      controller: observacoesController,
                       keyboardType: TextInputType.multiline,
                       maxLines: 20,
                       style: Styles.textoAtributoCadastro,
-                      decoration: InputDecoration(border: OutlineInputBorder()),
+                      decoration:
+                          const InputDecoration(border: OutlineInputBorder()),
                     ))
               ],
             ),

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
@@ -6,9 +8,44 @@ import 'package:travelseller/components/tiles/cadastro_cliente_tile.dart';
 import 'package:travelseller/components/tiles/cadastro_informacoes_tile.dart';
 import 'package:travelseller/components/tiles/cadastro_viagem_tile.dart';
 import 'package:travelseller/components/tiles/cadastro_voo_tile.dart';
+import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/pages/home.dart';
 
-class Cadastro extends StatelessWidget {
+import '../database/controllers/cliente_controller.dart';
+import '../database/object_box.dart';
+
+class Cadastro extends StatefulWidget {
   const Cadastro({super.key});
+
+  @override
+  State<Cadastro> createState() => CadastroState();
+}
+
+class CadastroState extends State<Cadastro> {
+  final clienteController = ClienteController(ObjectBox());
+  final viagemController = ViagemController(ObjectBox());
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController cpfController = TextEditingController();
+  final TextEditingController rgController = TextEditingController();
+  final TextEditingController nascimentoController = TextEditingController();
+  final TextEditingController hotelController = TextEditingController();
+  final TextEditingController cidadeController = TextEditingController();
+  final TextEditingController localizadorController = TextEditingController();
+  final TextEditingController companhiaController = TextEditingController();
+  final TextEditingController codigoController = TextEditingController();
+  final TextEditingController dataIdaController = TextEditingController();
+  final TextEditingController horaIdaController = TextEditingController();
+  final TextEditingController dataVoltaController = TextEditingController();
+  final TextEditingController horaVoltaController = TextEditingController();
+  final TextEditingController valorVendaController = TextEditingController();
+  final TextEditingController comissaoController = TextEditingController();
+  final TextEditingController observacoesController = TextEditingController();
+
+  @override
+  void dispose() {
+    nomeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,25 +75,45 @@ class Cadastro extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: SizedBox(
-                    height: altura * 0.7,
+                    height: altura * 0.69,
                     width: largura * 0.85,
                     child: Scrollbar(
                         child: ListView(
-                      children: const [
-                        CadastroClienteTile(),
-                        SizedBox(
+                      children: [
+                        CadastroClienteTile(
+                          nomeController: nomeController,
+                          cpfController: cpfController,
+                          rgController: rgController,
+                          nascimentoController: nascimentoController,
+                        ),
+                        const SizedBox(
                           height: marginTiles,
                         ),
-                        CadastroViagemTile(),
-                        SizedBox(
+                        CadastroViagemTile(
+                          hotelController: hotelController,
+                          cidadeController: cidadeController,
+                        ),
+                        const SizedBox(
                           height: marginTiles,
                         ),
-                        CadastroVooTile(),
-                        SizedBox(
+                        CadastroVooTile(
+                          localizadorController: localizadorController,
+                          companhiaController: companhiaController,
+                          codigoController: codigoController,
+                          dataIdaController: dataIdaController,
+                          horaIdaController: horaIdaController,
+                          dataVoltaController: dataVoltaController,
+                          horaVoltaController: horaVoltaController,
+                        ),
+                        const SizedBox(
                           height: marginTiles,
                         ),
-                        CadastroInformacoesTile(),
-                        SizedBox(
+                        CadastroInformacoesTile(
+                          valorVendaController: valorVendaController,
+                          comissaoController: comissaoController,
+                          observacoesController: observacoesController,
+                        ),
+                        const SizedBox(
                           height: 30,
                         ),
                       ],
@@ -71,40 +128,65 @@ class Cadastro extends StatelessWidget {
             children: [
               SizedBox(
                   height: 70,
-                  width: largura * 0.85,
+                  width: largura * 0.9,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextButton(
-                        onPressed: () {},
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.grey),
-                        ),
-                        child: const Text(
-                          "Cancelar",
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.green),
-                        ),
-                        child: const Text(
-                          "Salvar",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5),
-                        ),
-                      )
+                      SizedBox(
+                          height: 40,
+                          width: 106,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => const Home(
+                                            currentIndex: 0,
+                                          ))));
+                            },
+                            style: const ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.grey),
+                            ),
+                            child: const Text(
+                              "Cancelar",
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2),
+                            ),
+                          )),
+                      SizedBox(
+                          height: 40,
+                          width: 106,
+                          child: TextButton(
+                            onPressed: () {
+                              int idViagem = viagemController.create(
+                                  codigoController.text,
+                                  localizadorController.text,
+                                  companhiaController.text,
+                                  cidadeController.text,
+                                  hotelController.text,
+                                  dataIdaController.text,
+                                  horaIdaController.text,
+                                  observacoesController.text,
+                                  double.parse(valorVendaController.text),
+                                  comissaoController.text);
+                            },
+                            style: const ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.green),
+                            ),
+                            child: const Text(
+                              "Salvar",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2),
+                            ),
+                          ))
                     ],
                   ))
             ]));

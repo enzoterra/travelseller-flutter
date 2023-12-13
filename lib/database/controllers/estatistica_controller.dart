@@ -18,8 +18,9 @@ class EstatisticaController {
     final estatistica = Estatistica(idViagem: idViagem, ano: ano, mes: mes);
 
     final box = await getBox();
-    box.put(estatistica);
+    int id = box.put(estatistica);
     controller.closeStore();
+    return id;
   }
 
   update(Estatistica estatistica) async {

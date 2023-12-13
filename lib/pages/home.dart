@@ -5,14 +5,16 @@ import 'package:travelseller/pages/estatisticas.dart';
 import 'package:travelseller/pages/viagens.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({super.key, required this.currentIndex});
+
+  final int currentIndex;
 
   @override
   HomeState createState() => HomeState();
 }
 
 class HomeState extends State<Home> {
-  int currentIndex = 1;
+  int navIndex = 1;
   final List<Widget> paginas = [
     const Clientes(),
     const Viagens(),
@@ -20,16 +22,22 @@ class HomeState extends State<Home> {
   ];
 
   @override
+  void initState() {
+    navIndex = widget.currentIndex;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: paginas[currentIndex],
+        body: paginas[navIndex],
         bottomNavigationBar: Container(
           color: const Color.fromARGB(255, 240, 240, 240),
           child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               child: GNav(
-                  selectedIndex: currentIndex,
+                  selectedIndex: navIndex,
                   backgroundColor: const Color.fromARGB(255, 240, 240, 240),
                   rippleColor: const Color.fromARGB(61, 41, 41, 41),
                   color: const Color.fromARGB(255, 51, 51, 51),
@@ -66,7 +74,7 @@ class HomeState extends State<Home> {
                   ],
                   onTabChange: (int index) {
                     setState(() {
-                      currentIndex = index;
+                      navIndex = index;
                     });
                   })),
         ));

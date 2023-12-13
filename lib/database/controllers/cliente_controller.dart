@@ -24,8 +24,9 @@ class ClienteController {
 
     final box = await getBox();
 
-    box.put(cliente);
+    int id = box.put(cliente);
     controller.closeStore();
+    return id;
   }
 
   update(Cliente cliente) async {

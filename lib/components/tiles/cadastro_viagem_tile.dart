@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import '../custom/styles.dart';
 
 class CadastroViagemTile extends StatelessWidget {
-  const CadastroViagemTile({super.key});
+  const CadastroViagemTile(
+      {super.key,
+      required this.hotelController,
+      required this.cidadeController});
+
+  final TextEditingController hotelController;
+  final TextEditingController cidadeController;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +40,7 @@ class CadastroViagemTile extends StatelessWidget {
                         width: largura * 0.7,
                         height: 40,
                         child: TextFormField(
+                          controller: hotelController,
                           style: Styles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "Ex. Ocean Palace",
@@ -55,6 +62,7 @@ class CadastroViagemTile extends StatelessWidget {
                     width: largura * 0.7,
                     height: 40,
                     child: TextFormField(
+                      controller: cidadeController,
                       style: Styles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. Natal/RN",
