@@ -20,26 +20,22 @@ class CadastroClienteTile extends StatelessWidget {
                   "Dados do Cliente",
                   style: Styles.subTituloCadastro,
                 )),
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Nome",
-                      style: Styles.tituloAtributoCadastro,
-                    ),
-                    SizedBox(
-                        width: largura * 0.7,
-                        height: 40,
-                        child: TextFormField(
-                          style: Styles.textoAtributoCadastro,
-                          decoration: const InputDecoration(
-                              hintText: "Ex. José Almeida da Silva",
-                              border: UnderlineInputBorder()),
-                        ))
-                  ],
-                )
+                const Text(
+                  "Nome",
+                  style: Styles.tituloAtributoCadastro,
+                ),
+                SizedBox(
+                    width: largura * 0.7,
+                    height: 40,
+                    child: TextFormField(
+                      style: Styles.textoAtributoCadastro,
+                      decoration: const InputDecoration(
+                          hintText: "Ex. José Almeida da Silva",
+                          border: UnderlineInputBorder()),
+                    ))
               ],
             ),
             const SizedBox(height: 0),
@@ -54,11 +50,11 @@ class CadastroClienteTile extends StatelessWidget {
                     width: 140,
                     height: 40,
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       style: Styles.textoAtributoCadastro,
-                      decoration:
-                          const InputDecoration(
-                            hintText: "000.000.000-00",
-                            border: UnderlineInputBorder()),
+                      decoration: const InputDecoration(
+                          hintText: "000.000.000-00",
+                          border: UnderlineInputBorder()),
                     ))
               ],
             ),
@@ -76,6 +72,7 @@ class CadastroClienteTile extends StatelessWidget {
                         width: 80,
                         height: 40,
                         child: TextFormField(
+                          keyboardType: TextInputType.number,
                           style: Styles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "0000000",
@@ -97,6 +94,7 @@ class CadastroClienteTile extends StatelessWidget {
                         width: 120,
                         height: 40,
                         child: TextFormField(
+                          keyboardType: TextInputType.datetime,
                           style: Styles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "00/00/0000",
