@@ -170,9 +170,18 @@ class CadastroState extends State<Cadastro> {
                                   hotelController.text,
                                   dataIdaController.text,
                                   horaIdaController.text,
+                                  dataVoltaController,
+                                  horaVoltaController,
                                   observacoesController.text,
                                   double.parse(valorVendaController.text),
-                                  comissaoController.text);
+                                  double.parse(comissaoController.text));
+
+                              clienteController.create(
+                                  nomeController.text,
+                                  cpfController.text,
+                                  rgController.text,
+                                  nascimentoController.text,
+                                  idViagem);
                             },
                             style: const ButtonStyle(
                               backgroundColor:

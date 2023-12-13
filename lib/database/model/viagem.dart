@@ -9,8 +9,10 @@ class Viagem {
       companhiaAerea,
       cidade,
       hotel,
-      embarqueData,
-      embarqueHora,
+      dataIda,
+      horaIda,
+      dataVolta,
+      horaVolta,
       observacoes;
   double? valorTotal, valorComissao;
 
@@ -20,8 +22,10 @@ class Viagem {
       this.companhiaAerea,
       this.cidade,
       this.hotel,
-      this.embarqueData,
-      this.embarqueHora,
+      this.dataIda,
+      this.horaIda,
+      this.dataVolta,
+      this.horaVolta,
       this.observacoes,
       this.valorTotal,
       this.valorComissao});
