@@ -6,94 +6,107 @@ class CadastroClienteTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
 
     return SizedBox(
+        height: 330,
         child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Dados do Cliente",
-          style: Styles.subTituloCadastro,
-        ),
-        Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Nome",
-                  style: Styles.tituloAtributoCadastro,
-                ),
-                SizedBox(
-                    width: largura * 0.7,
-                    height: 30,
-                    child: TextFormField(
-                      style: Styles.textoAtributoCadastro,
-                      decoration:
-                          const InputDecoration(border: UnderlineInputBorder()),
-                    ))
-              ],
-            )
-          ],
-        ),
-        Row(
-          children: [
-            const Text(
-              "CPF",
-              style: Styles.tituloAtributoCadastro,
-            ),
-            SizedBox(
-                width: largura * 0.5,
-                height: 30,
-                child: TextFormField(
-                  style: Styles.textoAtributoCadastro,
-                  decoration:
-                      const InputDecoration(border: UnderlineInputBorder()),
-                ))
-          ],
-        ),
-        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(
+                height: 50,
+                child: Text(
+                  "Dados do Cliente",
+                  style: Styles.subTituloCadastro,
+                )),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Nome",
+                      style: Styles.tituloAtributoCadastro,
+                    ),
+                    SizedBox(
+                        width: largura * 0.7,
+                        height: 40,
+                        child: TextFormField(
+                          style: Styles.textoAtributoCadastro,
+                          decoration: const InputDecoration(
+                              hintText: "Ex. José Almeida da Silva",
+                              border: UnderlineInputBorder()),
+                        ))
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(height: 0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "RG",
+                  "CPF",
                   style: Styles.tituloAtributoCadastro,
                 ),
                 SizedBox(
-                    width: largura * 0.3,
-                    height: 30,
+                    width: 140,
+                    height: 40,
                     child: TextFormField(
                       style: Styles.textoAtributoCadastro,
                       decoration:
-                          const InputDecoration(border: UnderlineInputBorder()),
+                          const InputDecoration(
+                            hintText: "000.000.000-00",
+                            border: UnderlineInputBorder()),
                     ))
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            const SizedBox(height: 0),
+            Row(
               children: [
-                const Text(
-                  "Data de Nascimento",
-                  style: Styles.tituloAtributoCadastro,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "RG",
+                      style: Styles.tituloAtributoCadastro,
+                    ),
+                    SizedBox(
+                        width: 80,
+                        height: 40,
+                        child: TextFormField(
+                          style: Styles.textoAtributoCadastro,
+                          decoration: const InputDecoration(
+                              hintText: "0000000",
+                              border: UnderlineInputBorder()),
+                        ))
+                  ],
                 ),
                 SizedBox(
-                    width: largura * 0.3,
-                    height: 30,
-                    child: TextFormField(
-                      style: Styles.textoAtributoCadastro,
-                      decoration:
-                          const InputDecoration(border: UnderlineInputBorder()),
-                    ))
+                  width: largura * 0.2,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Nascimento",
+                      style: Styles.tituloAtributoCadastro,
+                    ),
+                    SizedBox(
+                        width: 120,
+                        height: 40,
+                        child: TextFormField(
+                          style: Styles.textoAtributoCadastro,
+                          decoration: const InputDecoration(
+                              hintText: "00/00/0000",
+                              border: UnderlineInputBorder()),
+                        ))
+                  ],
+                )
               ],
-            )
+            ),
           ],
-        ),
-      ],
-    ));
+        ));
   }
 }
