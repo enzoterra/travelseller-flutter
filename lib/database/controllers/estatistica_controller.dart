@@ -14,7 +14,7 @@ class EstatisticaController {
     return store.box<Estatistica>();
   }
 
-  create(int? idViagem, ano, String? mes) async {
+  Future<int> create(int? idViagem, ano, String? mes) async {
     final estatistica = Estatistica(idViagem: idViagem, ano: ano, mes: mes);
 
     final box = await getBox();

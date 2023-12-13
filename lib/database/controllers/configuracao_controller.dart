@@ -14,7 +14,7 @@ class ConfiguracaoController {
     return store.box<Configuracao>();
   }
 
-  create(bool? embarque, desembarque, umaHora, umDia, doisDias, limpar,
+  Future<int> create(bool? embarque, desembarque, umaHora, umDia, doisDias, limpar,
       passar) async {
     final configuracao = Configuracao(
         embarque: embarque,

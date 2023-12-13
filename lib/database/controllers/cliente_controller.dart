@@ -14,7 +14,7 @@ class ClienteController {
     return store.box<Cliente>();
   }
 
-  create(String? nome, cpf, rg, dataNascimento, int? idViagem) async {
+  Future<int> create(String? nome, cpf, rg, dataNascimento, int? idViagem) async {
     final cliente = Cliente(
         nome: nome,
         cpf: cpf,

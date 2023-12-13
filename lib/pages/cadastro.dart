@@ -160,28 +160,7 @@ class CadastroState extends State<Cadastro> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              Future<int> idViagem = viagemController.create(
-                                  codigoController.text,
-                                  localizadorController.text,
-                                  companhiaController.text,
-                                  cidadeController.text,
-                                  hotelController.text,
-                                  dataIdaController.text,
-                                  horaIdaController.text,
-                                  dataVoltaController.text,
-                                  horaVoltaController.text,
-                                  observacoesController.text,
-                                  double.parse(valorVendaController.text),
-                                  double.parse(comissaoController.text));
-                                
-                              int idViagemStable = int.parse(idViagem as String);
-
-                              clienteController.create(
-                                  nomeController.text,
-                                  cpfController.text,
-                                  rgController.text,
-                                  nascimentoController.text,
-                                  idViagemStable);
+                              //salvar();
 
                               Navigator.push(
                                   context,
@@ -206,5 +185,34 @@ class CadastroState extends State<Cadastro> {
                     ],
                   ))
             ]));
+  }
+
+  Future<void> salvar() async {
+    double valorVenda = 0;
+    double comissao = 0;
+    if (valorVendaController.text != "") {
+      double.parse(valorVendaController.text);
+    }
+
+    if (comissaoController.text != "") {
+      double.parse(comissaoController.text);
+    }
+
+    int idViagem = await viagemController.create(
+        codigoController.text,
+        localizadorController.text,
+        companhiaController.text,
+        cidadeController.text,
+        hotelController.text,
+        dataIdaController.text,
+        horaIdaController.text,
+        dataVoltaController.text,
+        horaVoltaController.text,
+        observacoesController.text,
+        valorVenda,
+        comissao);
+
+    clienteController.create(nomeController.text, cpfController.text,
+        rgController.text, nascimentoController.text, idViagem);
   }
 }
