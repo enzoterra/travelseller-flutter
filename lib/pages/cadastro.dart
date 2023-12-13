@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
@@ -162,7 +160,7 @@ class CadastroState extends State<Cadastro> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              int idViagem = viagemController.create(
+                              Future<int> idViagem = viagemController.create(
                                   codigoController.text,
                                   localizadorController.text,
                                   companhiaController.text,
@@ -170,18 +168,27 @@ class CadastroState extends State<Cadastro> {
                                   hotelController.text,
                                   dataIdaController.text,
                                   horaIdaController.text,
-                                  dataVoltaController,
-                                  horaVoltaController,
+                                  dataVoltaController.text,
+                                  horaVoltaController.text,
                                   observacoesController.text,
                                   double.parse(valorVendaController.text),
                                   double.parse(comissaoController.text));
+                                
+                              int idViagemStable = int.parse(idViagem as String);
 
                               clienteController.create(
                                   nomeController.text,
                                   cpfController.text,
                                   rgController.text,
                                   nascimentoController.text,
-                                  idViagem);
+                                  idViagemStable);
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => const Home(
+                                            currentIndex: 1,
+                                          ))));
                             },
                             style: const ButtonStyle(
                               backgroundColor:

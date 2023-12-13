@@ -14,7 +14,7 @@ class ViagemController {
     return store.box<Viagem>();
   }
 
-  create(
+  Future<int> create(
       String? codigoVenda,
       localizador,
       companhiaAerea,
