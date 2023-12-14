@@ -7,4 +7,6 @@ abstract class Images {
       "assets/images/estatisticas_topbar_darken.jpg";
 
   static const String imagemCadastro = "assets/images/lago-azul.jpg";
+
+  static const String imagemInformacoes = "assets/images/montanhas.jpg";
 }

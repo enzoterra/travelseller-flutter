@@ -75,7 +75,9 @@ class ViagemListTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const SizedBox(height: 1,),
+                    const SizedBox(
+                      height: 1,
+                    ),
                     Text(embarque, style: Styles.dataViagemTile),
                     const SizedBox(
                       height: 5,

@@ -1,5 +1,4 @@
 abstract class Titles {
-
   static const tituloApp = "TravelSeller";
 
   static const String tituloViagens = "Viagens\nProgramadas";
@@ -12,4 +11,5 @@ abstract class Titles {
   static const String subTituloEstatisticas = "Próximas Viagens";
 
   static const String tituloCadastro = "Novo cadastro";
+  static const String tituloInformacoes = "Informações";
 }

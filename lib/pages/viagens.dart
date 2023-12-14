@@ -6,6 +6,7 @@ import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/components/tiles/viagem_tile.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/viagem.dart';
+import 'package:travelseller/pages/informacoes.dart';
 import '../database/object_box.dart';
 
 class Viagens extends StatefulWidget {
@@ -16,23 +17,24 @@ class Viagens extends StatefulWidget {
 }
 
 class ViagensState extends State<Viagens> {
-  Future<List<Viagem>>? futureViagens;
-  //final controller = ViagemController();
+  //Future<List<Viagem>>? futureViagens;
+  final controller = ViagemController();
+  List<Viagem> lista = [];
 
   @override
   void initState() {
     super.initState();
 
-    /*setState(() {
-      futureViagens = controller.readAll();
-    });*/
+    setState(() {
+      //futureViagens = controller.readAll();
+      lista = controller.readAll();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    final controller = ViagemController();
 
     return Column(
       children: [
@@ -65,22 +67,25 @@ class ViagensState extends State<Viagens> {
           child: Container(
               decoration: Styles.decorationTile,
               child: ListView.builder(
-                  padding: const EdgeInsets.all(7),
-                  itemCount: controller.lerTodos().length,
+                  padding: const EdgeInsets.only(top: 7, bottom: 7),
+                  itemCount: lista.length,
                   itemBuilder: (context, index) {
-                    final lista = controller.lerTodos();
-                    final cliente = lista[index];
-                    return Center(
-                        child: ListView(
-                      padding: const EdgeInsets.all(10),
-                      children: const [
-                        ViagemListTile(
-                            nome: "Enzo Terra",
-                            destino: "Natal/RN",
-                            embarque: "21/10/2024",
-                            desembarque: "30/10/2024"),
-                      ],
-                    ));
+                    return lista.isEmpty
+                        ? const Center(child: Text("Sem clientes ..."))
+                        : ListTile(
+                            title: const ViagemListTile(
+                                nome: "Enzo Terra",
+                                destino: "Natal/RN",
+                                embarque: "21/10/2024",
+                                desembarque: "30/10/2024"),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          Informacoes(id: index))));
+                            },
+                          );
                   })
 
               /*FutureBuilder<List<Viagem>>(

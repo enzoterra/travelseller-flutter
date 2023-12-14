@@ -3,8 +3,8 @@ import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/cliente.dart';
 
 class ClienteController {
-  List<Cliente> lista = [];
-  late final ObjectBox controller;
+  //late final ObjectBox controller;
+  final box = ObjectBox.clienteBox;
 
   //ClienteController(this.controller);
 
@@ -23,46 +23,40 @@ class ClienteController {
         idViagem: idViagem);
 
     //final box = await getBox();
-    final box = ObjectBox.clienteBox;
     int id = box.put(cliente);
     //controller.closeStore();
     return id;
   }
 
-  update(Cliente cliente) async {
+  update(Cliente cliente) {
     //final box = await getBox();
-    final box = ObjectBox.clienteBox;
     box.put(cliente);
     //controller.closeStore();
   }
 
-  Future<Cliente> read(int id) async {
+  Cliente read(int id) {
     //final box = await getBox();
-    final box = ObjectBox.clienteBox;
     Cliente cliente = box.get(id) as Cliente;
     //controller.closeStore();
     return cliente;
   }
 
-  Future<List<Cliente>> readAll() async {
-    //final box = await getBox();
-    final box = ObjectBox.clienteBox;
+  /*Future<List<Cliente>> readAllFuture() async {
+    final box = await getBox();
     List<Cliente> lista = box.getAll() as List<Cliente>;
-    //controller.closeStore();
+    controller.closeStore();
     return lista;
-  }
+  }*/
 
-  List<Cliente> lerTodos() {
+  List<Cliente> readAll() {
     //final box = await getBox();
-    final box = ObjectBox.clienteBox;
     List<Cliente> lista = box.getAll();
     //controller.closeStore();
     return lista;
   }
 
-  delete(Cliente cliente) async {
+  delete(Cliente cliente) {
     //final box = await getBox();
-    final box = ObjectBox.clienteBox;
     box.remove(cliente.id);
     //controller.closeStore();
   }

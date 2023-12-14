@@ -18,16 +18,18 @@ class Clientes extends StatefulWidget {
 }
 
 class ClientesState extends State<Clientes> {
-  Future<List<Cliente>>? futureClientes;
+  //Future<List<Cliente>>? futureClientes;
   final controller = ClienteController();
+  List<Cliente> lista = [];
 
   @override
   void initState() {
     super.initState();
 
-    /*setState(() {
-      futureClientes = controller.readAll();
-    });*/
+    setState(() {
+      lista = controller.readAll();
+      //futureClientes = controller.readAll();
+    });
   }
 
   @override
@@ -69,15 +71,19 @@ class ClientesState extends State<Clientes> {
                 decoration: Styles.decorationTile,
                 child: ListView.builder(
                     padding: const EdgeInsets.all(7),
-                    itemCount: controller.lerTodos().length,
+                    itemCount: lista.length,
                     itemBuilder: (context, index) {
-                      final cliente = controller.lerTodos()[index];
-                      return Card(
-                          child: ListTile(
-                        leading: CustomIcons.iconeClienteTile,
-                        title: Text(cliente.nome.toString()),
-                      ));
+                      return lista.isEmpty
+                          ? const Center(child: Text("Sem clientes ..."))
+                          : Container(
+                              padding: const EdgeInsets.all(3),
+                              child: Card(
+                                  child: ListTile(
+                                leading: CustomIcons.iconeClienteTile,
+                                title: Text(lista[index].nome.toString()),
+                              )));
                     })
+
                 /*FutureBuilder<List<Cliente>>(
                   future: futureClientes,
                   builder: (context, snapshot) {

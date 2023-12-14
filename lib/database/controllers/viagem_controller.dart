@@ -3,8 +3,9 @@ import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/viagem.dart';
 
 class ViagemController {
-  List<Viagem> lista = [];
-  late final ObjectBox controller;
+  /*List<Viagem> lista = [];
+  late final ObjectBox controller;*/
+  final box = ObjectBox.viagemBox;
 
   /* ViagemController(this.controller);
 
@@ -42,46 +43,42 @@ class ViagemController {
         valorComissao: valorComissao);
 
     //final box = await getBox();
-    final box = ObjectBox.viagemBox;
     int id = box.put(viagem);
     //controller.closeStore();
     return id;
   }
 
-  update(Viagem viagem) async {
+  update(Viagem viagem) {
     //final box = await getBox();
     final box = ObjectBox.viagemBox;
     box.put(viagem);
     //controller.closeStore();
   }
 
-  Future<Viagem> read(int id) async {
+  Viagem read(int id) {
     //final box = await getBox();
-    final box = ObjectBox.viagemBox;
     Viagem viagem = box.get(id) as Viagem;
     //controller.closeStore();
     return viagem;
   }
 
-  Future<List<Viagem>> readAll() async {
+  /*Future<List<Viagem>> readAll() async {
     //final box = await getBox();
     final box = ObjectBox.viagemBox;
     lista = box.getAll() as List<Viagem>;
     //controller.closeStore();
     return lista;
-  }
+  }*/
 
-  List<Viagem> lerTodos() {
+  List<Viagem> readAll() {
     //final box = await getBox();
-    final box = ObjectBox.viagemBox;
-    lista = box.getAll();
+    List<Viagem> lista = box.getAll();
     //controller.closeStore();
     return lista;
   }
 
-  delete(Viagem viagem) async {
+  delete(Viagem viagem) {
     // final box = await getBox();
-    final box = ObjectBox.viagemBox;
     box.remove(viagem.id);
     // controller.closeStore();
   }
