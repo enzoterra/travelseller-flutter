@@ -20,8 +20,8 @@ class Cadastro extends StatefulWidget {
 }
 
 class CadastroState extends State<Cadastro> {
-  final clienteController = ClienteController(ObjectBox());
-  final viagemController = ViagemController(ObjectBox());
+  final clienteController = ClienteController();
+  final viagemController = ViagemController();
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController cpfController = TextEditingController();
   final TextEditingController rgController = TextEditingController();
@@ -160,7 +160,7 @@ class CadastroState extends State<Cadastro> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              //salvar();
+                              salvar();
 
                               Navigator.push(
                                   context,
@@ -187,7 +187,7 @@ class CadastroState extends State<Cadastro> {
             ]));
   }
 
-  Future<void> salvar() async {
+  salvar() {
     double valorVenda = 0;
     double comissao = 0;
     if (valorVendaController.text != "") {
@@ -198,7 +198,7 @@ class CadastroState extends State<Cadastro> {
       double.parse(comissaoController.text);
     }
 
-    int idViagem = await viagemController.create(
+    int idViagem = viagemController.create(
         codigoController.text,
         localizadorController.text,
         companhiaController.text,

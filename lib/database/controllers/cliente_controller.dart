@@ -6,15 +6,15 @@ class ClienteController {
   List<Cliente> lista = [];
   late final ObjectBox controller;
 
-  ClienteController(this.controller);
+  //ClienteController(this.controller);
 
-  Future<Box> getBox() async {
+  /*Future<Box> getBox() async {
     final store = await controller.getStore();
 
     return store.box<Cliente>();
-  }
+  }*/
 
-  Future<int> create(String? nome, cpf, rg, dataNascimento, int? idViagem) async {
+  int create(String? nome, cpf, rg, dataNascimento, int? idViagem) {
     final cliente = Cliente(
         nome: nome,
         cpf: cpf,
@@ -22,36 +22,48 @@ class ClienteController {
         dataNascimento: dataNascimento,
         idViagem: idViagem);
 
-    final box = await getBox();
-
+    //final box = await getBox();
+    final box = ObjectBox.clienteBox;
     int id = box.put(cliente);
-    controller.closeStore();
+    //controller.closeStore();
     return id;
   }
 
   update(Cliente cliente) async {
-    final box = await getBox();
+    //final box = await getBox();
+    final box = ObjectBox.clienteBox;
     box.put(cliente);
-    controller.closeStore();
+    //controller.closeStore();
   }
 
   Future<Cliente> read(int id) async {
-    final box = await getBox();
+    //final box = await getBox();
+    final box = ObjectBox.clienteBox;
     Cliente cliente = box.get(id) as Cliente;
-    controller.closeStore();
+    //controller.closeStore();
     return cliente;
   }
 
   Future<List<Cliente>> readAll() async {
-    final box = await getBox();
+    //final box = await getBox();
+    final box = ObjectBox.clienteBox;
     List<Cliente> lista = box.getAll() as List<Cliente>;
-    controller.closeStore();
+    //controller.closeStore();
+    return lista;
+  }
+
+  List<Cliente> lerTodos() {
+    //final box = await getBox();
+    final box = ObjectBox.clienteBox;
+    List<Cliente> lista = box.getAll();
+    //controller.closeStore();
     return lista;
   }
 
   delete(Cliente cliente) async {
-    final box = await getBox();
+    //final box = await getBox();
+    final box = ObjectBox.clienteBox;
     box.remove(cliente.id);
-    controller.closeStore();
+    //controller.closeStore();
   }
 }

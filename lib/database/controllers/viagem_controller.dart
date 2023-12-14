@@ -6,15 +6,15 @@ class ViagemController {
   List<Viagem> lista = [];
   late final ObjectBox controller;
 
-  ViagemController(this.controller);
+  /* ViagemController(this.controller);
 
   Future<Box> getBox() async {
     final store = await controller.getStore();
 
     return store.box<Viagem>();
-  }
+  }*/
 
-  Future<int> create(
+  int create(
       String? codigoVenda,
       localizador,
       companhiaAerea,
@@ -26,7 +26,7 @@ class ViagemController {
       horaVolta,
       observacoes,
       double? valorTotal,
-      valorComissao) async {
+      valorComissao) {
     final viagem = Viagem(
         codigoVenda: codigoVenda,
         localizador: localizador,
@@ -41,36 +41,48 @@ class ViagemController {
         valorTotal: valorTotal,
         valorComissao: valorComissao);
 
-    final box = await getBox();
-
+    //final box = await getBox();
+    final box = ObjectBox.viagemBox;
     int id = box.put(viagem);
-    controller.closeStore();
+    //controller.closeStore();
     return id;
   }
 
   update(Viagem viagem) async {
-    final box = await getBox();
+    //final box = await getBox();
+    final box = ObjectBox.viagemBox;
     box.put(viagem);
-    controller.closeStore();
+    //controller.closeStore();
   }
 
   Future<Viagem> read(int id) async {
-    final box = await getBox();
+    //final box = await getBox();
+    final box = ObjectBox.viagemBox;
     Viagem viagem = box.get(id) as Viagem;
-    controller.closeStore();
+    //controller.closeStore();
     return viagem;
   }
 
   Future<List<Viagem>> readAll() async {
-    final box = await getBox();
+    //final box = await getBox();
+    final box = ObjectBox.viagemBox;
     lista = box.getAll() as List<Viagem>;
-    controller.closeStore();
+    //controller.closeStore();
+    return lista;
+  }
+
+  List<Viagem> lerTodos() {
+    //final box = await getBox();
+    final box = ObjectBox.viagemBox;
+    lista = box.getAll();
+    //controller.closeStore();
     return lista;
   }
 
   delete(Viagem viagem) async {
-    final box = await getBox();
+    // final box = await getBox();
+    final box = ObjectBox.viagemBox;
     box.remove(viagem.id);
-    controller.closeStore();
+    // controller.closeStore();
   }
 }

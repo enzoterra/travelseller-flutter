@@ -3,7 +3,7 @@ import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/configuracao.dart';
 
 class ConfiguracaoController {
-  List<Configuracao> lista = [];
+  /* List<Configuracao> lista = [];
   late final ObjectBox controller;
 
   ConfiguracaoController(this.controller);
@@ -55,5 +55,5 @@ class ConfiguracaoController {
     final box = await getBox();
     box.remove(configuracao.id);
     controller.closeStore();
-  }
+  }*/
 }

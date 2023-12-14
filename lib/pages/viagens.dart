@@ -17,21 +17,22 @@ class Viagens extends StatefulWidget {
 
 class ViagensState extends State<Viagens> {
   Future<List<Viagem>>? futureViagens;
-  final controller = ViagemController(ObjectBox());
+  //final controller = ViagemController();
 
   @override
   void initState() {
     super.initState();
 
-    setState(() {
+    /*setState(() {
       futureViagens = controller.readAll();
-    });
+    });*/
   }
 
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
+    final controller = ViagemController();
 
     return Column(
       children: [
@@ -63,7 +64,26 @@ class ViagensState extends State<Viagens> {
           width: largura * 0.92,
           child: Container(
               decoration: Styles.decorationTile,
-              child: FutureBuilder<List<Viagem>>(
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(7),
+                  itemCount: controller.lerTodos().length,
+                  itemBuilder: (context, index) {
+                    final lista = controller.lerTodos();
+                    final cliente = lista[index];
+                    return Center(
+                        child: ListView(
+                      padding: const EdgeInsets.all(10),
+                      children: const [
+                        ViagemListTile(
+                            nome: "Enzo Terra",
+                            destino: "Natal/RN",
+                            embarque: "21/10/2024",
+                            desembarque: "30/10/2024"),
+                      ],
+                    ));
+                  })
+
+              /*FutureBuilder<List<Viagem>>(
                 future: futureViagens,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -94,7 +114,8 @@ class ViagensState extends State<Viagens> {
                             });
                   }
                 },
-              )),
+              )*/
+              ),
         ),
       ],
     );

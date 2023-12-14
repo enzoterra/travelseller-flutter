@@ -3,7 +3,7 @@ import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/estatistica.dart';
 
 class EstatisticaController {
-  List<Estatistica> lista = [];
+  /*List<Estatistica> lista = [];
   late final ObjectBox controller;
 
   EstatisticaController(this.controller);
@@ -47,5 +47,5 @@ class EstatisticaController {
     final box = await getBox();
     box.remove(estatistica.id);
     controller.closeStore();
-  }
+  }*/
 }
