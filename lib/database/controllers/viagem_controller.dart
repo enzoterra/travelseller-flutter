@@ -1,4 +1,3 @@
-import 'package:objectbox/objectbox.dart';
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/viagem.dart';
 
@@ -60,18 +59,20 @@ class ViagemController {
     return id;
   }
 
-  update(Viagem viagem) {
+  int update(Viagem viagem) {
     //final box = await getBox();
     final box = ObjectBox.viagemBox;
-    box.put(viagem);
+    int id = box.put(viagem);
+    return id;
     //controller.closeStore();
   }
 
   Viagem read(int id) {
     //final box = await getBox();
     Viagem viagem = box.get(id) as Viagem;
-    //controller.closeStore();
+
     return viagem;
+    //controller.closeStore();
   }
 
   /*Future<List<Viagem>> readAll() async {

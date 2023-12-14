@@ -70,7 +70,7 @@ class CadastroVooTile extends StatelessWidget {
                     height: 40,
                     child: TextFormField(
                       controller: companhiaController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       style: Styles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. Latam",

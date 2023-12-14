@@ -3,23 +3,27 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/tiles/cadastro_cliente_tile.dart';
-import 'package:travelseller/components/tiles/cadastro_informacoes_tile.dart';
 import 'package:travelseller/components/tiles/cadastro_viagem_tile.dart';
 import 'package:travelseller/components/tiles/cadastro_voo_tile.dart';
+import 'package:travelseller/components/tiles/informacoes_salvas_tile%20.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/database/model/cliente.dart';
+import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/home.dart';
 import '../database/controllers/cliente_controller.dart';
 
-class Cadastro extends StatefulWidget {
-  const Cadastro({super.key});
+class InformacoesViagem extends StatefulWidget {
+  const InformacoesViagem({super.key, required this.id});
+
+  final int id;
 
   @override
-  State<Cadastro> createState() => CadastroState();
+  State<InformacoesViagem> createState() => InformacoesViagemState();
 }
 
-class CadastroState extends State<Cadastro> {
-  final clienteController = ClienteController();
+class InformacoesViagemState extends State<InformacoesViagem> {
   final viagemController = ViagemController();
+  final clienteController = ClienteController();
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController cpfController = TextEditingController();
   final TextEditingController rgController = TextEditingController();
@@ -45,26 +49,28 @@ class CadastroState extends State<Cadastro> {
 
   @override
   Widget build(BuildContext context) {
+    Viagem viagem = viagemController.read(widget.id);
+    Cliente cliente = clienteController.read(viagem.id);
     final altura = MediaQuery.of(context).size.height;
-    const double marginTiles = 70;
     final largura = MediaQuery.of(context).size.width;
+    const double marginTiles = 70;
 
     return Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                height: altura * 0.18,
+                height: altura * 0.2,
                 width: largura * 1,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         colorFilter: ColorFilter.mode(
                             Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
                         fit: BoxFit.cover,
-                        image: AssetImage(Images.imagemCadastro))),
+                        image: AssetImage(Images.imagemInformacoes))),
                 child: const Center(
                     child: Text(
-                  Titles.tituloCadastro,
+                  Titles.tituloInformacoes,
                   style: Styles.tituloCadastro,
                 )),
               ),
@@ -104,7 +110,7 @@ class CadastroState extends State<Cadastro> {
                         const SizedBox(
                           height: marginTiles,
                         ),
-                        CadastroInformacoesTile(
+                        InformacoesSalvasTile(
                           valorVendaController: valorVendaController,
                           comissaoController: comissaoController,
                           observacoesController: observacoesController,
@@ -133,21 +139,41 @@ class CadastroState extends State<Cadastro> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => const Home(
-                                            currentIndex: 0,
-                                          ))));
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Deseja excluir?'),
+                                  content: const Text(
+                                      'Isso excluirá os dados da viagem, mas manterá os dados do cliente'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancelar'),
+                                      child: const Text('Cancelar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        viagemController.delete(viagem);
+
+                                        MaterialPageRoute(
+                                            builder: ((context) => const Home(
+                                                  currentIndex: 1,
+                                                )));
+                                      },
+                                      child: const Text('Excluir'),
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
                             style: const ButtonStyle(
                               backgroundColor:
-                                  MaterialStatePropertyAll(Colors.grey),
+                                  MaterialStatePropertyAll(Colors.red),
                             ),
                             child: const Text(
-                              "Cancelar",
+                              "Excluir",
                               style: TextStyle(
-                                  color: Colors.black87,
+                                  color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 1.2),
@@ -158,7 +184,7 @@ class CadastroState extends State<Cadastro> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              salvar();
+                              salvar(viagem, cliente);
 
                               Navigator.push(
                                   context,
@@ -185,7 +211,7 @@ class CadastroState extends State<Cadastro> {
             ]));
   }
 
-  salvar() {
+  salvar(Viagem viagem, Cliente cliente) {
     double valorVenda = 0;
     double comissao = 0;
     if (valorVendaController.text != "") {
@@ -196,21 +222,26 @@ class CadastroState extends State<Cadastro> {
       double.parse(comissaoController.text);
     }
 
-    int idViagem = viagemController.create(
-        codigoController.text,
-        localizadorController.text,
-        companhiaController.text,
-        cidadeController.text,
-        hotelController.text,
-        dataIdaController.text,
-        horaIdaController.text,
-        dataVoltaController.text,
-        horaVoltaController.text,
-        observacoesController.text,
-        valorVenda,
-        comissao);
+    viagem.codigoVenda = codigoController.text;
+    viagem.localizador = localizadorController.text;
+    viagem.companhiaAerea = companhiaController.text;
+    viagem.cidade = cidadeController.text;
+    viagem.hotel = hotelController.text;
+    viagem.dataIda = dataIdaController.text;
+    viagem.horaIda = horaIdaController.text;
+    viagem.dataVolta = dataVoltaController.text;
+    viagem.horaVolta = horaVoltaController.text;
+    viagem.observacoes = observacoesController.text;
+    viagem.valorTotal = valorVenda;
+    viagem.valorComissao = comissao;
+    int idViagem = viagemController.update(viagem);
 
-    clienteController.create(nomeController.text, cpfController.text,
-        rgController.text, nascimentoController.text, idViagem);
+    cliente.nome = nomeController.text;
+    cliente.cpf = cpfController.text;
+    cliente.rg = rgController.text;
+    cliente.dataNascimento = nascimentoController.text;
+    cliente.idViagem = idViagem;
+
+    clienteController.update(cliente);
   }
 }

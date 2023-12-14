@@ -6,9 +6,8 @@ import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/cadastro.dart';
-
+import 'package:travelseller/pages/informacoesCliente.dart';
 import '../database/controllers/cliente_controller.dart';
-import '../database/object_box.dart';
 
 class Clientes extends StatefulWidget {
   const Clientes({super.key});
@@ -73,15 +72,26 @@ class ClientesState extends State<Clientes> {
                     padding: const EdgeInsets.all(7),
                     itemCount: lista.length,
                     itemBuilder: (context, index) {
+                      int id = 0;
+                      if (lista.isNotEmpty) {
+                        id = lista[index].id;
+                      }
                       return lista.isEmpty
                           ? const Center(child: Text("Sem clientes ..."))
                           : Container(
                               padding: const EdgeInsets.all(3),
                               child: Card(
                                   child: ListTile(
-                                leading: CustomIcons.iconeClienteTile,
-                                title: Text(lista[index].nome.toString()),
-                              )));
+                                      leading: CustomIcons.iconeClienteTile,
+                                      title: Text(lista[index].nome.toString()),
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    InformacoesCliente(
+                                                        id: id))));
+                                      })));
                     })
 
                 /*FutureBuilder<List<Cliente>>(

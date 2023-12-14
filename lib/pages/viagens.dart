@@ -8,8 +8,7 @@ import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/pages/informacoes.dart';
-import '../database/object_box.dart';
+import 'package:travelseller/pages/informacoesViagem.dart';
 
 class Viagens extends StatefulWidget {
   const Viagens({super.key});
@@ -73,16 +72,25 @@ class ViagensState extends State<Viagens> {
                   padding: const EdgeInsets.only(top: 7, bottom: 7),
                   itemCount: lista.length,
                   itemBuilder: (context, index) {
-                    int id = index + 1;
-                    Viagem viagem = viagemController.read(id);
-                    Cliente cliente = clienteController.read(viagem.id);
-                    String nome = cliente.nome;
+                    String nome = "";
                     String destino = "";
-                    destino = viagem.cidade!;
                     String embarque = "";
-                    embarque = viagem.dataIda!;
                     String desembarque = "";
-                    desembarque = viagem.dataVolta!;
+                    int id;
+                    int idViagemCliente = 0;
+                    Viagem viagem;
+                    Cliente cliente;
+
+                    if (lista.isNotEmpty) {
+                      id = lista[index].id;
+                      viagem = viagemController.read(id);
+                      cliente = clienteController.read(viagem.id);
+                      idViagemCliente = id;
+                      nome = cliente.nome;
+                      destino = viagem.cidade!;
+                      embarque = viagem.dataIda!;
+                      desembarque = viagem.dataVolta!;
+                    }
                     return lista.isEmpty
                         ? const Center(child: Text("Sem clientes ..."))
                         : ListTile(
@@ -95,10 +103,9 @@ class ViagensState extends State<Viagens> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: ((context) =>
-                                          Informacoes(id: viagem.id))));
-                            },
-                          );
+                                      builder: ((context) => InformacoesViagem(
+                                          id: idViagemCliente))));
+                            });
                   })
 
               /*FutureBuilder<List<Viagem>>(
