@@ -4,7 +4,9 @@ import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/components/tiles/viagem_tile.dart';
+import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/informacoes.dart';
 import '../database/object_box.dart';
@@ -18,7 +20,8 @@ class Viagens extends StatefulWidget {
 
 class ViagensState extends State<Viagens> {
   //Future<List<Viagem>>? futureViagens;
-  final controller = ViagemController();
+  final viagemController = ViagemController();
+  final clienteController = ClienteController();
   List<Viagem> lista = [];
 
   @override
@@ -27,7 +30,7 @@ class ViagensState extends State<Viagens> {
 
     setState(() {
       //futureViagens = controller.readAll();
-      lista = controller.readAll();
+      lista = viagemController.readAll();
     });
   }
 
@@ -70,20 +73,30 @@ class ViagensState extends State<Viagens> {
                   padding: const EdgeInsets.only(top: 7, bottom: 7),
                   itemCount: lista.length,
                   itemBuilder: (context, index) {
+                    int id = index + 1;
+                    Viagem viagem = viagemController.read(id);
+                    Cliente cliente = clienteController.read(viagem.id);
+                    String nome = cliente.nome;
+                    String destino = "";
+                    destino = viagem.cidade!;
+                    String embarque = "";
+                    embarque = viagem.dataIda!;
+                    String desembarque = "";
+                    desembarque = viagem.dataVolta!;
                     return lista.isEmpty
                         ? const Center(child: Text("Sem clientes ..."))
                         : ListTile(
-                            title: const ViagemListTile(
-                                nome: "Enzo Terra",
-                                destino: "Natal/RN",
-                                embarque: "21/10/2024",
-                                desembarque: "30/10/2024"),
+                            title: ViagemListTile(
+                                nome: nome,
+                                destino: destino,
+                                embarque: embarque,
+                                desembarque: desembarque),
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: ((context) =>
-                                          Informacoes(id: index))));
+                                          Informacoes(id: viagem.id))));
                             },
                           );
                   })

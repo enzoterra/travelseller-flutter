@@ -4,11 +4,9 @@ import 'package:objectbox/objectbox.dart';
 class Estatistica {
   int id = 0;
 
-  int? idViagem, ano;
+  int idViagem;
+  int? ano;
   String? mes;
 
-  Estatistica(
-      {this.idViagem,
-      this.ano,
-      this.mes});
+  Estatistica({required this.idViagem, this.ano, this.mes});
 }

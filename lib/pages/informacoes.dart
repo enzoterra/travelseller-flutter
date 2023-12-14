@@ -53,8 +53,8 @@ class InformacoesState extends State<Informacoes> {
   Widget build(BuildContext context) {
     Viagem viagem = viagemController.read(widget.id);
     final altura = MediaQuery.of(context).size.height;
-    const double marginTiles = 70;
     final largura = MediaQuery.of(context).size.width;
+    const double marginTiles = 70;
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -140,35 +140,32 @@ class InformacoesState extends State<Informacoes> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              AlertDialog(
-                                title: const Text('Deseja excluir?'),
-                                content: const Text(
-                                    'Isso excluirá os dados da viagem, mas manterá os dados do cliente'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, 'Cancelar'),
-                                    child: const Text('Cancelar'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      viagemController.delete(viagem);
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Deseja excluir?'),
+                                  content: const Text(
+                                      'Isso excluirá os dados da viagem, mas manterá os dados do cliente'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancelar'),
+                                      child: const Text('Cancelar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        viagemController.delete(viagem);
 
-                                      MaterialPageRoute(
-                                          builder: ((context) => const Home(
-                                                currentIndex: 1,
-                                              )));
-                                    },
-                                    child: const Text('Excluir'),
-                                  ),
-                                ],
+                                        MaterialPageRoute(
+                                            builder: ((context) => const Home(
+                                                  currentIndex: 1,
+                                                )));
+                                      },
+                                      child: const Text('Excluir'),
+                                    ),
+                                  ],
+                                ),
                               );
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => const Home(
-                                            currentIndex: 1,
-                                          ))));
                             },
                             style: const ButtonStyle(
                               backgroundColor:

@@ -13,8 +13,11 @@ class EstatisticaController {
     return store.box<Cliente>();
   }*/
 
-  int create(int? idViagem, ano, String? mes) {
+  int create(int idViagem, int? ano, String? mes) {
     final estatistica = Estatistica(idViagem: idViagem, ano: ano, mes: mes);
+
+    estatistica.ano ??= 0;
+    estatistica.mes ??= "";
 
     //final box = await getBox();
     int id = box.put(estatistica);

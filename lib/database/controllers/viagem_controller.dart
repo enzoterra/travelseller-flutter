@@ -42,6 +42,18 @@ class ViagemController {
         valorTotal: valorTotal,
         valorComissao: valorComissao);
 
+    viagem.codigoVenda ??= "";
+    viagem.localizador ??= "";
+    viagem.companhiaAerea ??= "";
+    viagem.cidade ??= "";
+    viagem.hotel ??= "";
+    viagem.dataIda ??= "";
+    viagem.horaIda ??= "";
+    viagem.dataVolta ??= "";
+    viagem.horaVolta ??= "";
+    viagem.observacoes ??= "";
+    viagem.valorTotal ??= 0;
+    viagem.valorComissao ??= 0;
     //final box = await getBox();
     int id = box.put(viagem);
     //controller.closeStore();
