@@ -2,15 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/cadastro_cliente_tile.dart';
+import 'package:travelseller/components/tiles/informacoes/informacoes_cliente_tile.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/home.dart';
 import '../database/controllers/cliente_controller.dart';
 
 class InformacoesCliente extends StatefulWidget {
-  const InformacoesCliente({super.key, required this.id});
+  const InformacoesCliente({
+    super.key,
+    required this.cliente,
+    required this.nomeController,
+    required this.cpfController,
+    required this.rgController,
+    required this.nascimentoController,
+  });
 
-  final int id;
+  final Cliente cliente;
+  final TextEditingController nomeController;
+  final TextEditingController cpfController;
+  final TextEditingController rgController;
+  final TextEditingController nascimentoController;
+  /*@override
+  void dispose() {
+    nomeController.dispose();
+    cpfController.dispose();
+    rgController.dispose();
+    nascimentoController.dispose();
+    super.dispose();
+  }*/
 
   @override
   State<InformacoesCliente> createState() => InformacoesClienteState();
@@ -18,23 +37,12 @@ class InformacoesCliente extends StatefulWidget {
 
 class InformacoesClienteState extends State<InformacoesCliente> {
   final clienteController = ClienteController();
-  final TextEditingController nomeController = TextEditingController();
-  final TextEditingController cpfController = TextEditingController();
-  final TextEditingController rgController = TextEditingController();
-  final TextEditingController nascimentoController = TextEditingController();
-
-  @override
-  void dispose() {
-    nomeController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
     const double marginTiles = 70;
-    Cliente cliente = clienteController.read(widget.id);
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -63,11 +71,12 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                     child: Scrollbar(
                         child: ListView(
                       children: [
-                        CadastroClienteTile(
-                          nomeController: nomeController,
-                          cpfController: cpfController,
-                          rgController: rgController,
-                          nascimentoController: nascimentoController,
+                        InformacoesClienteTile(
+                          nomeController: widget.nomeController,
+                          cpfController: widget.cpfController,
+                          rgController: widget.rgController,
+                          nascimentoController: widget.nascimentoController,
+                          cliente: widget.cliente,
                         ),
                         const SizedBox(
                           height: marginTiles,
@@ -107,7 +116,8 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        clienteController.delete(cliente);
+                                        clienteController
+                                            .delete(widget.cliente);
 
                                         MaterialPageRoute(
                                             builder: ((context) => const Home(
@@ -138,7 +148,7 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              salvar(cliente);
+                              salvar(widget.cliente);
 
                               Navigator.push(
                                   context,
@@ -166,10 +176,10 @@ class InformacoesClienteState extends State<InformacoesCliente> {
   }
 
   salvar(Cliente cliente) {
-    cliente.nome = nomeController.text;
-    cliente.cpf = cpfController.text;
-    cliente.rg = rgController.text;
-    cliente.dataNascimento = nascimentoController.text;
+    cliente.nome = widget.nomeController.text;
+    cliente.cpf = widget.cpfController.text;
+    cliente.rg = widget.rgController.text;
+    cliente.dataNascimento = widget.nascimentoController.text;
     cliente.idViagem = cliente.idViagem;
     clienteController.update(cliente);
   }

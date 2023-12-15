@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../custom/styles.dart';
+import '../../custom/styles.dart';
 
 class CadastroViagemTile extends StatelessWidget {
   const CadastroViagemTile(

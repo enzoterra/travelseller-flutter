@@ -85,12 +85,37 @@ class ClientesState extends State<Clientes> {
                                       leading: CustomIcons.iconeClienteTile,
                                       title: Text(lista[index].nome.toString()),
                                       onTap: () {
+                                        Cliente cliente =
+                                            ClienteController().read(id);
+                                        TextEditingController nomeController =
+                                            TextEditingController(
+                                                text: cliente.nome);
+                                        TextEditingController cpfController =
+                                            TextEditingController(
+                                                text: cliente.cpf!);
+                                        TextEditingController rgController =
+                                            TextEditingController(
+                                                text: cliente.rg!);
+                                        TextEditingController
+                                            nascimentoController =
+                                            TextEditingController(
+                                                text: cliente.dataNascimento!);
+
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: ((context) =>
                                                     InformacoesCliente(
-                                                        id: id))));
+                                                      cliente: cliente,
+                                                      nomeController:
+                                                          nomeController,
+                                                      cpfController:
+                                                          cpfController,
+                                                      rgController:
+                                                          rgController,
+                                                      nascimentoController:
+                                                          nascimentoController,
+                                                    ))));
                                       })));
                     })
 

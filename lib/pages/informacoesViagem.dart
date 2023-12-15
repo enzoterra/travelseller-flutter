@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/cadastro_cliente_tile.dart';
-import 'package:travelseller/components/tiles/cadastro_viagem_tile.dart';
-import 'package:travelseller/components/tiles/cadastro_voo_tile.dart';
-import 'package:travelseller/components/tiles/informacoes_salvas_tile%20.dart';
+import 'package:travelseller/components/tiles/cadastro/cadastro_viagem_tile.dart';
+import 'package:travelseller/components/tiles/cadastro/cadastro_voo_tile.dart';
+import 'package:travelseller/components/tiles/informacoes/informacoes_cliente_tile.dart';
+import 'package:travelseller/components/tiles/informacoes/informacoes_salvas_tile%20.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
@@ -44,13 +44,29 @@ class InformacoesViagemState extends State<InformacoesViagem> {
   @override
   void dispose() {
     nomeController.dispose();
+    cpfController.dispose();
+    rgController.dispose();
+    nascimentoController.dispose();
+    hotelController.dispose();
+    cidadeController.dispose();
+    localizadorController.dispose();
+    companhiaController.dispose();
+    codigoController.dispose();
+    dataIdaController.dispose();
+    horaIdaController.dispose();
+    dataVoltaController.dispose();
+    horaVoltaController.dispose();
+    valorVendaController.dispose();
+    comissaoController.dispose();
+    observacoesController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     Viagem viagem = viagemController.read(widget.id);
-    Cliente cliente = clienteController.read(viagem.id);
+    Cliente cliente = clienteController.readOneByViagem(viagem.id);
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
     const double marginTiles = 70;
@@ -82,11 +98,12 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                     child: Scrollbar(
                         child: ListView(
                       children: [
-                        CadastroClienteTile(
+                        InformacoesClienteTile(
                           nomeController: nomeController,
                           cpfController: cpfController,
                           rgController: rgController,
                           nascimentoController: nascimentoController,
+                          cliente: cliente,
                         ),
                         const SizedBox(
                           height: marginTiles,

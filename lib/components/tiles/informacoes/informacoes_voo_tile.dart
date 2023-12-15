@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../custom/styles.dart';
+import '../../custom/styles.dart';
 
-class CadastroVooTile extends StatelessWidget {
-  const CadastroVooTile(
+class InformacoesVooTile extends StatelessWidget {
+  const InformacoesVooTile(
       {super.key,
       required this.localizadorController,
       required this.codigoController,

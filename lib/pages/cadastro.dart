@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/cadastro_cliente_tile.dart';
-import 'package:travelseller/components/tiles/cadastro_informacoes_tile.dart';
-import 'package:travelseller/components/tiles/cadastro_viagem_tile.dart';
-import 'package:travelseller/components/tiles/cadastro_voo_tile.dart';
+import 'package:travelseller/components/tiles/cadastro/cadastro_cliente_tile.dart';
+import 'package:travelseller/components/tiles/cadastro/cadastro_informacoes_tile.dart';
+import 'package:travelseller/components/tiles/cadastro/cadastro_viagem_tile.dart';
+import 'package:travelseller/components/tiles/cadastro/cadastro_voo_tile.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/home.dart';
 import '../database/controllers/cliente_controller.dart';
 
@@ -40,6 +41,22 @@ class CadastroState extends State<Cadastro> {
   @override
   void dispose() {
     nomeController.dispose();
+    cpfController.dispose();
+    rgController.dispose();
+    nascimentoController.dispose();
+    hotelController.dispose();
+    cidadeController.dispose();
+    localizadorController.dispose();
+    companhiaController.dispose();
+    codigoController.dispose();
+    dataIdaController.dispose();
+    horaIdaController.dispose();
+    dataVoltaController.dispose();
+    horaVoltaController.dispose();
+    valorVendaController.dispose();
+    comissaoController.dispose();
+    observacoesController.dispose();
+
     super.dispose();
   }
 

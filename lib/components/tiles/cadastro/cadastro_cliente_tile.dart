@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import '../custom/styles.dart';
+import '../../custom/styles.dart';
 
 class CadastroClienteTile extends StatelessWidget {
-  const CadastroClienteTile(
-      {super.key,
-      required this.nomeController,
-      required this.cpfController,
-      required this.rgController,
-      required this.nascimentoController});
+  const CadastroClienteTile({
+    super.key,
+    required this.nomeController,
+    required this.cpfController,
+    required this.rgController,
+    required this.nascimentoController,
+  });
 
   final TextEditingController nomeController;
   final TextEditingController cpfController;
