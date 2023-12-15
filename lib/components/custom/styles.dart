@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 abstract class Styles {
-  static const TextStyle dataViagemTile = TextStyle(fontSize: 10);
+  static const TextStyle dataViagemTile = TextStyle(fontSize: 12);
 
-  static const TextStyle destinoViagemTile = TextStyle(fontSize: 12);
+  static const TextStyle destinoViagemTile = TextStyle(fontSize: 14);
 
   static const TextStyle nomeViagemTile =
       TextStyle(fontWeight: FontWeight.bold);

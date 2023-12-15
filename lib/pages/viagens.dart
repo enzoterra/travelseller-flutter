@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
@@ -8,6 +9,7 @@ import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
+import 'package:travelseller/pages/configuracoes.dart';
 import 'package:travelseller/pages/informacoesViagem.dart';
 
 class Viagens extends StatefulWidget {
@@ -47,20 +49,20 @@ class ViagensState extends State<Viagens> {
         Container(
           height: altura * 0.11,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: const Center(
+          child: Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(children: [
-                  Text(Titles.subTituloViagens, style: Styles.subTituloPagina)
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(Titles.subTituloViagens,
+                      style: Styles.subTituloPagina),
+                  IconButton(
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const Configuracoes()))),
+                      icon: CustomIcons.iconeConfiguracao),
                 ]),
-                Column(children: [
-                  Text("CONF",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
-                ]),
-              ],
-            ),
           ),
         ),
         SizedBox(
@@ -84,7 +86,7 @@ class ViagensState extends State<Viagens> {
                     if (lista.isNotEmpty) {
                       id = lista[index].id;
                       viagem = viagemController.read(id);
-                      cliente = clienteController.read(viagem.id);
+                      cliente = clienteController.readOneByViagem(viagem.id);
                       idViagemCliente = id;
                       nome = cliente.nome;
                       destino = viagem.cidade!;

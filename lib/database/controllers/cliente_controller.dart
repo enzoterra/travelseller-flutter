@@ -1,3 +1,5 @@
+import 'package:objectbox/objectbox.dart';
+import 'package:travelseller/database/data/objectbox.g.dart';
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/cliente.dart';
 
@@ -21,7 +23,6 @@ class ClienteController {
         dataNascimento: dataNascimento,
         idViagem: idViagem);
 
-    cliente.nome ??= "";
     cliente.cpf ??= "";
     cliente.rg ??= "";
     cliente.dataNascimento ??= "";
@@ -41,6 +42,17 @@ class ClienteController {
   Cliente read(int id) {
     //final box = await getBox();
     Cliente cliente = box.get(id) as Cliente;
+    //controller.closeStore();
+    return cliente;
+  }
+
+  Cliente readOneByViagem(int idViagem) {
+    //final box = await getBox();
+    Query<Cliente> query =
+        box.query(Cliente_.idViagem.equals(idViagem)).build();
+    Cliente cliente = query.findFirst() as Cliente;
+    query.close();
+    //Cliente cliente = box.get(id) as Cliente;
     //controller.closeStore();
     return cliente;
   }
