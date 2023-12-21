@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/database/model/cliente.dart';
 import '../../custom/styles.dart';
 
 class InformacoesClienteTile extends StatelessWidget {

@@ -124,13 +124,15 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        clienteController
-                                            .delete(widget.cliente);
+                                        deletar(widget.cliente);
 
-                                        MaterialPageRoute(
-                                            builder: ((context) => const Home(
-                                                  currentIndex: 1,
-                                                )));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    const Home(
+                                                      currentIndex: 1,
+                                                    ))));
                                       },
                                       child: const Text('Excluir'),
                                     ),
@@ -190,5 +192,9 @@ class InformacoesClienteState extends State<InformacoesCliente> {
     cliente.dataNascimento = nascimentoController.text;
     cliente.idViagem = cliente.idViagem;
     clienteController.update(cliente);
+  }
+
+  deletar(Cliente cliente) {
+    clienteController.delete(widget.cliente);
   }
 }
