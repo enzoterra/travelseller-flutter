@@ -3,7 +3,9 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/tiles/informacoes/informacoes_cliente_tile.dart';
+import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
+import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/home.dart';
 import '../database/controllers/cliente_controller.dart';
 
@@ -66,11 +68,19 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                             Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
                         fit: BoxFit.cover,
                         image: AssetImage(Images.imagemInformacoes))),
-                child: const Center(
-                    child: Text(
-                  Titles.tituloInformacoes,
-                  style: Styles.tituloCadastro,
-                )),
+                child: Column(children: [
+                  Flexible(
+                    flex: 1,
+                    child: Container(),
+                  ),
+                  const Flexible(
+                      flex: 5,
+                      child: Center(
+                          child: Text(
+                        Titles.tituloInformacoes,
+                        style: Styles.tituloCadastro,
+                      )))
+                ]),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 20),
@@ -195,6 +205,10 @@ class InformacoesClienteState extends State<InformacoesCliente> {
   }
 
   deletar(Cliente cliente) {
+    int id = widget.cliente.idViagem!;
+    ViagemController viagemController = ViagemController();
+    Viagem viagem = viagemController.read(id);
+    viagemController.delete(viagem);
     clienteController.delete(widget.cliente);
   }
 }

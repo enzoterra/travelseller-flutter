@@ -108,11 +108,19 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                             Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
                         fit: BoxFit.cover,
                         image: AssetImage(Images.imagemInformacoes))),
-                child: const Center(
-                    child: Text(
-                  Titles.tituloInformacoes,
-                  style: Styles.tituloCadastro,
-                )),
+                child: Column(children: [
+                  Flexible(
+                    flex: 1,
+                    child: Container(),
+                  ),
+                  const Flexible(
+                      flex: 5,
+                      child: Center(
+                          child: Text(
+                        Titles.tituloInformacoes,
+                        style: Styles.tituloCadastro,
+                      )))
+                ]),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 20),
