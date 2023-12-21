@@ -87,19 +87,6 @@ class ClientesState extends State<Clientes> {
                                       onTap: () {
                                         Cliente cliente =
                                             ClienteController().read(id);
-                                        TextEditingController nomeController =
-                                            TextEditingController(
-                                                text: cliente.nome);
-                                        TextEditingController cpfController =
-                                            TextEditingController(
-                                                text: cliente.cpf!);
-                                        TextEditingController rgController =
-                                            TextEditingController(
-                                                text: cliente.rg!);
-                                        TextEditingController
-                                            nascimentoController =
-                                            TextEditingController(
-                                                text: cliente.dataNascimento!);
 
                                         Navigator.push(
                                             context,
@@ -107,14 +94,6 @@ class ClientesState extends State<Clientes> {
                                                 builder: ((context) =>
                                                     InformacoesCliente(
                                                       cliente: cliente,
-                                                      nomeController:
-                                                          nomeController,
-                                                      cpfController:
-                                                          cpfController,
-                                                      rgController:
-                                                          rgController,
-                                                      nascimentoController:
-                                                          nascimentoController,
                                                     ))));
                                       })));
                     })

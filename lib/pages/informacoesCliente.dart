@@ -11,25 +11,9 @@ class InformacoesCliente extends StatefulWidget {
   const InformacoesCliente({
     super.key,
     required this.cliente,
-    required this.nomeController,
-    required this.cpfController,
-    required this.rgController,
-    required this.nascimentoController,
   });
 
   final Cliente cliente;
-  final TextEditingController nomeController;
-  final TextEditingController cpfController;
-  final TextEditingController rgController;
-  final TextEditingController nascimentoController;
-  /*@override
-  void dispose() {
-    nomeController.dispose();
-    cpfController.dispose();
-    rgController.dispose();
-    nascimentoController.dispose();
-    super.dispose();
-  }*/
 
   @override
   State<InformacoesCliente> createState() => InformacoesClienteState();
@@ -37,6 +21,31 @@ class InformacoesCliente extends StatefulWidget {
 
 class InformacoesClienteState extends State<InformacoesCliente> {
   final clienteController = ClienteController();
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController cpfController = TextEditingController();
+  final TextEditingController rgController = TextEditingController();
+  final TextEditingController nascimentoController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      nomeController.text = widget.cliente.nome;
+      cpfController.text = widget.cliente.cpf!;
+      rgController.text = widget.cliente.rg!;
+      nascimentoController.text = widget.cliente.dataNascimento!;
+    });
+  }
+
+  @override
+  void dispose() {
+    nomeController.dispose();
+    cpfController.dispose();
+    rgController.dispose();
+    nascimentoController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +81,10 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                         child: ListView(
                       children: [
                         InformacoesClienteTile(
-                          nomeController: widget.nomeController,
-                          cpfController: widget.cpfController,
-                          rgController: widget.rgController,
-                          nascimentoController: widget.nascimentoController,
-                          cliente: widget.cliente,
+                          nomeController: nomeController,
+                          cpfController: cpfController,
+                          rgController: rgController,
+                          nascimentoController: nascimentoController,
                         ),
                         const SizedBox(
                           height: marginTiles,
@@ -176,10 +184,10 @@ class InformacoesClienteState extends State<InformacoesCliente> {
   }
 
   salvar(Cliente cliente) {
-    cliente.nome = widget.nomeController.text;
-    cliente.cpf = widget.cpfController.text;
-    cliente.rg = widget.rgController.text;
-    cliente.dataNascimento = widget.nascimentoController.text;
+    cliente.nome = nomeController.text;
+    cliente.cpf = cpfController.text;
+    cliente.rg = rgController.text;
+    cliente.dataNascimento = nascimentoController.text;
     cliente.idViagem = cliente.idViagem;
     clienteController.update(cliente);
   }

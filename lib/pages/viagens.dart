@@ -79,15 +79,13 @@ class ViagensState extends State<Viagens> {
                     String embarque = "";
                     String desembarque = "";
                     int id;
-                    int idViagemCliente = 0;
-                    Viagem viagem;
-                    Cliente cliente;
+                    Viagem viagem = Viagem();
+                    Cliente cliente = Cliente(nome: "");
 
                     if (lista.isNotEmpty) {
                       id = lista[index].id;
                       viagem = viagemController.read(id);
                       cliente = clienteController.readOneByViagem(viagem.id);
-                      idViagemCliente = id;
                       nome = cliente.nome;
                       destino = viagem.cidade!;
                       embarque = viagem.dataIda!;
@@ -106,7 +104,9 @@ class ViagensState extends State<Viagens> {
                                   context,
                                   MaterialPageRoute(
                                       builder: ((context) => InformacoesViagem(
-                                          id: idViagemCliente))));
+                                            viagem: viagem,
+                                            cliente: cliente,
+                                          ))));
                             });
                   })
 

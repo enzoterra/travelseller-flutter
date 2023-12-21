@@ -13,9 +13,11 @@ import 'package:travelseller/pages/home.dart';
 import '../database/controllers/cliente_controller.dart';
 
 class InformacoesViagem extends StatefulWidget {
-  const InformacoesViagem({super.key, required this.id});
+  const InformacoesViagem(
+      {super.key, required this.viagem, required this.cliente});
 
-  final int id;
+  final Viagem viagem;
+  final Cliente cliente;
 
   @override
   State<InformacoesViagem> createState() => InformacoesViagemState();
@@ -42,6 +44,30 @@ class InformacoesViagemState extends State<InformacoesViagem> {
   final TextEditingController observacoesController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      nomeController.text = widget.cliente.nome;
+      cpfController.text = widget.cliente.cpf!;
+      rgController.text = widget.cliente.rg!;
+      nascimentoController.text = widget.cliente.dataNascimento!;
+      hotelController.text = widget.viagem.hotel!;
+      cidadeController.text = widget.viagem.cidade!;
+      localizadorController.text = widget.viagem.localizador!;
+      companhiaController.text = widget.viagem.companhiaAerea!;
+      codigoController.text = widget.viagem.codigoVenda!;
+      dataIdaController.text = widget.viagem.dataIda!;
+      horaIdaController.text = widget.viagem.horaIda!;
+      dataVoltaController.text = widget.viagem.dataVolta!;
+      horaVoltaController.text = widget.viagem.horaVolta!;
+      valorVendaController.text = widget.viagem.valorTotal.toString();
+      comissaoController.text = widget.viagem.valorComissao.toString();
+      observacoesController.text = widget.viagem.observacoes!;
+    });
+  }
+
+  @override
   void dispose() {
     nomeController.dispose();
     cpfController.dispose();
@@ -65,8 +91,6 @@ class InformacoesViagemState extends State<InformacoesViagem> {
 
   @override
   Widget build(BuildContext context) {
-    Viagem viagem = viagemController.read(widget.id);
-    Cliente cliente = clienteController.readOneByViagem(viagem.id);
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
     const double marginTiles = 70;
@@ -103,7 +127,6 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           cpfController: cpfController,
                           rgController: rgController,
                           nascimentoController: nascimentoController,
-                          cliente: cliente,
                         ),
                         const SizedBox(
                           height: marginTiles,
@@ -170,7 +193,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        viagemController.delete(viagem);
+                                        viagemController.delete(widget.viagem);
 
                                         MaterialPageRoute(
                                             builder: ((context) => const Home(
@@ -201,7 +224,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              salvar(viagem, cliente);
+                              salvar(widget.viagem, widget.cliente);
 
                               Navigator.push(
                                   context,

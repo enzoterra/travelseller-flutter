@@ -9,10 +9,8 @@ class InformacoesClienteTile extends StatelessWidget {
     required this.cpfController,
     required this.rgController,
     required this.nascimentoController,
-    required this.cliente,
   });
 
-  final Cliente cliente;
   final TextEditingController nomeController;
   final TextEditingController cpfController;
   final TextEditingController rgController;
@@ -21,10 +19,6 @@ class InformacoesClienteTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
-    nomeController.text = cliente.nome;
-    cpfController.text = cliente.cpf!;
-    rgController.text = cliente.rg!;
-    nascimentoController.text = cliente.dataNascimento!;
     return SizedBox(
         height: 330,
         child: Column(
