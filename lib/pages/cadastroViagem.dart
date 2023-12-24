@@ -7,18 +7,17 @@ import 'package:travelseller/components/tiles/cadastro/cadastro_informacoes_tile
 import 'package:travelseller/components/tiles/cadastro/cadastro_viagem_tile.dart';
 import 'package:travelseller/components/tiles/cadastro/cadastro_voo_tile.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
-import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/home.dart';
 import '../database/controllers/cliente_controller.dart';
 
-class Cadastro extends StatefulWidget {
-  const Cadastro({super.key});
+class CadastroViagem extends StatefulWidget {
+  const CadastroViagem({super.key});
 
   @override
-  State<Cadastro> createState() => CadastroState();
+  State<CadastroViagem> createState() => CadastroViagemState();
 }
 
-class CadastroState extends State<Cadastro> {
+class CadastroViagemState extends State<CadastroViagem> {
   final clienteController = ClienteController();
   final viagemController = ViagemController();
   final TextEditingController nomeController = TextEditingController();
@@ -71,20 +70,28 @@ class CadastroState extends State<Cadastro> {
           child: Column(
             children: [
               Container(
-                height: altura * 0.18,
-                width: largura * 1,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                            Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
-                        fit: BoxFit.cover,
-                        image: AssetImage(Images.imagemCadastro))),
-                child: const Center(
-                    child: Text(
-                  Titles.tituloCadastro,
-                  style: Styles.tituloCadastro,
-                )),
-              ),
+                  height: altura * 0.18,
+                  width: largura * 1,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
+                          fit: BoxFit.cover,
+                          image: AssetImage(Images.imagemCadastro))),
+                  child: Column(children: [
+                    Flexible(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    const Flexible(
+                      flex: 6,
+                      child: Center(
+                          child: Text(
+                        Titles.tituloCadastro,
+                        style: Styles.tituloCadastro,
+                      )),
+                    ),
+                  ])),
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: SizedBox(
@@ -154,7 +161,7 @@ class CadastroState extends State<Cadastro> {
                                   context,
                                   MaterialPageRoute(
                                       builder: ((context) => const Home(
-                                            currentIndex: 0,
+                                            currentIndex: 1,
                                           ))));
                             },
                             style: const ButtonStyle(

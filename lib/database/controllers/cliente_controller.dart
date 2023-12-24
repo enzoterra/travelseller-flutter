@@ -57,6 +57,17 @@ class ClienteController {
     return cliente;
   }
 
+  List<Cliente> readAllByViagem(int idViagem) {
+    //final box = await getBox();
+    Query<Cliente> query =
+        box.query(Cliente_.idViagem.equals(idViagem)).build();
+    List<Cliente> clientes = query.find();
+    query.close();
+    //Cliente cliente = box.get(id) as Cliente;
+    //controller.closeStore();
+    return clientes;
+  }
+
   /*Future<List<Cliente>> readAllFuture() async {
     final box = await getBox();
     List<Cliente> lista = box.getAll() as List<Cliente>;

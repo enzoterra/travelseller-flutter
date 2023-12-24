@@ -114,7 +114,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                     child: Container(),
                   ),
                   const Flexible(
-                      flex: 5,
+                      flex: 6,
                       child: Center(
                           child: Text(
                         Titles.tituloInformacoes,
@@ -297,6 +297,11 @@ class InformacoesViagemState extends State<InformacoesViagem> {
   }
 
   deletar(Viagem viagem) {
+    List<Cliente> lista = clienteController.readAllByViagem(widget.viagem.id);
+    for (var cliente in lista) {
+      cliente.idViagem = null;
+      clienteController.update(cliente);
+    }
     viagemController.delete(widget.viagem);
   }
 }

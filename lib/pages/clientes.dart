@@ -5,7 +5,8 @@ import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
-import 'package:travelseller/pages/cadastro.dart';
+import 'package:travelseller/pages/cadastroCliente.dart';
+import 'package:travelseller/pages/cadastroViagem.dart';
 import 'package:travelseller/pages/informacoesCliente.dart';
 import '../database/controllers/cliente_controller.dart';
 
@@ -130,8 +131,10 @@ class ClientesState extends State<Clientes> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: ((context) => const Cadastro())));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => const CadastroCliente())));
         },
         child: const Icon(Icons.add),
       ),
