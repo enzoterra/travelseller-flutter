@@ -82,11 +82,15 @@ class ViagemController {
     //final box = await getBox();
     Query<Viagem> query =
         box.query(Viagem_.idCliente.equals(idCliente)).build();
-    Viagem viagem = query.find() as Viagem;
+    List<Viagem> lista = query.find();
     query.close();
+    if (lista.isNotEmpty) {
+      Viagem viagem = lista.first;
+      return viagem;
+    }
     //Cliente cliente = box.get(id) as Cliente;
     //controller.closeStore();
-    return viagem;
+    return Viagem(idCliente: -1);
   }
 
   /*Future<List<Viagem>> readAll() async {

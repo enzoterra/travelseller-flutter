@@ -12,4 +12,6 @@ abstract class CustomTitles {
 
   static const String tituloCadastro = "Novo cadastro";
   static const String tituloInformacoes = "Informações";
+
+  static const String tituloConfiguracoes = "Configurações";
 }

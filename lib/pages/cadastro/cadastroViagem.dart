@@ -7,6 +7,7 @@ import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
 import 'package:travelseller/components/tiles/dados/outras_informacoes_tile.dart';
 import 'package:travelseller/components/tiles/dados/viagem_tile.dart';
 import 'package:travelseller/components/tiles/dados/voo_tile.dart';
+import 'package:travelseller/components/top_bar_interno.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/principais/home.dart';
@@ -87,29 +88,9 @@ class CadastroViagemState extends State<CadastroViagem> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                  height: altura * 0.18,
-                  width: largura * 1,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          colorFilter: ColorFilter.mode(
-                              Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
-                          fit: BoxFit.cover,
-                          image: AssetImage(CustomImages.imagemCadastro))),
-                  child: Column(children: [
-                    Flexible(
-                      flex: 1,
-                      child: Container(),
-                    ),
-                    const Flexible(
-                      flex: 6,
-                      child: Center(
-                          child: Text(
-                        CustomTitles.tituloCadastro,
-                        style: CustomStyles.tituloCadastro,
-                      )),
-                    ),
-                  ])),
+              const TopBarInterno(
+                  imagem: CustomImages.imagemCadastro,
+                  titulo: CustomTitles.tituloCadastro),
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: SizedBox(

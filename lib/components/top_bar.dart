@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/styles.dart';
 
 class TopBar extends StatelessWidget {
+  const TopBar({super.key, required this.imagem, required this.titulo});
+
   final String imagem;
   final String titulo;
-
-  const TopBar({super.key, required this.imagem, required this.titulo});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +27,3 @@ class TopBar extends StatelessWidget {
     );
   }
 }
-
-/*
-return AppBar(
-      flexibleSpace: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(imagem), fit: BoxFit.cover))),
-      title: Text(titulo, style: const TextStyle(fontWeight: FontWeight.bold)),
-      elevation: 0,
-    );
-*/
