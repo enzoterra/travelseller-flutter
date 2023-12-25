@@ -35,9 +35,9 @@ class InformacoesClienteState extends State<InformacoesCliente> {
 
     setState(() {
       nomeController.text = widget.cliente.nome;
-      cpfController.text = widget.cliente.cpf!;
-      rgController.text = widget.cliente.rg!;
-      nascimentoController.text = widget.cliente.dataNascimento!;
+      cpfController.text = widget.cliente.cpf;
+      rgController.text = widget.cliente.rg;
+      nascimentoController.text = widget.cliente.dataNascimento;
     });
   }
 

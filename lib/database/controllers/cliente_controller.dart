@@ -15,17 +15,13 @@ class ClienteController {
     return store.box<Cliente>();
   }*/
 
-  int create(String nome, String? cpf, rg, dataNascimento, int? idViagem) {
+  int create(String nome, cpf, rg, dataNascimento, int? idViagem) {
     final cliente = Cliente(
         nome: nome,
         cpf: cpf,
         rg: rg,
         dataNascimento: dataNascimento,
         idViagem: idViagem);
-
-    cliente.cpf ??= "";
-    cliente.rg ??= "";
-    cliente.dataNascimento ??= "";
 
     //final box = await getBox();
     int id = box.put(cliente);

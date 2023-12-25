@@ -8,12 +8,18 @@ import 'package:travelseller/components/tiles/cadastro/cadastro_informacoes_tile
 import 'package:travelseller/components/tiles/cadastro/cadastro_viagem_tile.dart';
 import 'package:travelseller/components/tiles/cadastro/cadastro_voo_tile.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/home.dart';
+import 'package:travelseller/pages/listaClientes.dart';
 import '../database/controllers/cliente_controller.dart';
 
+// ignore: must_be_immutable
 class CadastroViagem extends StatefulWidget {
-  const CadastroViagem({super.key});
+  CadastroViagem(
+      {super.key, required this.jaTemCliente, required this.cliente});
 
+  bool jaTemCliente;
+  final Cliente cliente;
   @override
   State<CadastroViagem> createState() => CadastroViagemState();
 }
@@ -60,11 +66,22 @@ class CadastroViagemState extends State<CadastroViagem> {
     super.dispose();
   }
 
+  verificarCliente() {
+    if (widget.jaTemCliente = true) {
+      nomeController.text = widget.cliente.nome;
+      cpfController.text = widget.cliente.cpf;
+      rgController.text = widget.cliente.rg;
+      nascimentoController.text = widget.cliente.dataNascimento;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     const double marginTiles = 70;
     final largura = MediaQuery.of(context).size.width;
+
+    verificarCliente();
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -106,6 +123,33 @@ class CadastroViagemState extends State<CadastroViagem> {
                           cpfController: cpfController,
                           rgController: rgController,
                           nascimentoController: nascimentoController,
+                        ),
+                        const SizedBox(
+                          height: marginTiles,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                height: 44,
+                                width: 200,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                const ListaClientes())));
+                                  },
+                                  style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          CustomColors.verdeEscuro)),
+                                  child: const Text(
+                                    "Escolher cliente",
+                                    style: CustomStyles.textoBotoes,
+                                  ),
+                                ))
+                          ],
                         ),
                         const SizedBox(
                           height: marginTiles,

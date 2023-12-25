@@ -50,9 +50,9 @@ class InformacoesViagemState extends State<InformacoesViagem> {
 
     setState(() {
       nomeController.text = widget.cliente.nome;
-      cpfController.text = widget.cliente.cpf!;
-      rgController.text = widget.cliente.rg!;
-      nascimentoController.text = widget.cliente.dataNascimento!;
+      cpfController.text = widget.cliente.cpf;
+      rgController.text = widget.cliente.rg;
+      nascimentoController.text = widget.cliente.dataNascimento;
       hotelController.text = widget.viagem.hotel!;
       cidadeController.text = widget.viagem.cidade!;
       localizadorController.text = widget.viagem.localizador!;

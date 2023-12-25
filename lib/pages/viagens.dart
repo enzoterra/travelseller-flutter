@@ -81,7 +81,8 @@ class ViagensState extends State<Viagens> {
                       String desembarque = "";
                       int id;
                       Viagem viagem = Viagem();
-                      Cliente cliente = Cliente(nome: "");
+                      Cliente cliente = Cliente(
+                          nome: "", cpf: "", rg: "", dataNascimento: "");
 
                       if (lista.isNotEmpty) {
                         id = lista[index].id;
@@ -119,7 +120,11 @@ class ViagensState extends State<Viagens> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: ((context) => const CadastroViagem())));
+                  builder: ((context) => CadastroViagem(
+                        jaTemCliente: false,
+                        cliente: Cliente(
+                            nome: "", cpf: "", rg: "", dataNascimento: ""),
+                      ))));
         },
         backgroundColor: CustomColors.azulBotaoViagens,
         child: const Icon(Icons.add),

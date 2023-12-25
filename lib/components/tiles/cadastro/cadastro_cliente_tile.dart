@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
 import '../../custom/styles.dart';
 
 class CadastroClienteTile extends StatelessWidget {
@@ -20,7 +19,7 @@ class CadastroClienteTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
     return SizedBox(
-        height: 360,
+        height: 330,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,27 +118,6 @@ class CadastroClienteTile extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(
-              height: 0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                    height: 44,
-                    width: 120,
-                    child: TextButton(
-                      onPressed: () {},
-                      style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                              CustomColors.verdeEscuro)),
-                      child: const Text(
-                        "Escolher cliente",
-                        style: CustomStyles.textoBotoes,
-                      ),
-                    ))
-              ],
-            )
           ],
         ));
   }

@@ -110,7 +110,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                       onPressed: () {},
                       style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(
-                              CustomColors.verdeEscuro2)),
+                              CustomColors.verdeEscuro)),
                       child: const Text(
                         "Integrantes",
                         style: CustomStyles.textoBotoes,

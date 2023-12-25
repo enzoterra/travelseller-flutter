@@ -5,13 +5,13 @@ class Cliente {
   int id = 0;
 
   String nome;
-  String? cpf, rg, dataNascimento;
+  String cpf, rg, dataNascimento;
   int? idViagem;
 
   Cliente(
       {required this.nome,
-      this.cpf,
-      this.rg,
-      this.dataNascimento,
+      required this.cpf,
+      required this.rg,
+      required this.dataNascimento,
       this.idViagem});
 }
