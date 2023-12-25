@@ -5,9 +5,9 @@ import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
-import 'package:travelseller/pages/cadastroCliente.dart';
-import 'package:travelseller/pages/informacoesCliente.dart';
-import '../database/controllers/cliente_controller.dart';
+import 'package:travelseller/pages/cadastro/cadastroCliente.dart';
+import 'package:travelseller/pages/informacoes/informacoesCliente.dart';
+import '../../database/controllers/cliente_controller.dart';
 
 class Clientes extends StatefulWidget {
   const Clientes({super.key});
@@ -72,30 +72,30 @@ class ClientesState extends State<Clientes> {
                     padding: const EdgeInsets.all(7),
                     itemCount: lista.length,
                     itemBuilder: (context, index) {
-                      int id = 0;
-                      if (lista.isNotEmpty) {
-                        id = lista[index].id;
-                      }
-                      return lista.isEmpty
-                          ? const Center(child: Text("Sem clientes ..."))
-                          : Container(
-                              padding: const EdgeInsets.all(3),
-                              child: Card(
-                                  child: ListTile(
-                                      leading: CustomIcons.iconeClienteTile,
-                                      title: Text(lista[index].nome.toString()),
-                                      onTap: () {
-                                        Cliente cliente =
-                                            ClienteController().read(id);
+                      if (lista.isEmpty) {
+                        return const Center(child: Text("Sem clientes ..."));
+                      } else {
+                        int id = lista[index].id;
 
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: ((context) =>
-                                                    InformacoesCliente(
-                                                      cliente: cliente,
-                                                    ))));
-                                      })));
+                        return Container(
+                            padding: const EdgeInsets.all(3),
+                            child: Card(
+                                child: ListTile(
+                                    leading: CustomIcons.iconeClienteTile,
+                                    title: Text(lista[index].nome.toString()),
+                                    onTap: () {
+                                      Cliente cliente =
+                                          ClienteController().read(id);
+
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  InformacoesCliente(
+                                                    cliente: cliente,
+                                                  ))));
+                                    })));
+                      }
                     })
 
                 /*FutureBuilder<List<Cliente>>(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/database/object_box.dart';
-import 'package:travelseller/pages/home.dart';
+import 'package:travelseller/pages/principais/home.dart';
 import 'components/custom/theme.dart';
 
 void main() async {

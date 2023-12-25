@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../custom/styles.dart';
 
-class CadastroClienteTile extends StatelessWidget {
-  const CadastroClienteTile({
+class ClienteTile extends StatelessWidget {
+  const ClienteTile({
     super.key,
     required this.nomeController,
     required this.cpfController,

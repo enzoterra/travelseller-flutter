@@ -3,12 +3,12 @@ import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/informacoes/informacoes_cliente_tile.dart';
+import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/pages/home.dart';
-import '../database/controllers/cliente_controller.dart';
+import 'package:travelseller/pages/principais/home.dart';
+import '../../database/controllers/cliente_controller.dart';
 
 class InformacoesCliente extends StatefulWidget {
   const InformacoesCliente({
@@ -91,7 +91,7 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                     child: Scrollbar(
                         child: ListView(
                       children: [
-                        InformacoesClienteTile(
+                        ClienteTile(
                           nomeController: nomeController,
                           cpfController: cpfController,
                           rgController: rgController,
@@ -121,6 +121,7 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
+                              //ALTERAR PARA VERIFICAR SE EXISTE VIAGEM DO CLIENTE AINDA PARA SER REALIZADA
                               showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
@@ -193,14 +194,12 @@ class InformacoesClienteState extends State<InformacoesCliente> {
     cliente.cpf = cpfController.text;
     cliente.rg = rgController.text;
     cliente.dataNascimento = nascimentoController.text;
-    cliente.idViagem = cliente.idViagem;
     clienteController.update(cliente);
   }
 
   deletar(Cliente cliente) {
-    int id = widget.cliente.idViagem!;
     ViagemController viagemController = ViagemController();
-    Viagem viagem = viagemController.read(id);
+    Viagem viagem = viagemController.readByCliente(cliente.id);
     viagemController.delete(viagem);
     clienteController.delete(widget.cliente);
   }

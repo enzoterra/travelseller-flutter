@@ -15,6 +15,7 @@ class Viagem {
       horaVolta,
       observacoes;
   double? valorTotal, valorComissao;
+  int idCliente;
 
   Viagem(
       {this.codigoVenda,
@@ -28,5 +29,6 @@ class Viagem {
       this.horaVolta,
       this.observacoes,
       this.valorTotal,
-      this.valorComissao});
+      this.valorComissao,
+      required this.idCliente});
 }

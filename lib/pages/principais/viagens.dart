@@ -5,14 +5,14 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
-import 'package:travelseller/components/tiles/viagem_tile.dart';
+import 'package:travelseller/components/tiles/lista_viagem_tile.dart';
 import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/pages/cadastroViagem.dart';
-import 'package:travelseller/pages/configuracoes.dart';
-import 'package:travelseller/pages/informacoesViagem.dart';
+import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
+import 'package:travelseller/pages/principais/configuracoes.dart';
+import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
 
 class Viagens extends StatefulWidget {
   const Viagens({super.key});
@@ -75,42 +75,34 @@ class ViagensState extends State<Viagens> {
                     padding: const EdgeInsets.only(top: 7, bottom: 7),
                     itemCount: lista.length,
                     itemBuilder: (context, index) {
-                      String nome = "";
-                      String destino = "";
-                      String embarque = "";
-                      String desembarque = "";
-                      int id;
-                      Viagem viagem = Viagem();
-                      Cliente cliente = Cliente(
-                          nome: "", cpf: "", rg: "", dataNascimento: "");
+                      if (lista.isEmpty) {
+                        return const Center(child: Text("Sem clientes ..."));
+                      } else {
+                        int id = lista[index].id;
+                        Viagem viagem = viagemController.read(id);
+                        Cliente cliente =
+                            clienteController.read(viagem.idCliente);
+                        String nome = cliente.nome;
+                        String destino = viagem.cidade!;
+                        String embarque = viagem.dataIda!;
+                        String desembarque = viagem.dataVolta!;
 
-                      if (lista.isNotEmpty) {
-                        id = lista[index].id;
-                        viagem = viagemController.read(id);
-                        cliente = clienteController.readOneByViagem(viagem.id);
-                        nome = cliente.nome;
-                        destino = viagem.cidade!;
-                        embarque = viagem.dataIda!;
-                        desembarque = viagem.dataVolta!;
+                        return ListTile(
+                            title: ViagemListTile(
+                                nome: nome,
+                                destino: destino,
+                                embarque: embarque,
+                                desembarque: desembarque),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => InformacoesViagem(
+                                            viagem: viagem,
+                                            cliente: cliente,
+                                          ))));
+                            });
                       }
-                      return lista.isEmpty
-                          ? const Center(child: Text("Sem clientes ..."))
-                          : ListTile(
-                              title: ViagemListTile(
-                                  nome: nome,
-                                  destino: destino,
-                                  embarque: embarque,
-                                  desembarque: desembarque),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            InformacoesViagem(
-                                              viagem: viagem,
-                                              cliente: cliente,
-                                            ))));
-                              });
                     })),
           ),
         ],
@@ -121,7 +113,7 @@ class ViagensState extends State<Viagens> {
               context,
               MaterialPageRoute(
                   builder: ((context) => CadastroViagem(
-                        jaTemCliente: false,
+                        jaTemCliente: 0,
                         cliente: Cliente(
                             nome: "", cpf: "", rg: "", dataNascimento: ""),
                       ))));

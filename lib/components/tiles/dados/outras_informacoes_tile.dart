@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../custom/styles.dart';
 
-class CadastroInformacoesTile extends StatelessWidget {
-  const CadastroInformacoesTile(
+class OutrasInformacoesTile extends StatelessWidget {
+  const OutrasInformacoesTile(
       {super.key,
       required this.valorVendaController,
       required this.comissaoController,

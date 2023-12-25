@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/cadastro/cadastro_cliente_tile.dart';
-import 'package:travelseller/pages/home.dart';
-import '../database/controllers/cliente_controller.dart';
+import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
+import 'package:travelseller/pages/principais/home.dart';
+import '../../database/controllers/cliente_controller.dart';
 
 class CadastroCliente extends StatefulWidget {
   const CadastroCliente({super.key});
@@ -70,7 +70,7 @@ class CadastroClienteState extends State<CadastroCliente> {
                 child: SizedBox(
                   height: 330,
                   width: largura * 0.85,
-                  child: CadastroClienteTile(
+                  child: ClienteTile(
                     nomeController: nomeController,
                     cpfController: cpfController,
                     rgController: rgController,
@@ -142,6 +142,6 @@ class CadastroClienteState extends State<CadastroCliente> {
 
   salvar() {
     clienteController.create(nomeController.text, cpfController.text,
-        rgController.text, nascimentoController.text, null);
+        rgController.text, nascimentoController.text);
   }
 }

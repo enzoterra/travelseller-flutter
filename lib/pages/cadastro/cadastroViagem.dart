@@ -3,30 +3,30 @@ import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/cadastro/cadastro_viagem_tile.dart';
-import 'package:travelseller/components/tiles/cadastro/cadastro_voo_tile.dart';
-import 'package:travelseller/components/tiles/informacoes/informacoes_cliente_tile.dart';
-import 'package:travelseller/components/tiles/informacoes/informacoes_salvas_tile%20.dart';
+import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
+import 'package:travelseller/components/tiles/dados/outras_informacoes_tile.dart';
+import 'package:travelseller/components/tiles/dados/viagem_tile.dart';
+import 'package:travelseller/components/tiles/dados/voo_tile.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
-import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/pages/home.dart';
-import '../database/controllers/cliente_controller.dart';
+import 'package:travelseller/pages/principais/home.dart';
+import 'package:travelseller/pages/informacoes/listaClientes.dart';
+import '../../database/controllers/cliente_controller.dart';
 
-class InformacoesViagem extends StatefulWidget {
-  const InformacoesViagem(
-      {super.key, required this.viagem, required this.cliente});
+// ignore: must_be_immutable
+class CadastroViagem extends StatefulWidget {
+  const CadastroViagem(
+      {super.key, required this.jaTemCliente, required this.cliente});
 
-  final Viagem viagem;
+  final int jaTemCliente;
   final Cliente cliente;
-
   @override
-  State<InformacoesViagem> createState() => InformacoesViagemState();
+  State<CadastroViagem> createState() => CadastroViagemState();
 }
 
-class InformacoesViagemState extends State<InformacoesViagem> {
-  final viagemController = ViagemController();
+class CadastroViagemState extends State<CadastroViagem> {
   final clienteController = ClienteController();
+  final viagemController = ViagemController();
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController cpfController = TextEditingController();
   final TextEditingController rgController = TextEditingController();
@@ -43,30 +43,6 @@ class InformacoesViagemState extends State<InformacoesViagem> {
   final TextEditingController valorVendaController = TextEditingController();
   final TextEditingController comissaoController = TextEditingController();
   final TextEditingController observacoesController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-
-    setState(() {
-      nomeController.text = widget.cliente.nome;
-      cpfController.text = widget.cliente.cpf;
-      rgController.text = widget.cliente.rg;
-      nascimentoController.text = widget.cliente.dataNascimento;
-      hotelController.text = widget.viagem.hotel!;
-      cidadeController.text = widget.viagem.cidade!;
-      localizadorController.text = widget.viagem.localizador!;
-      companhiaController.text = widget.viagem.companhiaAerea!;
-      codigoController.text = widget.viagem.codigoVenda!;
-      dataIdaController.text = widget.viagem.dataIda!;
-      horaIdaController.text = widget.viagem.horaIda!;
-      dataVoltaController.text = widget.viagem.dataVolta!;
-      horaVoltaController.text = widget.viagem.horaVolta!;
-      valorVendaController.text = widget.viagem.valorTotal.toString();
-      comissaoController.text = widget.viagem.valorComissao.toString();
-      observacoesController.text = widget.viagem.observacoes!;
-    });
-  }
 
   @override
   void dispose() {
@@ -90,39 +66,50 @@ class InformacoesViagemState extends State<InformacoesViagem> {
     super.dispose();
   }
 
+  verificarCliente() {
+    if (widget.jaTemCliente == 1) {
+      nomeController.text = widget.cliente.nome;
+      cpfController.text = widget.cliente.cpf;
+      rgController.text = widget.cliente.rg;
+      nascimentoController.text = widget.cliente.dataNascimento;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
-    final largura = MediaQuery.of(context).size.width;
     const double marginTiles = 70;
+    final largura = MediaQuery.of(context).size.width;
+
+    verificarCliente();
 
     return Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                height: altura * 0.2,
-                width: largura * 1,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                            Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
-                        fit: BoxFit.cover,
-                        image: AssetImage(CustomImages.imagemInformacoes))),
-                child: Column(children: [
-                  Flexible(
-                    flex: 1,
-                    child: Container(),
-                  ),
-                  const Flexible(
+                  height: altura * 0.18,
+                  width: largura * 1,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
+                          fit: BoxFit.cover,
+                          image: AssetImage(CustomImages.imagemCadastro))),
+                  child: Column(children: [
+                    Flexible(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    const Flexible(
                       flex: 6,
                       child: Center(
                           child: Text(
-                        CustomTitles.tituloInformacoes,
+                        CustomTitles.tituloCadastro,
                         style: CustomStyles.tituloCadastro,
-                      )))
-                ]),
-              ),
+                      )),
+                    ),
+                  ])),
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: SizedBox(
@@ -131,7 +118,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                     child: Scrollbar(
                         child: ListView(
                       children: [
-                        InformacoesClienteTile(
+                        ClienteTile(
                           nomeController: nomeController,
                           cpfController: cpfController,
                           rgController: rgController,
@@ -140,14 +127,41 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                         const SizedBox(
                           height: marginTiles,
                         ),
-                        CadastroViagemTile(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                height: 44,
+                                width: 200,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                const ListaClientes())));
+                                  },
+                                  style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          CustomColors.verdeEscuro)),
+                                  child: const Text(
+                                    "Escolher cliente",
+                                    style: CustomStyles.textoBotoes,
+                                  ),
+                                ))
+                          ],
+                        ),
+                        const SizedBox(
+                          height: marginTiles,
+                        ),
+                        ViagemTile(
                           hotelController: hotelController,
                           cidadeController: cidadeController,
                         ),
                         const SizedBox(
                           height: marginTiles,
                         ),
-                        CadastroVooTile(
+                        VooTile(
                           localizadorController: localizadorController,
                           companhiaController: companhiaController,
                           codigoController: codigoController,
@@ -159,7 +173,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                         const SizedBox(
                           height: marginTiles,
                         ),
-                        InformacoesSalvasTile(
+                        OutrasInformacoesTile(
                           valorVendaController: valorVendaController,
                           comissaoController: comissaoController,
                           observacoesController: observacoesController,
@@ -188,43 +202,20 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                  title: const Text('Deseja excluir?'),
-                                  content: const Text(
-                                      'Isso excluirá os dados da viagem, mas manterá os dados do cliente'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(context, 'Cancelar'),
-                                      child: const Text('Cancelar'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        deletar(widget.viagem);
-
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: ((context) =>
-                                                    const Home(
-                                                      currentIndex: 1,
-                                                    ))));
-                                      },
-                                      child: const Text('Excluir'),
-                                    ),
-                                  ],
-                                ),
-                              );
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => const Home(
+                                            currentIndex: 1,
+                                          ))));
                             },
                             style: const ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
-                                  CustomColors.vermelhoExcluir),
+                                  CustomColors.cinzaCancelar),
                             ),
                             child: const Text(
-                              "Excluir",
-                              style: CustomStyles.textoBotoes,
+                              "Cancelar",
+                              style: CustomStyles.textoPretoBotoes,
                             ),
                           )),
                       SizedBox(
@@ -232,7 +223,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           width: 106,
                           child: TextButton(
                             onPressed: () {
-                              salvar(widget.viagem, widget.cliente);
+                              salvar();
 
                               Navigator.push(
                                   context,
@@ -255,7 +246,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
             ]));
   }
 
-  salvar(Viagem viagem, Cliente cliente) {
+  salvar() {
     double valorVenda = 0;
     double comissao = 0;
     if (valorVendaController.text != "") {
@@ -266,35 +257,39 @@ class InformacoesViagemState extends State<InformacoesViagem> {
       double.parse(comissaoController.text);
     }
 
-    viagem.codigoVenda = codigoController.text;
-    viagem.localizador = localizadorController.text;
-    viagem.companhiaAerea = companhiaController.text;
-    viagem.cidade = cidadeController.text;
-    viagem.hotel = hotelController.text;
-    viagem.dataIda = dataIdaController.text;
-    viagem.horaIda = horaIdaController.text;
-    viagem.dataVolta = dataVoltaController.text;
-    viagem.horaVolta = horaVoltaController.text;
-    viagem.observacoes = observacoesController.text;
-    viagem.valorTotal = valorVenda;
-    viagem.valorComissao = comissao;
-    int idViagem = viagemController.update(viagem);
+    if (widget.jaTemCliente == 1) {
+      viagemController.create(
+          codigoController.text,
+          localizadorController.text,
+          companhiaController.text,
+          cidadeController.text,
+          hotelController.text,
+          dataIdaController.text,
+          horaIdaController.text,
+          dataVoltaController.text,
+          horaVoltaController.text,
+          observacoesController.text,
+          valorVenda,
+          comissao,
+          widget.cliente.id);
+    } else {
+      int idCliente = clienteController.create(nomeController.text,
+          cpfController.text, rgController.text, nascimentoController.text);
 
-    cliente.nome = nomeController.text;
-    cliente.cpf = cpfController.text;
-    cliente.rg = rgController.text;
-    cliente.dataNascimento = nascimentoController.text;
-    cliente.idViagem = idViagem;
-
-    clienteController.update(cliente);
-  }
-
-  deletar(Viagem viagem) {
-    List<Cliente> lista = clienteController.readAllByViagem(widget.viagem.id);
-    for (var cliente in lista) {
-      cliente.idViagem = null;
-      clienteController.update(cliente);
+      viagemController.create(
+          codigoController.text,
+          localizadorController.text,
+          companhiaController.text,
+          cidadeController.text,
+          hotelController.text,
+          dataIdaController.text,
+          horaIdaController.text,
+          dataVoltaController.text,
+          horaVoltaController.text,
+          observacoesController.text,
+          valorVenda,
+          comissao,
+          idCliente);
     }
-    viagemController.delete(widget.viagem);
   }
 }

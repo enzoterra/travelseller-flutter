@@ -1,3 +1,4 @@
+import 'package:travelseller/database/data/objectbox.g.dart';
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/viagem.dart';
 
@@ -26,7 +27,8 @@ class ViagemController {
       horaVolta,
       observacoes,
       double? valorTotal,
-      valorComissao) {
+      valorComissao,
+      int idCliente) {
     final viagem = Viagem(
         codigoVenda: codigoVenda,
         localizador: localizador,
@@ -39,7 +41,8 @@ class ViagemController {
         horaVolta: horaVolta,
         observacoes: observacoes,
         valorTotal: valorTotal,
-        valorComissao: valorComissao);
+        valorComissao: valorComissao,
+        idCliente: idCliente);
 
     viagem.codigoVenda ??= "";
     viagem.localizador ??= "";
@@ -73,6 +76,17 @@ class ViagemController {
 
     return viagem;
     //controller.closeStore();
+  }
+
+  Viagem readByCliente(int idCliente) {
+    //final box = await getBox();
+    Query<Viagem> query =
+        box.query(Viagem_.idCliente.equals(idCliente)).build();
+    Viagem viagem = query.find() as Viagem;
+    query.close();
+    //Cliente cliente = box.get(id) as Cliente;
+    //controller.closeStore();
+    return viagem;
   }
 
   /*Future<List<Viagem>> readAll() async {

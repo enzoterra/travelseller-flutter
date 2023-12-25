@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:travelseller/components/custom/colors.dart';
-import 'package:travelseller/pages/clientes.dart';
-import 'package:travelseller/pages/estatisticas.dart';
-import 'package:travelseller/pages/viagens.dart';
+import 'package:travelseller/pages/principais/clientes.dart';
+import 'package:travelseller/pages/principais/estatisticas.dart';
+import 'package:travelseller/pages/principais/viagens.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, required this.currentIndex});

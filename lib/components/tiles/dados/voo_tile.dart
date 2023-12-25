@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../custom/styles.dart';
 
-class InformacoesVooTile extends StatelessWidget {
-  const InformacoesVooTile(
+class VooTile extends StatelessWidget {
+  const VooTile(
       {super.key,
       required this.localizadorController,
       required this.codigoController,
@@ -26,7 +26,7 @@ class InformacoesVooTile extends StatelessWidget {
     final largura = MediaQuery.of(context).size.width;
 
     return SizedBox(
-        height: 600,
+        height: 640,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +99,7 @@ class InformacoesVooTile extends StatelessWidget {
                     ))
               ],
             ),
-            const SizedBox(height: 0),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Column(
@@ -165,7 +165,7 @@ class InformacoesVooTile extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Column(

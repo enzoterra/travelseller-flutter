@@ -3,7 +3,7 @@ import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
-import 'package:travelseller/pages/cadastroViagem.dart';
+import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
 
 class ListaClientes extends StatefulWidget {
   const ListaClientes({super.key});
@@ -98,7 +98,7 @@ class ListaClientesState extends State<ListaClientes> {
                                                                           () {
                                                                         Navigator.push(
                                                                             context,
-                                                                            MaterialPageRoute(builder: ((context) => CadastroViagem(jaTemCliente: true, cliente: cliente))));
+                                                                            MaterialPageRoute(builder: ((context) => CadastroViagem(jaTemCliente: 1, cliente: cliente))));
                                                                       },
                                                                       child: const Text(
                                                                           'Sim'),

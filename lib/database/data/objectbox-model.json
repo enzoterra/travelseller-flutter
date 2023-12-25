@@ -33,11 +33,6 @@
           "id": "5:5896868949603357767",
           "name": "dataNascimento",
           "type": 9
-        },
-        {
-          "id": "6:4656028769602788357",
-          "name": "idViagem",
-          "type": 6
         }
       ],
       "relations": []
@@ -122,7 +117,7 @@
     },
     {
       "id": "4:3210152066353303584",
-      "lastPropertyId": "15:4323819799021833876",
+      "lastPropertyId": "16:2138028310472035104",
       "name": "Viagem",
       "properties": [
         {
@@ -190,6 +185,11 @@
           "id": "15:4323819799021833876",
           "name": "horaVolta",
           "type": 9
+        },
+        {
+          "id": "16:2138028310472035104",
+          "name": "idCliente",
+          "type": 6
         }
       ],
       "relations": []
@@ -205,7 +205,8 @@
   "retiredIndexUids": [],
   "retiredPropertyUids": [
     4032427064739268194,
-    394485262493999735
+    394485262493999735,
+    4656028769602788357
   ],
   "retiredRelationUids": [],
   "version": 1

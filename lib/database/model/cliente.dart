@@ -4,14 +4,11 @@ import 'package:objectbox/objectbox.dart';
 class Cliente {
   int id = 0;
 
-  String nome;
-  String cpf, rg, dataNascimento;
-  int? idViagem;
+  String nome, cpf, rg, dataNascimento;
 
   Cliente(
       {required this.nome,
       required this.cpf,
       required this.rg,
-      required this.dataNascimento,
-      this.idViagem});
+      required this.dataNascimento});
 }
