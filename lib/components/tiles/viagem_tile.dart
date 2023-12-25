@@ -49,7 +49,7 @@ class ViagemListTile extends StatelessWidget {
                   children: [
                     Text(
                       nome,
-                      style: Styles.nomeViagemTile,
+                      style: CustomStyles.nomeViagemTile,
                     ),
                   ],
                 ),
@@ -60,7 +60,7 @@ class ViagemListTile extends StatelessWidget {
                   children: [
                     Text(
                       destino,
-                      style: Styles.destinoViagemTile,
+                      style: CustomStyles.destinoViagemTile,
                     ),
                   ],
                 )
@@ -78,11 +78,11 @@ class ViagemListTile extends StatelessWidget {
                     const SizedBox(
                       height: 1,
                     ),
-                    Text(embarque, style: Styles.dataViagemTile),
+                    Text(embarque, style: CustomStyles.dataViagemTile),
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(desembarque, style: Styles.dataViagemTile),
+                    Text(desembarque, style: CustomStyles.dataViagemTile),
                   ],
                 ),
               )),

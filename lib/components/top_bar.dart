@@ -23,7 +23,7 @@ class TopBar extends StatelessWidget {
           child: Container(
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(titulo, style: Styles.tituloPagina))),
+              child: Text(titulo, style: CustomStyles.tituloPagina))),
     );
   }
 }

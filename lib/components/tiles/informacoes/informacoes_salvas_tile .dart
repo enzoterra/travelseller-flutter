@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/colors.dart';
 
 import '../../custom/styles.dart';
 
@@ -27,7 +28,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                 height: 50,
                 child: Text(
                   "Outras informações",
-                  style: Styles.subTituloCadastro,
+                  style: CustomStyles.subTituloCadastro,
                 )),
             Row(
               children: [
@@ -36,7 +37,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                   children: [
                     const Text(
                       "Valor da Venda",
-                      style: Styles.tituloAtributoCadastro,
+                      style: CustomStyles.tituloAtributoCadastro,
                     ),
                     SizedBox(
                         width: 100,
@@ -44,7 +45,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                         child: TextFormField(
                           controller: valorVendaController,
                           keyboardType: TextInputType.number,
-                          style: Styles.textoAtributoCadastro,
+                          style: CustomStyles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "Ex. 5000",
                               border: UnderlineInputBorder()),
@@ -59,7 +60,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                   children: [
                     const Text(
                       "Comissão",
-                      style: Styles.tituloAtributoCadastro,
+                      style: CustomStyles.tituloAtributoCadastro,
                     ),
                     SizedBox(
                         width: 100,
@@ -67,7 +68,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                         child: TextFormField(
                           controller: comissaoController,
                           keyboardType: TextInputType.number,
-                          style: Styles.textoAtributoCadastro,
+                          style: CustomStyles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "Ex. 300",
                               border: UnderlineInputBorder()),
@@ -82,7 +83,7 @@ class InformacoesSalvasTile extends StatelessWidget {
               children: [
                 const Text(
                   "Observações",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 const SizedBox(
                   height: 10,
@@ -94,7 +95,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                       controller: observacoesController,
                       keyboardType: TextInputType.multiline,
                       maxLines: 20,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration:
                           const InputDecoration(border: OutlineInputBorder()),
                     ))
@@ -109,14 +110,10 @@ class InformacoesSalvasTile extends StatelessWidget {
                       onPressed: () {},
                       style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(
-                              Color.fromARGB(255, 24, 120, 97))),
+                              CustomColors.verdeEscuro2)),
                       child: const Text(
                         "Integrantes",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.2),
+                        style: CustomStyles.textoBotoes,
                       )))
             ]),
             const SizedBox(height: 0),

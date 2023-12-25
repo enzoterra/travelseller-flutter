@@ -35,14 +35,14 @@ class InformacoesVooTile extends StatelessWidget {
                 height: 50,
                 child: Text(
                   "Dados do Voo",
-                  style: Styles.subTituloCadastro,
+                  style: CustomStyles.subTituloCadastro,
                 )),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   "Localizador",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 SizedBox(
                     width: 80,
@@ -50,7 +50,7 @@ class InformacoesVooTile extends StatelessWidget {
                     child: TextFormField(
                       controller: localizadorController,
                       keyboardType: TextInputType.number,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. 000000",
                           border: UnderlineInputBorder()),
@@ -63,7 +63,7 @@ class InformacoesVooTile extends StatelessWidget {
               children: [
                 const Text(
                   "Companhia Aérea",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 SizedBox(
                     width: 100,
@@ -71,7 +71,7 @@ class InformacoesVooTile extends StatelessWidget {
                     child: TextFormField(
                       controller: companhiaController,
                       keyboardType: TextInputType.text,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. Latam",
                           border: UnderlineInputBorder()),
@@ -84,7 +84,7 @@ class InformacoesVooTile extends StatelessWidget {
               children: [
                 const Text(
                   "Código da venda",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 SizedBox(
                     width: 120,
@@ -92,7 +92,7 @@ class InformacoesVooTile extends StatelessWidget {
                     child: TextFormField(
                       controller: codigoController,
                       keyboardType: TextInputType.number,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. 000000000",
                           border: UnderlineInputBorder()),
@@ -121,7 +121,7 @@ class InformacoesVooTile extends StatelessWidget {
                           children: [
                             const Text(
                               "Data",
-                              style: Styles.tituloAtributoCadastro,
+                              style: CustomStyles.tituloAtributoCadastro,
                             ),
                             SizedBox(
                                 width: 100,
@@ -129,7 +129,7 @@ class InformacoesVooTile extends StatelessWidget {
                                 child: TextFormField(
                                   controller: dataIdaController,
                                   keyboardType: TextInputType.datetime,
-                                  style: Styles.textoAtributoCadastro,
+                                  style: CustomStyles.textoAtributoCadastro,
                                   decoration: const InputDecoration(
                                       hintText: "00/00/0000",
                                       border: UnderlineInputBorder()),
@@ -144,7 +144,7 @@ class InformacoesVooTile extends StatelessWidget {
                           children: [
                             const Text(
                               "Horário",
-                              style: Styles.tituloAtributoCadastro,
+                              style: CustomStyles.tituloAtributoCadastro,
                             ),
                             SizedBox(
                                 width: 60,
@@ -152,7 +152,7 @@ class InformacoesVooTile extends StatelessWidget {
                                 child: TextFormField(
                                   controller: horaIdaController,
                                   keyboardType: TextInputType.datetime,
-                                  style: Styles.textoAtributoCadastro,
+                                  style: CustomStyles.textoAtributoCadastro,
                                   decoration: const InputDecoration(
                                       hintText: "00:00",
                                       border: UnderlineInputBorder()),
@@ -187,7 +187,7 @@ class InformacoesVooTile extends StatelessWidget {
                           children: [
                             const Text(
                               "Data",
-                              style: Styles.tituloAtributoCadastro,
+                              style: CustomStyles.tituloAtributoCadastro,
                             ),
                             SizedBox(
                                 width: 100,
@@ -195,7 +195,7 @@ class InformacoesVooTile extends StatelessWidget {
                                 child: TextFormField(
                                   controller: dataVoltaController,
                                   keyboardType: TextInputType.datetime,
-                                  style: Styles.textoAtributoCadastro,
+                                  style: CustomStyles.textoAtributoCadastro,
                                   decoration: const InputDecoration(
                                       hintText: "00/00/0000",
                                       border: UnderlineInputBorder()),
@@ -210,7 +210,7 @@ class InformacoesVooTile extends StatelessWidget {
                           children: [
                             const Text(
                               "Horário",
-                              style: Styles.tituloAtributoCadastro,
+                              style: CustomStyles.tituloAtributoCadastro,
                             ),
                             SizedBox(
                                 width: 60,
@@ -218,7 +218,7 @@ class InformacoesVooTile extends StatelessWidget {
                                 child: TextFormField(
                                   controller: horaVoltaController,
                                   keyboardType: TextInputType.datetime,
-                                  style: Styles.textoAtributoCadastro,
+                                  style: CustomStyles.textoAtributoCadastro,
                                   decoration: const InputDecoration(
                                       hintText: "00:00",
                                       border: UnderlineInputBorder()),

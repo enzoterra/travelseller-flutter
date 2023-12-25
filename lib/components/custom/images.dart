@@ -1,4 +1,4 @@
-abstract class Images {
+abstract class CustomImages {
   static const String imagemViagens = "assets/images/viagens_topbar.jpg";
 
   static const String imagemClientes = "assets/images/clientes_topbar.jpg";

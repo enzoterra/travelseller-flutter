@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
@@ -67,7 +68,7 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                         colorFilter: ColorFilter.mode(
                             Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
                         fit: BoxFit.cover,
-                        image: AssetImage(Images.imagemInformacoes))),
+                        image: AssetImage(CustomImages.imagemInformacoes))),
                 child: Column(children: [
                   Flexible(
                     flex: 1,
@@ -77,8 +78,8 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                       flex: 5,
                       child: Center(
                           child: Text(
-                        Titles.tituloInformacoes,
-                        style: Styles.tituloCadastro,
+                        CustomTitles.tituloInformacoes,
+                        style: CustomStyles.tituloCadastro,
                       )))
                 ]),
               ),
@@ -151,16 +152,12 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                               );
                             },
                             style: const ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.red),
+                              backgroundColor: MaterialStatePropertyAll(
+                                  CustomColors.vermelhoExcluir),
                             ),
                             child: const Text(
                               "Excluir",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1.2),
+                              style: CustomStyles.textoBotoes,
                             ),
                           )),
                       SizedBox(
@@ -178,16 +175,12 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                                           ))));
                             },
                             style: const ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.green),
+                              backgroundColor: MaterialStatePropertyAll(
+                                  CustomColors.verdeSalvar),
                             ),
                             child: const Text(
                               "Salvar",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1.2),
+                              style: CustomStyles.textoBotoes,
                             ),
                           ))
                     ],

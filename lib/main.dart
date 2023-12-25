@@ -21,8 +21,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: Titles.tituloApp,
-      theme: Tema.tema,
+      title: CustomTitles.tituloApp,
+      theme: CustomTheme.tema,
       home: const Home(
         currentIndex: 1,
       ),

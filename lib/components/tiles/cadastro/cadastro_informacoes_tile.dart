@@ -27,7 +27,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                 height: 50,
                 child: Text(
                   "Outras informações",
-                  style: Styles.subTituloCadastro,
+                  style: CustomStyles.subTituloCadastro,
                 )),
             Row(
               children: [
@@ -36,7 +36,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                   children: [
                     const Text(
                       "Valor da Venda",
-                      style: Styles.tituloAtributoCadastro,
+                      style: CustomStyles.tituloAtributoCadastro,
                     ),
                     SizedBox(
                         width: 100,
@@ -44,7 +44,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                         child: TextFormField(
                           controller: valorVendaController,
                           keyboardType: TextInputType.number,
-                          style: Styles.textoAtributoCadastro,
+                          style: CustomStyles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "Ex. 5000",
                               border: UnderlineInputBorder()),
@@ -59,7 +59,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                   children: [
                     const Text(
                       "Comissão",
-                      style: Styles.tituloAtributoCadastro,
+                      style: CustomStyles.tituloAtributoCadastro,
                     ),
                     SizedBox(
                         width: 100,
@@ -67,7 +67,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                         child: TextFormField(
                           controller: comissaoController,
                           keyboardType: TextInputType.number,
-                          style: Styles.textoAtributoCadastro,
+                          style: CustomStyles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "Ex. 300",
                               border: UnderlineInputBorder()),
@@ -82,7 +82,7 @@ class CadastroInformacoesTile extends StatelessWidget {
               children: [
                 const Text(
                   "Observações",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 const SizedBox(
                   height: 10,
@@ -94,7 +94,7 @@ class CadastroInformacoesTile extends StatelessWidget {
                       controller: observacoesController,
                       keyboardType: TextInputType.multiline,
                       maxLines: 20,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration:
                           const InputDecoration(border: OutlineInputBorder()),
                     ))

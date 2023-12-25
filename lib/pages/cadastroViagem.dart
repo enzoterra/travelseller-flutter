@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
@@ -77,7 +78,7 @@ class CadastroViagemState extends State<CadastroViagem> {
                           colorFilter: ColorFilter.mode(
                               Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
                           fit: BoxFit.cover,
-                          image: AssetImage(Images.imagemCadastro))),
+                          image: AssetImage(CustomImages.imagemCadastro))),
                   child: Column(children: [
                     Flexible(
                       flex: 1,
@@ -87,8 +88,8 @@ class CadastroViagemState extends State<CadastroViagem> {
                       flex: 6,
                       child: Center(
                           child: Text(
-                        Titles.tituloCadastro,
-                        style: Styles.tituloCadastro,
+                        CustomTitles.tituloCadastro,
+                        style: CustomStyles.tituloCadastro,
                       )),
                     ),
                   ])),
@@ -165,16 +166,12 @@ class CadastroViagemState extends State<CadastroViagem> {
                                           ))));
                             },
                             style: const ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.grey),
+                              backgroundColor: MaterialStatePropertyAll(
+                                  CustomColors.cinzaCancelar),
                             ),
                             child: const Text(
                               "Cancelar",
-                              style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1.2),
+                              style: CustomStyles.textoPretoBotoes,
                             ),
                           )),
                       SizedBox(
@@ -192,16 +189,12 @@ class CadastroViagemState extends State<CadastroViagem> {
                                           ))));
                             },
                             style: const ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.green),
+                              backgroundColor: MaterialStatePropertyAll(
+                                  CustomColors.verdeSalvar),
                             ),
                             child: const Text(
                               "Salvar",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1.2),
+                              style: CustomStyles.textoBotoes,
                             ),
                           ))
                     ],

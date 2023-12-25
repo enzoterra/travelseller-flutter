@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class Tema {
+abstract class CustomTheme {
   static ThemeData tema = ThemeData(
     textTheme: const TextTheme(
       bodyMedium: TextStyle(fontFamily: 'Montserrat'),

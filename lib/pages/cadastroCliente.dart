@@ -33,7 +33,6 @@ class CadastroClienteState extends State<CadastroCliente> {
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
-    const double marginTiles = 70;
     final largura = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -48,7 +47,7 @@ class CadastroClienteState extends State<CadastroCliente> {
                           colorFilter: ColorFilter.mode(
                               Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
                           fit: BoxFit.cover,
-                          image: AssetImage(Images.imagemCadastro))),
+                          image: AssetImage(CustomImages.imagemCadastro))),
                   child: Column(children: [
                     Flexible(
                       flex: 1,
@@ -58,8 +57,8 @@ class CadastroClienteState extends State<CadastroCliente> {
                       flex: 6,
                       child: Center(
                           child: Text(
-                        Titles.tituloCadastro,
-                        style: Styles.tituloCadastro,
+                        CustomTitles.tituloCadastro,
+                        style: CustomStyles.tituloCadastro,
                       )),
                     ),
                   ])),
@@ -110,11 +109,7 @@ class CadastroClienteState extends State<CadastroCliente> {
                             ),
                             child: const Text(
                               "Cancelar",
-                              style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1.2),
+                              style: CustomStyles.textoPretoBotoes,
                             ),
                           )),
                       SizedBox(
@@ -137,11 +132,7 @@ class CadastroClienteState extends State<CadastroCliente> {
                             ),
                             child: const Text(
                               "Salvar",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1.2),
+                              style: CustomStyles.textoBotoes,
                             ),
                           ))
                     ],

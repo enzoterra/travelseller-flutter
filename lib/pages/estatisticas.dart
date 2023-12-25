@@ -15,9 +15,9 @@ class EstatisticasState extends State<Estatisticas> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: TopBar(
-            imagem: Images.imagemEstatisticas,
-            titulo: Titles.tituloEstatisticas,
-          ),
+        imagem: CustomImages.imagemEstatisticas,
+        titulo: CustomTitles.tituloEstatisticas,
+      ),
     );
   }
 }

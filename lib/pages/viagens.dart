@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
@@ -43,8 +44,8 @@ class ViagensState extends State<Viagens> {
       body: Column(
         children: [
           const TopBar(
-            imagem: Images.imagemViagens,
-            titulo: Titles.tituloViagens,
+            imagem: CustomImages.imagemViagens,
+            titulo: CustomTitles.tituloViagens,
           ),
           Container(
             height: altura * 0.11,
@@ -54,8 +55,8 @@ class ViagensState extends State<Viagens> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(Titles.subTituloViagens,
-                        style: Styles.subTituloPagina),
+                    const Text(CustomTitles.subTituloViagens,
+                        style: CustomStyles.subTituloPagina),
                     IconButton(
                         onPressed: () => Navigator.push(
                             context,
@@ -69,7 +70,7 @@ class ViagensState extends State<Viagens> {
             height: altura * 0.62,
             width: largura * 0.92,
             child: Container(
-                decoration: Styles.decorationTile,
+                decoration: CustomStyles.decorationTile,
                 child: ListView.builder(
                     padding: const EdgeInsets.only(top: 7, bottom: 7),
                     itemCount: lista.length,
@@ -120,7 +121,7 @@ class ViagensState extends State<Viagens> {
               MaterialPageRoute(
                   builder: ((context) => const CadastroViagem())));
         },
-        backgroundColor: const Color.fromARGB(255, 1, 50, 124),
+        backgroundColor: CustomColors.azulBotaoViagens,
         child: const Icon(Icons.add),
       ),
     );

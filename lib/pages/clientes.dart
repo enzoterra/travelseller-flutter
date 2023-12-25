@@ -6,7 +6,6 @@ import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/cadastroCliente.dart';
-import 'package:travelseller/pages/cadastroViagem.dart';
 import 'package:travelseller/pages/informacoesCliente.dart';
 import '../database/controllers/cliente_controller.dart';
 
@@ -41,8 +40,8 @@ class ClientesState extends State<Clientes> {
       body: Column(
         children: [
           const TopBar(
-            imagem: Images.imagemClientes,
-            titulo: Titles.tituloClientes,
+            imagem: CustomImages.imagemClientes,
+            titulo: CustomTitles.tituloClientes,
           ),
           Container(
             height: altura * 0.15,
@@ -52,8 +51,8 @@ class ClientesState extends State<Clientes> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(children: [
-                    Text(Titles.subTituloClientes,
-                        style: Styles.subTituloPagina)
+                    Text(CustomTitles.subTituloClientes,
+                        style: CustomStyles.subTituloPagina)
                   ]),
                   Row(children: [
                     Text("CONF",
@@ -68,7 +67,7 @@ class ClientesState extends State<Clientes> {
             height: altura * 0.58,
             width: largura * 0.92,
             child: Container(
-                decoration: Styles.decorationTile,
+                decoration: CustomStyles.decorationTile,
                 child: ListView.builder(
                     padding: const EdgeInsets.all(7),
                     itemCount: lista.length,

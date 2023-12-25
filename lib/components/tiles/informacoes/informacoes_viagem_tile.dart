@@ -25,7 +25,7 @@ class InformacoesViagemTile extends StatelessWidget {
                 height: 50,
                 child: Text(
                   "Dados da Viagem",
-                  style: Styles.subTituloCadastro,
+                  style: CustomStyles.subTituloCadastro,
                 )),
             Row(
               children: [
@@ -34,14 +34,14 @@ class InformacoesViagemTile extends StatelessWidget {
                   children: [
                     const Text(
                       "Hotel",
-                      style: Styles.tituloAtributoCadastro,
+                      style: CustomStyles.tituloAtributoCadastro,
                     ),
                     SizedBox(
                         width: largura * 0.7,
                         height: 40,
                         child: TextFormField(
                           controller: hotelController,
-                          style: Styles.textoAtributoCadastro,
+                          style: CustomStyles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "Ex. Ocean Palace",
                               border: UnderlineInputBorder()),
@@ -56,14 +56,14 @@ class InformacoesViagemTile extends StatelessWidget {
               children: [
                 const Text(
                   "Cidade",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 SizedBox(
                     width: largura * 0.7,
                     height: 40,
                     child: TextFormField(
                       controller: cidadeController,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. Natal/RN",
                           border: UnderlineInputBorder()),

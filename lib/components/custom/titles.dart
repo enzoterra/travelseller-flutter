@@ -1,4 +1,4 @@
-abstract class Titles {
+abstract class CustomTitles {
   static const tituloApp = "TravelSeller";
 
   static const String tituloViagens = "Viagens\nProgramadas";

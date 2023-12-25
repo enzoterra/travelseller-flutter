@@ -28,21 +28,21 @@ class InformacoesClienteTile extends StatelessWidget {
                 height: 50,
                 child: Text(
                   "Dados do Cliente",
-                  style: Styles.subTituloCadastro,
+                  style: CustomStyles.subTituloCadastro,
                 )),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   "Nome",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 SizedBox(
                     width: largura * 0.7,
                     height: 40,
                     child: TextFormField(
                       controller: nomeController,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "Ex. José Almeida da Silva",
                           border: UnderlineInputBorder()),
@@ -55,7 +55,7 @@ class InformacoesClienteTile extends StatelessWidget {
               children: [
                 const Text(
                   "CPF",
-                  style: Styles.tituloAtributoCadastro,
+                  style: CustomStyles.tituloAtributoCadastro,
                 ),
                 SizedBox(
                     width: 140,
@@ -63,7 +63,7 @@ class InformacoesClienteTile extends StatelessWidget {
                     child: TextFormField(
                       controller: cpfController,
                       keyboardType: TextInputType.number,
-                      style: Styles.textoAtributoCadastro,
+                      style: CustomStyles.textoAtributoCadastro,
                       decoration: const InputDecoration(
                           hintText: "000.000.000-00",
                           border: UnderlineInputBorder()),
@@ -78,7 +78,7 @@ class InformacoesClienteTile extends StatelessWidget {
                   children: [
                     const Text(
                       "RG",
-                      style: Styles.tituloAtributoCadastro,
+                      style: CustomStyles.tituloAtributoCadastro,
                     ),
                     SizedBox(
                         width: 80,
@@ -86,7 +86,7 @@ class InformacoesClienteTile extends StatelessWidget {
                         child: TextFormField(
                           controller: rgController,
                           keyboardType: TextInputType.number,
-                          style: Styles.textoAtributoCadastro,
+                          style: CustomStyles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "0000000",
                               border: UnderlineInputBorder()),
@@ -101,7 +101,7 @@ class InformacoesClienteTile extends StatelessWidget {
                   children: [
                     const Text(
                       "Nascimento",
-                      style: Styles.tituloAtributoCadastro,
+                      style: CustomStyles.tituloAtributoCadastro,
                     ),
                     SizedBox(
                         width: 120,
@@ -109,7 +109,7 @@ class InformacoesClienteTile extends StatelessWidget {
                         child: TextFormField(
                           controller: nascimentoController,
                           keyboardType: TextInputType.datetime,
-                          style: Styles.textoAtributoCadastro,
+                          style: CustomStyles.textoAtributoCadastro,
                           decoration: const InputDecoration(
                               hintText: "00/00/0000",
                               border: UnderlineInputBorder()),
