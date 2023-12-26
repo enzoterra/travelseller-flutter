@@ -14,7 +14,6 @@ class ConfiguracaoController {
   }
 
   Configuracao read(int id) {
-    ;
     Configuracao configuracao = box.get(id) as Configuracao;
     return configuracao;
   }

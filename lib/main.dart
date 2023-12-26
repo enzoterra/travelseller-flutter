@@ -1,4 +1,6 @@
+import 'package:android_power_manager/android_power_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/pages/principais/home.dart';
@@ -10,6 +12,23 @@ void main() async {
 
   runApp(const App());
 }
+
+/*void init() async {
+    var status = await Permission.ignoreBatteryOptimizations.status;
+    if (status.isGranted) {
+      if (!(await AndroidPowerManager.isIgnoringBatteryOptimizations)) {
+        AndroidPowerManager.requestIgnoreBatteryOptimizations();
+      }
+    } else {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.ignoreBatteryOptimizations,
+      ].request();
+      if (statuses[Permission.ignoreBatteryOptimizations].isGranted) {
+        AndroidPowerManager.requestIgnoreBatteryOptimizations();
+      } else {
+      }
+    }
+  }*/
 
 /*void main() {
   runApp(const App());
