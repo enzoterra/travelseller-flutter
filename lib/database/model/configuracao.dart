@@ -4,14 +4,14 @@ import 'package:objectbox/objectbox.dart';
 class Configuracao {
   int id = 0;
 
-  bool? embarque, desembarque, umaHora, umDia, doisDias, limpar, passar;
+  bool ida, volta, umaHora, umDia, doisDias, limpar, passar;
 
   Configuracao(
-      {this.embarque,
-      this.desembarque,
-      this.umaHora,
-      this.umDia,
-      this.doisDias,
-      this.limpar,
-      this.passar});
+      {required this.ida,
+      required this.volta,
+      required this.umaHora,
+      required this.umDia,
+      required this.doisDias,
+      required this.limpar,
+      required this.passar});
 }

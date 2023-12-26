@@ -18,4 +18,20 @@ abstract class CustomIcons {
     Icons.arrow_back_ios_rounded,
     color: Colors.black87,
   );
+
+  static const Icon configuracaoIda = Icon(
+    Icons.today,
+  );
+
+  static const Icon configuracaoVolta = Icon(
+    Icons.event,
+  );
+
+  static const Icon configuracaoUmDia = Icon(
+    Icons.alarm_on,
+  );
+
+  static const Icon configuracaoDoisDias = Icon(
+    Icons.alarm_on,
+  );
 }

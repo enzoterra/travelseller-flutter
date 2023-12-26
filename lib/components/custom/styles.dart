@@ -25,6 +25,9 @@ abstract class CustomStyles {
   static const TextStyle subTituloPagina =
       TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5);
 
+      static const TextStyle topicoConfiguracoes =
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 1.2, height: 1.5);
+
   static const BoxDecoration decorationTile = BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       color: CustomColors.cinzaListas);
