@@ -13,4 +13,9 @@ abstract class CustomIcons {
     Icons.settings,
     color: Colors.black87,
   );
+
+  static const Icon iconeVoltar = Icon(
+    Icons.arrow_back_ios_rounded,
+    color: Colors.black87,
+  );
 }

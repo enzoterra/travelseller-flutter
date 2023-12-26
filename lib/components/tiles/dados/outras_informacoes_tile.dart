@@ -16,20 +16,25 @@ class OutrasInformacoesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
+    const double espaco = 50;
+    const double alturaFields = 60;
 
-    return SizedBox(
-        height: 350,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 10,),
             const SizedBox(
-                height: 50,
+                height: espaco,
                 child: Text(
                   "Outras informações",
                   style: CustomStyles.subTituloCadastro,
                 )),
-            Row(
+             const SizedBox(
+              height: espaco - 20,
+            ),
+            SizedBox(
+                height: alturaFields,
+                child: Row(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,8 +80,8 @@ class OutrasInformacoesTile extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
-            const SizedBox(height: 0),
+            )),
+            const SizedBox(height: espaco),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -97,10 +102,12 @@ class OutrasInformacoesTile extends StatelessWidget {
                       style: CustomStyles.textoAtributoCadastro,
                       decoration:
                           const InputDecoration(border: OutlineInputBorder()),
-                    ))
+                    )),
+                    const SizedBox(height: espaco),
               ],
             ),
+            const SizedBox(height: 10,),
           ],
-        ));
+        );
   }
 }

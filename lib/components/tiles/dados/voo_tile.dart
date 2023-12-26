@@ -24,20 +24,27 @@ class VooTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
+    const double espaco = 50;
+    const double espaco2 = 40;
+    const double alturaFields = 60;
 
-    return SizedBox(
-        height: 640,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-                height: 50,
-                child: Text(
-                  "Dados do Voo",
-                  style: CustomStyles.subTituloCadastro,
-                )),
-            Column(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 10,),
+        const SizedBox(
+            height: espaco,
+            child: Text(
+              "Dados do Voo",
+              style: CustomStyles.subTituloCadastro,
+            )),
+        const SizedBox(
+          height: espaco - 20,
+        ),
+        SizedBox(
+            height: alturaFields,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
@@ -56,9 +63,13 @@ class VooTile extends StatelessWidget {
                           border: UnderlineInputBorder()),
                     ))
               ],
-            ),
-            const SizedBox(height: 0),
-            Column(
+            )),
+        const SizedBox(
+          height: espaco2,
+        ),
+        SizedBox(
+            height: alturaFields,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
@@ -77,9 +88,13 @@ class VooTile extends StatelessWidget {
                           border: UnderlineInputBorder()),
                     ))
               ],
-            ),
-            const SizedBox(height: 0),
-            Column(
+            )),
+        const SizedBox(
+          height: espaco2,
+        ),
+        SizedBox(
+            height: alturaFields,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
@@ -98,15 +113,20 @@ class VooTile extends StatelessWidget {
                           border: UnderlineInputBorder()),
                     ))
               ],
-            ),
-            const SizedBox(height: 20),
-            Row(
+            )),
+        const SizedBox(
+          height: espaco,
+        ),
+        SizedBox(
+            height: alturaFields + espaco,
+            child: Row(
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                        height: 50,
+                        height: espaco,
                         child: Text(
                           "Ida",
                           style: TextStyle(
@@ -164,15 +184,18 @@ class VooTile extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
-            const SizedBox(height: 20),
-            Row(
+            )),
+        const SizedBox(height: espaco + 10),
+        SizedBox(
+            height: alturaFields + espaco,
+            child: Row(
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                        height: 50,
+                        height: espaco,
                         child: Text(
                           "Volta",
                           style: TextStyle(
@@ -230,8 +253,9 @@ class VooTile extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
-          ],
-        ));
+            )),
+            const SizedBox(height: 10,),
+      ],
+    );
   }
 }

@@ -17,6 +17,8 @@ class InformacoesSalvasTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
+    const double espaco = 50;
+    const double alturaFields = 60;
 
     return SizedBox(
         height: 450,
@@ -30,7 +32,12 @@ class InformacoesSalvasTile extends StatelessWidget {
                   "Outras informações",
                   style: CustomStyles.subTituloCadastro,
                 )),
-            Row(
+             const SizedBox(
+              height: espaco,
+            ),
+            SizedBox(
+                height: alturaFields,
+                child: Row(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +83,7 @@ class InformacoesSalvasTile extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
+            )),
             const SizedBox(height: 0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

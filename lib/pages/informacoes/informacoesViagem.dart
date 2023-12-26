@@ -12,6 +12,7 @@ import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/principais/home.dart';
+import '../../components/tiles/dados/escolher_cliente_tile.dart';
 import '../../database/controllers/cliente_controller.dart';
 
 class InformacoesViagem extends StatefulWidget {
@@ -95,7 +96,9 @@ class InformacoesViagemState extends State<InformacoesViagem> {
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    const double marginTiles = 70;
+    const double marginTiles = 80;
+    const double margin1 = 50;
+    const double margin2 = 30;
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -119,14 +122,29 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           nascimentoController: nascimentoController,
                         ),
                         const SizedBox(
-                          height: marginTiles,
+                          height: marginTiles - 10,
+                        ),
+                        EscolherClienteTile(
+                          isCadastro: false,
+                          viagem: widget.viagem,
+                        ),
+                        const SizedBox(
+                          height: margin1,
+                        ),
+                        const Divider(),
+                        const SizedBox(
+                          height: margin2,
                         ),
                         ViagemTile(
                           hotelController: hotelController,
                           cidadeController: cidadeController,
                         ),
                         const SizedBox(
-                          height: marginTiles,
+                          height: margin1,
+                        ),
+                        const Divider(),
+                        const SizedBox(
+                          height: margin2,
                         ),
                         VooTile(
                           localizadorController: localizadorController,
@@ -138,7 +156,11 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           horaVoltaController: horaVoltaController,
                         ),
                         const SizedBox(
-                          height: marginTiles,
+                          height: margin1,
+                        ),
+                        const Divider(),
+                        const SizedBox(
+                          height: margin2,
                         ),
                         OutrasInformacoesTile(
                           valorVendaController: valorVendaController,
@@ -146,7 +168,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           observacoesController: observacoesController,
                         ),
                         const SizedBox(
-                          height: 30,
+                          height: margin2,
                         ),
                       ],
                     ))),

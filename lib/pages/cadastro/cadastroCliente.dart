@@ -33,8 +33,9 @@ class CadastroClienteState extends State<CadastroCliente> {
 
   @override
   Widget build(BuildContext context) {
-    final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
+    final altura = MediaQuery.of(context).size.height;
+    const double marginTiles = 70;
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -43,22 +44,25 @@ class CadastroClienteState extends State<CadastroCliente> {
               const TopBarInterno(
                   imagem: CustomImages.imagemCadastro,
                   titulo: CustomTitles.tituloCadastro),
-              const SizedBox(
-                height: 40,
-              ),
               Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                  height: 330,
-                  width: largura * 0.85,
-                  child: ClienteTile(
-                    nomeController: nomeController,
-                    cpfController: cpfController,
-                    rgController: rgController,
-                    nascimentoController: nascimentoController,
-                  ),
-                ),
-              ),
+                  margin: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                      height: altura * 0.69,
+                      width: largura * 0.85,
+                      child: Scrollbar(
+                          child: ListView(
+                        children: [
+                          ClienteTile(
+                            nomeController: nomeController,
+                            cpfController: cpfController,
+                            rgController: rgController,
+                            nascimentoController: nascimentoController,
+                          ),
+                          const SizedBox(
+                            height: marginTiles,
+                          ),
+                        ],
+                      )))),
             ],
           ),
         ),
@@ -74,7 +78,7 @@ class CadastroClienteState extends State<CadastroCliente> {
                     children: [
                       SizedBox(
                           height: 40,
-                          width: 106,
+                          width: 110,
                           child: TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -90,7 +94,7 @@ class CadastroClienteState extends State<CadastroCliente> {
                             ),
                             child: const Text(
                               "Cancelar",
-                              style: CustomStyles.textoPretoBotoes,
+                              style: CustomStyles.cancelarTexto,
                             ),
                           )),
                       SizedBox(

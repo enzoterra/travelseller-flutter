@@ -1,6 +1,8 @@
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/database/model/cliente.dart';
 
+import '../data/objectbox.g.dart';
+
 class ClienteController {
   //late final ObjectBox controller;
   final box = ObjectBox.clienteBox;
@@ -42,6 +44,15 @@ class ClienteController {
     controller.closeStore();
     return lista;
   }*/
+
+  List<Cliente> readByAttributes(String busca) {
+    Query<Cliente> query =
+        box.query(Cliente_.cpf.contains(busca).or(Cliente_.dataNascimento.contains(busca))).build();
+    List<Cliente> lista = query.find();
+    query.close();
+    
+    return lista;
+  }
 
   List<Cliente> readAll() {
     //final box = await getBox();

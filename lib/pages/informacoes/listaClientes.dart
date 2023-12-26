@@ -3,10 +3,16 @@ import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
+import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
+import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
 
 class ListaClientes extends StatefulWidget {
-  const ListaClientes({super.key});
+  const ListaClientes(
+      {super.key, required this.isCadastro, required this.viagem});
+
+  final bool isCadastro;
+  final Viagem viagem;
 
   @override
   ListaClientesState createState() => ListaClientesState();
@@ -37,7 +43,11 @@ class ListaClientesState extends State<ListaClientes> {
                 height: altura * 0.8,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
                     const SizedBox(
                         height: 50,
                         child: Text(
@@ -48,7 +58,7 @@ class ListaClientesState extends State<ListaClientes> {
                       height: 30,
                     ),
                     SizedBox(
-                        height: altura * 0.58,
+                        height: altura * 0.6,
                         width: largura * 0.92,
                         child: Container(
                             decoration: CustomStyles.decorationTile,
@@ -96,9 +106,10 @@ class ListaClientesState extends State<ListaClientes> {
                                                                     TextButton(
                                                                       onPressed:
                                                                           () {
-                                                                        Navigator.push(
-                                                                            context,
-                                                                            MaterialPageRoute(builder: ((context) => CadastroViagem(jaTemCliente: 1, cliente: cliente))));
+                                                                        widget.isCadastro
+                                                                            ? Navigator.push(context,
+                                                                                MaterialPageRoute(builder: ((context) => CadastroViagem(jaTemCliente: 1, cliente: cliente))))
+                                                                            : Navigator.push(context, MaterialPageRoute(builder: ((context) => InformacoesViagem(viagem: widget.viagem, cliente: cliente))));
                                                                       },
                                                                       child: const Text(
                                                                           'Sim'),
@@ -106,8 +117,39 @@ class ListaClientesState extends State<ListaClientes> {
                                                                   ],
                                                                 ));
                                                   })));
-                                })))
+                                }))),
                   ],
-                ))));
+                ))),
+        bottomNavigationBar: SizedBox(
+            height: 100,
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: largura * 0.9,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                                height: 40,
+                                width: 106,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(
+                                      context,
+                                    );
+                                  },
+                                  style: const ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll(Colors.grey),
+                                  ),
+                                  child: const Text(
+                                    "Cancelar",
+                                    style: CustomStyles.cancelarTexto,
+                                  ),
+                                ))
+                          ]))
+                ])));
   }
 }

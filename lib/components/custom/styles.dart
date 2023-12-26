@@ -63,7 +63,21 @@ abstract class CustomStyles {
       color: CustomColors.brancoTextoBotoes,
       fontSize: 18,
       fontWeight: FontWeight.bold,
-      letterSpacing: 1.2);
+      letterSpacing: 1.2,
+      );
+
+  static const TextStyle cancelarTexto = TextStyle(
+    color: CustomColors.brancoTextoBotoes,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.2,
+    shadows: [
+      Shadow(
+          color: Color.fromARGB(120, 0, 0, 0),
+          offset: Offset(0, 0),
+          blurRadius: 2)
+    ],
+  );
 
   static const TextStyle textoPretoBotoes = TextStyle(
       color: Colors.black87,

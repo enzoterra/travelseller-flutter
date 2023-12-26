@@ -72,7 +72,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                             ),
                             child: const Text(
                               "Cancelar",
-                              style: CustomStyles.textoPretoBotoes,
+                              style: CustomStyles.cancelarTexto,
                             ),
                           )),
                       SizedBox(

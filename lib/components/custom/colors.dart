@@ -21,15 +21,15 @@ abstract class CustomColors {
 
   static const Color vermelhoExcluir = Colors.red;
 
-  static const Color cinzaCancelar = Colors.grey;
+  static const Color cinzaCancelar = Color.fromARGB(255, 145, 145, 145);
 
   //Gradientes Bottom Navigation
   static const Color cor1Clientes = Color.fromRGBO(50, 153, 172, 1);
   static const Color cor2Clientes = Color.fromRGBO(35, 168, 103, 1);
 
   static const Color cor1Viagens = Color.fromRGBO(2, 52, 139, 1);
-  static const Color cor2Viagens = Color.fromRGBO(76, 0, 108, 1);
+  static const Color cor2Viagens = Color.fromRGBO(91, 5, 128, 1);
 
-  static const Color cor1Estatisticas = Color.fromRGBO(33, 41, 166, 1);
-  static const Color cor2Estatisticas = Color.fromRGBO(226, 193, 4, 1);
+  static const Color cor1Estatisticas = Color.fromRGBO(2, 52, 139, 1);
+  static const Color cor2Estatisticas = Color.fromRGBO(207, 178, 9, 1);
 }

@@ -4,14 +4,15 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
+import 'package:travelseller/components/tiles/dados/escolher_cliente_tile.dart';
 import 'package:travelseller/components/tiles/dados/outras_informacoes_tile.dart';
 import 'package:travelseller/components/tiles/dados/viagem_tile.dart';
 import 'package:travelseller/components/tiles/dados/voo_tile.dart';
 import 'package:travelseller/components/top_bar_interno.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
+import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/principais/home.dart';
-import 'package:travelseller/pages/informacoes/listaClientes.dart';
 import '../../database/controllers/cliente_controller.dart';
 
 // ignore: must_be_immutable
@@ -79,8 +80,10 @@ class CadastroViagemState extends State<CadastroViagem> {
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
-    const double marginTiles = 70;
     final largura = MediaQuery.of(context).size.width;
+    const double marginTiles = 70;
+    const double margin1 = 50;
+    const double margin2 = 30;
 
     verificarCliente();
 
@@ -108,40 +111,17 @@ class CadastroViagemState extends State<CadastroViagem> {
                         const SizedBox(
                           height: marginTiles,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                                height: 44,
-                                width: 200,
-                                child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: ((context) =>
-                                                const ListaClientes())));
-                                  },
-                                  style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          CustomColors.verdeEscuro)),
-                                  child: const Text(
-                                    "Escolher cliente",
-                                    style: CustomStyles.textoBotoes,
-                                  ),
-                                ))
-                          ],
-                        ),
-                        const SizedBox(
-                          height: marginTiles,
-                        ),
+                        EscolherClienteTile(isCadastro: true, viagem: Viagem(idCliente: -1),),
+                        const SizedBox(height: margin1,),
+                        const Divider(),
+                        const SizedBox(height: margin2,),
                         ViagemTile(
                           hotelController: hotelController,
                           cidadeController: cidadeController,
                         ),
-                        const SizedBox(
-                          height: marginTiles,
-                        ),
+                        const SizedBox(height: margin1,),
+                        const Divider(),
+                        const SizedBox(height: margin2,),
                         VooTile(
                           localizadorController: localizadorController,
                           companhiaController: companhiaController,
@@ -151,16 +131,16 @@ class CadastroViagemState extends State<CadastroViagem> {
                           dataVoltaController: dataVoltaController,
                           horaVoltaController: horaVoltaController,
                         ),
-                        const SizedBox(
-                          height: marginTiles,
-                        ),
+                        const SizedBox(height: margin1,),
+                        const Divider(),
+                        const SizedBox(height: margin2,),
                         OutrasInformacoesTile(
                           valorVendaController: valorVendaController,
                           comissaoController: comissaoController,
                           observacoesController: observacoesController,
                         ),
                         const SizedBox(
-                          height: 30,
+                          height: margin2,
                         ),
                       ],
                     ))),
@@ -180,7 +160,7 @@ class CadastroViagemState extends State<CadastroViagem> {
                     children: [
                       SizedBox(
                           height: 40,
-                          width: 106,
+                          width: 110,
                           child: TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -196,7 +176,7 @@ class CadastroViagemState extends State<CadastroViagem> {
                             ),
                             child: const Text(
                               "Cancelar",
-                              style: CustomStyles.textoPretoBotoes,
+                              style: CustomStyles.cancelarTexto,
                             ),
                           )),
                       SizedBox(

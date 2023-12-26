@@ -41,7 +41,8 @@ class ViagensState extends State<Viagens> {
     final largura = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Column(
+      body: SingleChildScrollView(
+          child: Column(
         children: [
           const TopBar(
             imagem: CustomImages.imagemViagens,
@@ -106,7 +107,7 @@ class ViagensState extends State<Viagens> {
                     })),
           ),
         ],
-      ),
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

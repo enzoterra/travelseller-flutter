@@ -20,6 +20,7 @@ class ClientesState extends State<Clientes> {
   //Future<List<Cliente>>? futureClientes;
   final controller = ClienteController();
   List<Cliente> lista = [];
+  List<Cliente> displayLista = [];
 
   @override
   void initState() {
@@ -27,6 +28,7 @@ class ClientesState extends State<Clientes> {
 
     setState(() {
       lista = controller.readAll();
+      displayLista = lista;
       //futureClientes = controller.readAll();
     });
   }
@@ -36,53 +38,66 @@ class ClientesState extends State<Clientes> {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
 
+    void filtrarResultados(String busca) {
+      setState(() {
+        displayLista = lista
+            .where((cliente) =>
+                cliente.nome.toLowerCase().contains(busca.toLowerCase()))
+            .toList();
+        if (busca != "") {
+          displayLista.addAll(controller.readByAttributes(busca));
+        }
+      });
+    }
+
     return Scaffold(
-      body: Column(
+      body: SingleChildScrollView(
+          child: Column(
         children: [
           const TopBar(
             imagem: CustomImages.imagemClientes,
             titulo: CustomTitles.tituloClientes,
           ),
           Container(
-            height: altura * 0.15,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-            child: const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(children: [
-                    Text(CustomTitles.subTituloClientes,
-                        style: CustomStyles.subTituloPagina)
-                  ]),
-                  Row(children: [
-                    Text("CONF",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18))
-                  ]),
-                ],
-              ),
+            margin: const EdgeInsets.only(top: 10),
+            width: largura * 0.92,
+            height: altura * 0.12,
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Center(
+              child: SizedBox(
+                  height: 50,
+                  child: TextField(
+                      decoration: const InputDecoration(
+                          labelText: "Procurar cliente",
+                          hintText: "Informe o nome do cliente",
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)))),
+                      onChanged: (text) => filtrarResultados(text))),
             ),
           ),
           SizedBox(
-            height: altura * 0.58,
+            height: altura * 0.6,
             width: largura * 0.92,
             child: Container(
                 decoration: CustomStyles.decorationTile,
                 child: ListView.builder(
                     padding: const EdgeInsets.all(7),
-                    itemCount: lista.length,
+                    itemCount: displayLista.length,
                     itemBuilder: (context, index) {
-                      if (lista.isEmpty) {
+                      if (displayLista.isEmpty) {
                         return const Center(child: Text("Sem clientes ..."));
                       } else {
-                        int id = lista[index].id;
+                        int id = displayLista[index].id;
 
                         return Container(
                             padding: const EdgeInsets.all(3),
                             child: Card(
                                 child: ListTile(
                                     leading: CustomIcons.iconeClienteTile,
-                                    title: Text(lista[index].nome.toString()),
+                                    title: Text(
+                                        displayLista[index].nome.toString()),
                                     onTap: () {
                                       Cliente cliente =
                                           ClienteController().read(id);
@@ -127,7 +142,7 @@ class ClientesState extends State<Clientes> {
                 ),
           ),
         ],
-      ),
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
