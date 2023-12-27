@@ -1,6 +1,4 @@
-import 'package:android_power_manager/android_power_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/pages/principais/home.dart';
@@ -10,7 +8,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ObjectBox.create();
 
-  runApp(const App());
+  runApp(
+    const App());
 }
 
 /*void init() async {

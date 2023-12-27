@@ -10,6 +10,7 @@ import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
+import 'package:travelseller/notifications_service.dart';
 import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
 import 'package:travelseller/pages/principais/configuracoes.dart';
 import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
@@ -59,10 +60,15 @@ class ViagensState extends State<Viagens> {
                     const Text(CustomTitles.subTituloViagens,
                         style: CustomStyles.subTituloPagina),
                     IconButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => const Configuracoes()))),
+                        onPressed: () {
+                          NotificationService(context).showNotification(CustomNotification(id: 1, title: "Viagem", body: "Irá viajar daqui há um dia!"));
+
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) =>
+                                      const Configuracoes())));
+                        },
                         icon: CustomIcons.iconeConfiguracao),
                   ]),
             ),
