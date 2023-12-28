@@ -34,4 +34,6 @@ abstract class CustomIcons {
   static const Icon configuracaoDoisDias = Icon(
     Icons.alarm_on,
   );
+
+  static const String notification = "assets/icons/icon_notification.xml";
 }

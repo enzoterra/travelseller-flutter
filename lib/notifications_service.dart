@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:travelseller/components/custom/icons.dart';
+//import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+//import 'package:timezone/timezone.dart' as tz;
+//import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:travelseller/pages/principais/home.dart';
 
 class CustomNotification {
@@ -26,18 +27,18 @@ class NotificationService {
   }
 
   _setupNotifications(BuildContext context) async {
-    await _setupTimezone();
+   // await _setupTimezone();
     await _initializeNotifications(context);
   }
 
-  Future<void> _setupTimezone() async {
+  /*Future<void> _setupTimezone() async {
     tz.initializeTimeZones();
     final String timezoneName = await FlutterNativeTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(timezoneName));
-  }
+  }*/
 
   _initializeNotifications(BuildContext context) async {
-    const android = AndroidInitializationSettings('assets/icons/plane.png');
+    const android = AndroidInitializationSettings(CustomIcons.notification);
     const ios = DarwinInitializationSettings();
 
     await localNotificationsPlugin.initialize(
