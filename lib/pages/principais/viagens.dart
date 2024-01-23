@@ -61,7 +61,7 @@ class ViagensState extends State<Viagens> {
                         style: CustomStyles.subTituloPagina),
                     IconButton(
                         onPressed: () {
-                          NotificationService(context).showNotification(CustomNotification(id: 1, title: "Viagem", body: "Irá viajar daqui há um dia!"));
+                          //NotificationService(context).showNotification(CustomNotification(id: 1, title: "Viagem", body: "Irá viajar daqui há um dia!"));
 
                           Navigator.push(
                               context,
@@ -74,7 +74,7 @@ class ViagensState extends State<Viagens> {
             ),
           ),
           SizedBox(
-            height: altura * 0.62,
+            height: altura * 0.60,
             width: largura * 0.92,
             child: Container(
                 decoration: CustomStyles.decorationTile,

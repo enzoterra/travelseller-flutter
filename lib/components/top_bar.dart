@@ -12,7 +12,7 @@ class TopBar extends StatelessWidget {
     final altura = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      height: altura * 0.18,
+      height: altura * 0.2,
       child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -20,10 +20,16 @@ class TopBar extends StatelessWidget {
                       Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
                   image: AssetImage(imagem),
                   fit: BoxFit.cover)),
-          child: Container(
-              alignment: Alignment.centerLeft,
+          child: Column(children: [
+        Flexible(
+          flex: 1,
+          child: Container(),
+        ),
+        Flexible(
+            flex: 7,
+            child: Container(alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(titulo, style: CustomStyles.tituloPagina))),
-    );
+          ])));
   }
 }

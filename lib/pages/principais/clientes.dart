@@ -78,7 +78,7 @@ class ClientesState extends State<Clientes> {
             ),
           ),
           SizedBox(
-            height: altura * 0.6,
+            height: altura * 0.58,
             width: largura * 0.92,
             child: Container(
                 decoration: CustomStyles.decorationTile,
