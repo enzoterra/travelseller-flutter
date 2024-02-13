@@ -17,38 +17,41 @@ class CustomNotification {
 
 class NotificationService {
   late FlutterLocalNotificationsPlugin localNotificationsPlugin;
-  late AndroidNotificationDetails androidDetails;
-  //late IOSFlutterLocalNotificationsPlugin iosDetails;
-  late BuildContext context;
+  late NotificationDetails platformChannelSpecifics;
 
-  NotificationService(BuildContext context) {
+  initializeNotifications(BuildContext context) async {
     localNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    _setupNotifications(context);
-  }
-
-  _setupNotifications(BuildContext context) async {
-   // await _setupTimezone();
-    await _initializeNotifications(context);
-  }
-
-  /*Future<void> _setupTimezone() async {
-    tz.initializeTimeZones();
-    final String timezoneName = await FlutterNativeTimezone.getLocalTimezone();
-    tz.setLocalLocation(tz.getLocation(timezoneName));
-  }*/
-
-  _initializeNotifications(BuildContext context) async {
     const android = AndroidInitializationSettings(CustomIcons.notification);
     const ios = DarwinInitializationSettings();
 
     await localNotificationsPlugin.initialize(
       const InitializationSettings(android: android, iOS: ios),
-      onDidReceiveBackgroundNotificationResponse:
-          _onSelectNotification(context),
+      onDidReceiveBackgroundNotificationResponse: onSelectNotification(context),
     );
+
+    const androidDetails = AndroidNotificationDetails(
+      'viagem_notification',
+      'Viagem',
+      importance: Importance.max,
+      priority: Priority.high,
+      enableVibration: true,
+    );
+
+    //const IOSFlutterLocalNotificationsPlugin iosDetails;
+
+    platformChannelSpecifics =
+        const NotificationDetails(android: androidDetails);
   }
 
-  _onSelectNotification(BuildContext context) {
+  showNotification(
+      CustomNotification notification, BuildContext context) async {
+    await initializeNotifications(context);
+
+    await localNotificationsPlugin.show(notification.id, notification.title,
+        notification.body, platformChannelSpecifics);
+  }
+
+  onSelectNotification(BuildContext context) {
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -57,24 +60,11 @@ class NotificationService {
                 ))));
   }
 
-  showNotification(CustomNotification notification) {
-    androidDetails = const AndroidNotificationDetails(
-      'viagem_notification',
-      'Viagem',
-      importance: Importance.max,
-      priority: Priority.high,
-      enableVibration: true,
-    );
-
-    localNotificationsPlugin.show(notification.id, notification.title,
-        notification.body, NotificationDetails(android: androidDetails));
-  }
-
   checkForNotifications(BuildContext context) async {
     final details =
         await localNotificationsPlugin.getNotificationAppLaunchDetails();
     if (details != null && details.didNotificationLaunchApp) {
-      _onSelectNotification(context);
+      onSelectNotification(context);
     }
   }
 }

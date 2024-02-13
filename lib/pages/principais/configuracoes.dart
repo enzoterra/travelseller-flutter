@@ -62,7 +62,7 @@ class ConfiguracoesState extends State<Configuracoes> {
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    const double marginTiles = 50;
+    const double marginTiles = 40;
     const double espaco = 20;
 
     return Scaffold(
@@ -182,86 +182,90 @@ class ConfiguracoesState extends State<Configuracoes> {
                           child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Com quanto tempo de antecedência deseja receber os lembretes?",
-                            style: CustomStyles.topicoConfiguracoes,
-                          ),
-                          const SizedBox(
-                            height: espaco,
-                          ),
-                          ListTile(
-                            selected: umDia,
-                            onTap: () {
-                              setState(() {
-                                umDia = !umDia;
-                              });
-                            },
-                            iconColor: MaterialStateColor.resolveWith(
-                                (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return CustomColors.verdeEscuro;
-                              }
-                              return CustomColors.pretoIcones;
-                            }),
-                            textColor: MaterialStateColor.resolveWith(
-                                (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return CustomColors.verdeEscuro;
-                              }
-                              return CustomColors.pretoIcones;
-                            }),
-                            leading: CustomIcons.configuracaoUmDia,
-                            title: const Text('1 dia antes'),
-                            trailing: Switch(
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  umDia = value!;
-                                });
-                              },
-                              value: umDia,
-                              activeColor: CustomColors.verdeEscuro,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: espaco,
-                          ),
-                          ListTile(
-                            selected: doisDias,
-                            onTap: () {
-                              setState(() {
-                                doisDias = !doisDias;
-                              });
-                            },
-                            iconColor: MaterialStateColor.resolveWith(
-                                (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return CustomColors.verdeEscuro;
-                              }
-                              return CustomColors.pretoIcones;
-                            }),
-                            textColor: MaterialStateColor.resolveWith(
-                                (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return CustomColors.verdeEscuro;
-                              }
-                              return CustomColors.pretoIcones;
-                            }),
-                            leading: CustomIcons.configuracaoDoisDias,
-                            title: const Text('2 dias antes'),
-                            trailing: Switch(
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  doisDias = value!;
-                                });
-                              },
-                              value: doisDias,
-                              activeColor: CustomColors.verdeEscuro,
-                            ),
-                          ),
-                        ],
-                      ))),
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Com quanto tempo de antecedência deseja receber os lembretes?",
+                                    style: CustomStyles.topicoConfiguracoes,
+                                  ),
+                                  const SizedBox(
+                                    height: espaco,
+                                  ),
+                                  ListTile(
+                                    selected: umDia,
+                                    onTap: () {
+                                      setState(() {
+                                        umDia = !umDia;
+                                      });
+                                    },
+                                    iconColor: MaterialStateColor.resolveWith(
+                                        (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.selected)) {
+                                        return CustomColors.verdeEscuro;
+                                      }
+                                      return CustomColors.pretoIcones;
+                                    }),
+                                    textColor: MaterialStateColor.resolveWith(
+                                        (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.selected)) {
+                                        return CustomColors.verdeEscuro;
+                                      }
+                                      return CustomColors.pretoIcones;
+                                    }),
+                                    leading: CustomIcons.configuracaoUmDia,
+                                    title: const Text('1 dia antes'),
+                                    trailing: Switch(
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          umDia = value!;
+                                        });
+                                      },
+                                      value: umDia,
+                                      activeColor: CustomColors.verdeEscuro,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: espaco,
+                                  ),
+                                  ListTile(
+                                    selected: doisDias,
+                                    onTap: () {
+                                      setState(() {
+                                        doisDias = !doisDias;
+                                      });
+                                    },
+                                    iconColor: MaterialStateColor.resolveWith(
+                                        (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.selected)) {
+                                        return CustomColors.verdeEscuro;
+                                      }
+                                      return CustomColors.pretoIcones;
+                                    }),
+                                    textColor: MaterialStateColor.resolveWith(
+                                        (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.selected)) {
+                                        return CustomColors.verdeEscuro;
+                                      }
+                                      return CustomColors.pretoIcones;
+                                    }),
+                                    leading: CustomIcons.configuracaoDoisDias,
+                                    title: const Text('2 dias antes'),
+                                    trailing: Switch(
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          doisDias = value!;
+                                        });
+                                      },
+                                      value: doisDias,
+                                      activeColor: CustomColors.verdeEscuro,
+                                    ),
+                                  ),
+                                ],
+                              ))),
                       const SizedBox(
                         height: marginTiles,
                       ),
@@ -330,8 +334,15 @@ class ConfiguracoesState extends State<Configuracoes> {
   }
 
   salvar(int id) {
-    Configuracao configuracao = Configuracao(ida: ida, volta: volta, umaHora: umaHora, umDia: umDia, doisDias: doisDias, limpar: limpar, passar: passar);
-    configuracao.id = id; 
+    Configuracao configuracao = Configuracao(
+        ida: ida,
+        volta: volta,
+        umaHora: umaHora,
+        umDia: umDia,
+        doisDias: doisDias,
+        limpar: limpar,
+        passar: passar);
+    configuracao.id = id;
     configuracaoController.update(configuracao);
   }
 }

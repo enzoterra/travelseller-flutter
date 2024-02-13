@@ -35,5 +35,5 @@ abstract class CustomIcons {
     Icons.alarm_on,
   );
 
-  static const String notification = "assets/icons/icon_notification.xml";
+  static const String notification = "@mipmap/plane";
 }
