@@ -25,8 +25,11 @@ abstract class CustomStyles {
   static const TextStyle subTituloPagina =
       TextStyle(fontWeight: FontWeight.bold, fontSize: 18, letterSpacing: 1.5);
 
-      static const TextStyle topicoConfiguracoes =
-      TextStyle(fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 1.2, height: 1.5);
+  static const TextStyle topicoConfiguracoes = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      letterSpacing: 1.2,
+      height: 1.5);
 
   static const BoxDecoration decorationTile = BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -63,11 +66,11 @@ abstract class CustomStyles {
   );
 
   static const TextStyle textoBotoes = TextStyle(
-      color: CustomColors.brancoTextoBotoes,
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-      letterSpacing: 1.2,
-      );
+    color: CustomColors.brancoTextoBotoes,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.2,
+  );
 
   static const TextStyle cancelarTexto = TextStyle(
     color: CustomColors.brancoTextoBotoes,
@@ -87,4 +90,17 @@ abstract class CustomStyles {
       fontSize: 18,
       fontWeight: FontWeight.bold,
       letterSpacing: 1.2);
+
+  static BoxDecoration boxDecorationListas = BoxDecoration(
+    color: Colors.white,
+    borderRadius: const BorderRadius.all(Radius.circular(5)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.05),
+        spreadRadius: 1,
+        blurRadius: 5,
+        offset: const Offset(0, 3),
+      ),
+    ],
+  );
 }

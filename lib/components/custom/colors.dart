@@ -9,11 +9,11 @@ abstract class CustomColors {
 
   static const Color pretoIcones = Colors.black87;
 
-  static const Color cinzaListas = Color.fromARGB(255, 233, 233, 233);
+  static const Color cinzaListas = Color.fromARGB(255, 254, 247, 255);
 
   static const Color cinzaConfiguracoes = Color.fromARGB(255, 244, 244, 244);
 
-  static const Color cinzaBottomNavigation = Color.fromARGB(255, 240, 240, 240);
+  static const Color cinzaBottomNavigation = Color.fromARGB(255, 245, 245, 245);
 
   static const Color verdeClaro = Color.fromARGB(255, 24, 134, 108);
 

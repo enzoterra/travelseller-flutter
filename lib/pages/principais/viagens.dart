@@ -78,9 +78,10 @@ class ViagensState extends State<Viagens> {
                   ]),
             ),
           ),
-          SizedBox(
-            height: altura * 0.60,
+          Container(
+            height: altura * 0.59,
             width: largura * 0.92,
+            decoration: CustomStyles.boxDecorationListas,
             child: Container(
                 decoration: CustomStyles.decorationTile,
                 child: ListView.builder(

@@ -33,13 +33,22 @@ class HomeState extends State<Home> {
     return Scaffold(
         body: paginas[navIndex],
         bottomNavigationBar: Container(
-          color: CustomColors.cinzaBottomNavigation,
+          decoration: BoxDecoration(
+            color: CustomColors.cinzaListas,
+            boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: 4,
+              blurRadius: 5,
+              offset: const Offset(0, 0),
+            )
+          ]),
           child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               child: GNav(
                   selectedIndex: navIndex,
-                  backgroundColor: CustomColors.cinzaBottomNavigation,
+                  backgroundColor: CustomColors.cinzaListas,
                   rippleColor: const Color.fromARGB(61, 41, 41, 41),
                   color: const Color.fromARGB(255, 51, 51, 51),
                   activeColor: Colors.white,

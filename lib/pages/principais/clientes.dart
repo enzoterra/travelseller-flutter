@@ -77,9 +77,10 @@ class ClientesState extends State<Clientes> {
                       onChanged: (text) => filtrarResultados(text))),
             ),
           ),
-          SizedBox(
-            height: altura * 0.58,
+          Container(
+            height: altura * 0.57,
             width: largura * 0.92,
+            decoration: CustomStyles.boxDecorationListas,
             child: Container(
                 decoration: CustomStyles.decorationTile,
                 child: ListView.builder(
