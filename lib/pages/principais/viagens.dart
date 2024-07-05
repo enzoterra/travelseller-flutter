@@ -55,7 +55,7 @@ class ViagensState extends State<Viagens> {
             child: Center(
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(CustomTitles.subTituloViagens,
                         style: CustomStyles.subTituloPagina),

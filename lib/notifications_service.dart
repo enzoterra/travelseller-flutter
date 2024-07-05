@@ -22,7 +22,11 @@ class NotificationService {
   initializeNotifications(BuildContext context) async {
     localNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const android = AndroidInitializationSettings(CustomIcons.notification);
-    const ios = DarwinInitializationSettings();
+    const ios = DarwinInitializationSettings(
+            requestAlertPermission: true,
+            requestBadgePermission: true,
+            requestSoundPermission: true,
+            );
 
     await localNotificationsPlugin.initialize(
       const InitializationSettings(android: android, iOS: ios),
@@ -40,7 +44,7 @@ class NotificationService {
     //const IOSFlutterLocalNotificationsPlugin iosDetails;
 
     platformChannelSpecifics =
-        const NotificationDetails(android: androidDetails);
+        const NotificationDetails(android: androidDetails, iOS: DarwinNotificationDetails());
   }
 
   showNotification(

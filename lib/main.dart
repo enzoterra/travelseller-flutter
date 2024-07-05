@@ -3,10 +3,15 @@ import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/pages/principais/home.dart';
 import 'components/custom/theme.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+import 'package:workmanager/workmanager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ObjectBox.create();
+
+  tz.initializeTimeZones();
 
   runApp(
     const App());

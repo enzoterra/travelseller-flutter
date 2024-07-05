@@ -71,7 +71,7 @@ class ConfiguracoesState extends State<Configuracoes> {
               imagem: CustomImages.imagemConfiguracoes,
               titulo: CustomTitles.tituloConfiguracoes),
           Container(
-              margin: const EdgeInsets.only(top: 30),
+              margin: const EdgeInsets.only(top: 25),
               padding: const EdgeInsets.all(30),
               child: Column(children: [
                 //Tiles 1
@@ -134,7 +134,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                         ),
                       ],
                     )),
-                const Divider(),
+                const Divider(thickness: 0.4,),
                 const SizedBox(
                   height: espaco * 2,
                 ),
@@ -198,14 +198,14 @@ class ConfiguracoesState extends State<Configuracoes> {
                           ),
                         ])),
 
-                const Divider(),
+                const Divider(thickness: 0.4,),
                 const SizedBox(
-                  height: espaco,
+                  height: espaco * 2,
                 ),
 
                 //Buttons
                 SizedBox(
-                    height: 100,
+                    height: 60,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -226,7 +226,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                                     CustomColors.cinzaCancelar),
                               ),
                               child: const Text(
-                                "Cancelar",
+                                "Voltar",
                                 style: CustomStyles.cancelarTexto,
                               ),
                             )),
