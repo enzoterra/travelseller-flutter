@@ -96,10 +96,10 @@ abstract class CustomStyles {
     borderRadius: const BorderRadius.all(Radius.circular(5)),
     boxShadow: [
       BoxShadow(
-        color: Colors.grey.withOpacity(0.05),
-        spreadRadius: 1,
-        blurRadius: 5,
-        offset: const Offset(0, 3),
+        color: Colors.grey.withOpacity(0.2),
+        spreadRadius: 2,
+        blurRadius: 12,
+        offset: const Offset(0, 2),
       ),
     ],
   );

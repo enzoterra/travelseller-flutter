@@ -62,275 +62,203 @@ class ConfiguracoesState extends State<Configuracoes> {
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    const double marginTiles = 40;
     const double espaco = 20;
 
     return Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const TopBarInterno(
-                  imagem: CustomImages.imagemConfiguracoes,
-                  titulo: CustomTitles.tituloConfiguracoes),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                    height: altura * 0.69,
-                    width: largura * 0.9,
-                    child: Scrollbar(
-                        child: ListView(children: [
-                      Container(
-                          decoration: const BoxDecoration(
-                              color: CustomColors.cinzaConfiguracoes,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Deseja receber lembretes de\nIda e Volta dos clientes?",
-                                    style: CustomStyles.topicoConfiguracoes,
-                                  ),
-                                  const SizedBox(
-                                    height: espaco,
-                                  ),
-                                  ListTile(
-                                    selected: ida,
-                                    onTap: () {
-                                      setState(() {
-                                        ida = !ida;
-                                      });
-                                    },
-                                    iconColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    textColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    leading: CustomIcons.configuracaoIda,
-                                    title: const Text('Lembrete de Ida'),
-                                    trailing: Switch(
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          ida = value!;
-                                        });
-                                      },
-                                      value: ida,
-                                      activeColor: CustomColors.verdeEscuro,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: espaco,
-                                  ),
-                                  ListTile(
-                                    selected: volta,
-                                    onTap: () {
-                                      setState(() {
-                                        volta = !volta;
-                                      });
-                                    },
-                                    iconColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    textColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    leading: CustomIcons.configuracaoVolta,
-                                    title: const Text('Lembrete de Volta'),
-                                    trailing: Switch(
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          volta = value!;
-                                        });
-                                      },
-                                      value: volta,
-                                      activeColor: CustomColors.verdeEscuro,
-                                    ),
-                                  ),
-                                ],
-                              ))),
-                      const SizedBox(
-                        height: marginTiles,
-                      ),
-                      Container(
-                          decoration: const BoxDecoration(
-                              color: CustomColors.cinzaConfiguracoes,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Com quanto tempo de antecedência deseja receber os lembretes?",
-                                    style: CustomStyles.topicoConfiguracoes,
-                                  ),
-                                  const SizedBox(
-                                    height: espaco,
-                                  ),
-                                  ListTile(
-                                    selected: umDia,
-                                    onTap: () {
-                                      setState(() {
-                                        umDia = !umDia;
-                                      });
-                                    },
-                                    iconColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    textColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    leading: CustomIcons.configuracaoUmDia,
-                                    title: const Text('1 dia antes'),
-                                    trailing: Switch(
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          umDia = value!;
-                                        });
-                                      },
-                                      value: umDia,
-                                      activeColor: CustomColors.verdeEscuro,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: espaco,
-                                  ),
-                                  ListTile(
-                                    selected: doisDias,
-                                    onTap: () {
-                                      setState(() {
-                                        doisDias = !doisDias;
-                                      });
-                                    },
-                                    iconColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    textColor: MaterialStateColor.resolveWith(
-                                        (Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return CustomColors.verdeEscuro;
-                                      }
-                                      return CustomColors.pretoIcones;
-                                    }),
-                                    leading: CustomIcons.configuracaoDoisDias,
-                                    title: const Text('2 dias antes'),
-                                    trailing: Switch(
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          doisDias = value!;
-                                        });
-                                      },
-                                      value: doisDias,
-                                      activeColor: CustomColors.verdeEscuro,
-                                    ),
-                                  ),
-                                ],
-                              ))),
-                      const SizedBox(
-                        height: marginTiles,
-                      ),
-                    ]))),
-              ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                  height: 70,
-                  width: largura * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                          height: 40,
-                          width: 106,
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => const Home(
-                                            currentIndex: 1,
-                                          ))));
+      body: SingleChildScrollView(
+        child: Column(children: [
+          const TopBarInterno(
+              imagem: CustomImages.imagemConfiguracoes,
+              titulo: CustomTitles.tituloConfiguracoes),
+          Container(
+              margin: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.all(30),
+              child: Column(children: [
+                //Tiles 1
+                SizedBox(
+                    height: 220,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Deseja receber lembretes de\nIda e Volta dos clientes?",
+                          style: CustomStyles.topicoConfiguracoes,
+                        ),
+                        const SizedBox(
+                          height: espaco,
+                        ),
+                        ListTile(
+                          selected: ida,
+                          onTap: () {
+                            setState(() {
+                              ida = !ida;
+                            });
+                          },
+                          iconColor: CustomColors.stateVerdePreto,
+                          textColor: CustomColors.stateVerdePreto,
+                          leading: CustomIcons.configuracaoIda,
+                          title: const Text('Lembrete de Ida'),
+                          trailing: Switch(
+                            onChanged: (bool? value) {
+                              setState(() {
+                                ida = value!;
+                              });
                             },
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  CustomColors.cinzaCancelar),
+                            value: ida,
+                            activeColor: CustomColors.verdeEscuro,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: espaco,
+                        ),
+                        ListTile(
+                          selected: volta,
+                          onTap: () {
+                            setState(() {
+                              volta = !volta;
+                            });
+                          },
+                          iconColor: CustomColors.stateVerdePreto,
+                          textColor: CustomColors.stateVerdePreto,
+                          leading: CustomIcons.configuracaoVolta,
+                          title: const Text('Lembrete de Volta'),
+                          trailing: Switch(
+                            onChanged: (bool? value) {
+                              setState(() {
+                                volta = value!;
+                              });
+                            },
+                            value: volta,
+                            activeColor: CustomColors.verdeEscuro,
+                          ),
+                        ),
+                      ],
+                    )),
+                const Divider(),
+                const SizedBox(
+                  height: espaco * 2,
+                ),
+                //Tiles 2
+                SizedBox(
+                    height: 220,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Com quanto tempo de antecedência deseja receber os lembretes?",
+                            style: CustomStyles.topicoConfiguracoes,
+                          ),
+                          const SizedBox(
+                            height: espaco,
+                          ),
+                          ListTile(
+                            selected: umDia,
+                            onTap: () {
+                              setState(() {
+                                umDia = !umDia;
+                              });
+                            },
+                            iconColor: CustomColors.stateVerdePreto,
+                            textColor: CustomColors.stateVerdePreto,
+                            leading: CustomIcons.configuracaoUmDia,
+                            title: const Text('1 dia antes'),
+                            trailing: Switch(
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  umDia = value!;
+                                });
+                              },
+                              value: umDia,
+                              activeColor: CustomColors.verdeEscuro,
                             ),
-                            child: const Text(
-                              "Cancelar",
-                              style: CustomStyles.cancelarTexto,
+                          ),
+                          const SizedBox(
+                            height: espaco,
+                          ),
+                          ListTile(
+                            selected: doisDias,
+                            onTap: () {
+                              setState(() {
+                                doisDias = !doisDias;
+                              });
+                            },
+                            iconColor: CustomColors.stateVerdePreto,
+                            textColor: CustomColors.stateVerdePreto,
+                            leading: CustomIcons.configuracaoDoisDias,
+                            title: const Text('2 dias antes'),
+                            trailing: Switch(
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  doisDias = value!;
+                                });
+                              },
+                              value: doisDias,
+                              activeColor: CustomColors.verdeEscuro,
                             ),
-                          )),
-                      SizedBox(
-                          height: 40,
-                          width: 106,
-                          child: TextButton(
-                            onPressed: () {
-                              salvar(id);
+                          ),
+                        ])),
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => const Home(
-                                            currentIndex: 1,
-                                          ))));
-                            },
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  CustomColors.verdeSalvar),
-                            ),
-                            child: const Text(
-                              "Salvar",
-                              style: CustomStyles.textoBotoes,
-                            ),
-                          ))
-                    ],
-                  ))
-            ]));
+                const Divider(),
+                const SizedBox(
+                  height: espaco,
+                ),
+
+                //Buttons
+                SizedBox(
+                    height: 100,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                            height: 40,
+                            width: 106,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) => const Home(
+                                              currentIndex: 1,
+                                            ))));
+                              },
+                              style: const ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    CustomColors.cinzaCancelar),
+                              ),
+                              child: const Text(
+                                "Cancelar",
+                                style: CustomStyles.cancelarTexto,
+                              ),
+                            )),
+                        SizedBox(
+                            height: 40,
+                            width: 106,
+                            child: TextButton(
+                              onPressed: () {
+                                salvar(id);
+
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) => const Home(
+                                              currentIndex: 1,
+                                            ))));
+                              },
+                              style: const ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    CustomColors.verdeSalvar),
+                              ),
+                              child: const Text(
+                                "Salvar",
+                                style: CustomStyles.textoBotoes,
+                              ),
+                            ))
+                      ],
+                    ))
+              ]))
+        ]),
+      ),
+    );
   }
 
   salvar(int id) {

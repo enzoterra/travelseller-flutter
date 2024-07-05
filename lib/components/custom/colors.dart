@@ -36,4 +36,13 @@ abstract class CustomColors {
 
   static const Color cor1Estatisticas = Color.fromRGBO(2, 52, 139, 1);
   static const Color cor2Estatisticas = Color.fromRGBO(207, 178, 9, 1);
+
+  //State Configuracoes
+  static Color stateVerdePreto =
+      WidgetStateColor.resolveWith((Set<WidgetState> states) {
+    if (states.contains(WidgetState.selected)) {
+      return CustomColors.verdeEscuro;
+    }
+    return CustomColors.pretoIcones;
+  });
 }

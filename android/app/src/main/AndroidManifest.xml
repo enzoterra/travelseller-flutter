@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    
     <application
         android:label="Travelseller"
         android:name="${applicationName}"
@@ -19,6 +23,17 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+
+            <receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ActionBroadcastReceiver" android:exported="true"/>
+            <receiver android:name="com.dexterous.flutterlocalnotifications.receivers.DismissedReceiver" android:exported="true"/>
+            <receiver android:name="com.dexterous.flutterlocalnotifications.receivers.ScheduledNotificationReceiver" android:exported="true"/>
+            <receiver android:name="com.dexterous.flutterlocalnotifications.receivers.RestartBroadcastReceiver" android:exported="true" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                    <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                </intent-filter>
+            </receiver>
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
