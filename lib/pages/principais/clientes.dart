@@ -83,19 +83,16 @@ class ClientesState extends State<Clientes> {
             decoration: CustomStyles.boxDecorationListas,
             child: Container(
                 decoration: CustomStyles.decorationTile,
-                child: ListView.builder(
-                    padding: const EdgeInsets.all(7),
+                child: ListView.separated(
+                    padding: const EdgeInsets.all(10),
+                    separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 0.5, indent: 10, endIndent: 10,),
                     itemCount: displayLista.length,
                     itemBuilder: (context, index) {
                       if (displayLista.isEmpty) {
                         return const Center(child: Text("Sem clientes ..."));
                       } else {
                         int id = displayLista[index].id;
-
-                        return Container(
-                            padding: const EdgeInsets.all(3),
-                            child: Card(
-                                child: ListTile(
+                        return ListTile(
                                     leading: CustomIcons.iconeClienteTile,
                                     title: Text(
                                         displayLista[index].nome.toString()),
@@ -110,7 +107,7 @@ class ClientesState extends State<Clientes> {
                                                   InformacoesCliente(
                                                     cliente: cliente,
                                                   ))));
-                                    })));
+                                    });
                       }
                     })
 

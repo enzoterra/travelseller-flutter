@@ -60,8 +60,6 @@ class ConfiguracoesState extends State<Configuracoes> {
 
   @override
   Widget build(BuildContext context) {
-    final altura = MediaQuery.of(context).size.height;
-    final largura = MediaQuery.of(context).size.width;
     const double espaco = 20;
 
     return Scaffold(

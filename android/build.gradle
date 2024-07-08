@@ -16,6 +16,14 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    // Resolver conflitos de dependência
+    configurations.all {
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.6.10'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10'
+        }
+    }
 }
 
 rootProject.buildDir = '../build'

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/styles.dart';
 
@@ -19,17 +20,17 @@ class ViagemListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 54,
       decoration: const BoxDecoration(
-          color: Colors.white,
+          color: CustomColors.cinzaTileViagens,
           borderRadius: BorderRadius.all(Radius.circular(5))),
-      padding: const EdgeInsets.all(3),
+      padding: const EdgeInsets.only(top: 3, bottom: 3),
       child: Row(
         children: <Widget>[
           Expanded(
             flex: 1,
             child: Container(
-                padding: const EdgeInsets.all(7),
+                padding: const EdgeInsets.all(5),
                 child: const Center(
                     child: Image(
                   image: CustomIcons.iconeViagemTile,
@@ -38,10 +39,10 @@ class ViagemListTile extends StatelessWidget {
                 ))),
           ),
           const SizedBox(
-            width: 5,
+            width: 10,
           ),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -54,7 +55,7 @@ class ViagemListTile extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 3,
+                  height: 2,
                 ),
                 Row(
                   children: [
@@ -68,24 +69,22 @@ class ViagemListTile extends StatelessWidget {
             ),
           ),
           Expanded(
-              flex: 2,
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const SizedBox(
-                      height: 1,
-                    ),
-                    Text(embarque, style: CustomStyles.dataViagemTile),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(desembarque, style: CustomStyles.dataViagemTile),
-                  ],
+            flex: 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const SizedBox(
+                  height: 1,
                 ),
-              )),
+                Text(embarque, style: CustomStyles.dataViagemTile),
+                const SizedBox(
+                  height: 6,
+                ),
+                Text(desembarque, style: CustomStyles.dataViagemTile),
+              ],
+            ),
+          ),
         ],
       ),
     );

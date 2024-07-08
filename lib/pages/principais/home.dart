@@ -33,9 +33,8 @@ class HomeState extends State<Home> {
     return Scaffold(
         body: paginas[navIndex],
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            color: CustomColors.cinzaListas,
-            boxShadow: [
+          decoration:
+              BoxDecoration(color: CustomColors.cinzaListas, boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.1),
               spreadRadius: 4,

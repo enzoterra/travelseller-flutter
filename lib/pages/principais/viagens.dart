@@ -14,12 +14,54 @@ import 'package:travelseller/notifications_service.dart';
 import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
 import 'package:travelseller/pages/principais/configuracoes.dart';
 import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
+import 'package:workmanager/workmanager.dart';
 
 class Viagens extends StatefulWidget {
   const Viagens({super.key});
 
   @override
   ViagensState createState() => ViagensState();
+}
+
+void callbackDispatcher(BuildContext context) {
+  Workmanager().executeTask((task, inputData) async {
+    checkTripsAndNotify(context);
+    return Future.value(true);
+  });
+}
+
+void checkTripsAndNotify(BuildContext context) {
+  int id = 0;
+  var lista = ViagemController().readAll();
+  for (Viagem viagem in lista) {
+    var dataPreString = viagem.dataIda!.split("/");
+    var dataPreDate = dataPreString[2] + dataPreString[1] + dataPreString[0];
+    var data = DateTime.parse(dataPreDate);
+    var hoje = DateTime.now();
+
+    if (data.year == hoje.year && data.month == hoje.month) {
+      if (data.day - hoje.day == 1) {
+        var cliente = ClienteController().read(viagem.idCliente);
+        String nome = encurtaNome(cliente.nome);
+        NotificationService().showNotification(
+            CustomNotification(
+                id: id, title: nome, body: "Irá viajar daqui há 1 dia!"),
+            context);
+
+        id++;
+      }
+    }
+  }
+}
+
+String encurtaNome(String nome) {
+  var nomeSplit = nome.split(" ");
+  if (nomeSplit.first == nomeSplit.last) {
+    nome = nomeSplit.first;
+  } else {
+    nome = nomeSplit.first + (" ") + nomeSplit.last;
+  }
+  return nome;
 }
 
 class ViagensState extends State<Viagens> {
@@ -34,6 +76,15 @@ class ViagensState extends State<Viagens> {
     setState(() {
       lista = viagemController.readAll();
     });
+
+    // Initialize Workmanager
+    Workmanager().initialize(callbackDispatcher);
+    Workmanager().registerPeriodicTask(
+      "1",
+      "checkTripsTask",
+      frequency: Duration(days: 1),
+      initialDelay: Duration(hours: 18, minutes: 30),
+    );
   }
 
   @override
@@ -61,13 +112,6 @@ class ViagensState extends State<Viagens> {
                         style: CustomStyles.subTituloPagina),
                     IconButton(
                         onPressed: () {
-                          NotificationService().showNotification(
-                              CustomNotification(
-                                  id: 0,
-                                  title: "Viagem",
-                                  body: "Irá viajar daqui há um dia!"),
-                              context);
-
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -84,8 +128,9 @@ class ViagensState extends State<Viagens> {
             decoration: CustomStyles.boxDecorationListas,
             child: Container(
                 decoration: CustomStyles.decorationTile,
-                child: ListView.builder(
-                    padding: const EdgeInsets.only(top: 7, bottom: 7),
+                child: ListView.separated(
+                    padding: const EdgeInsets.only(top: 10, bottom: 7),
+                    separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 0.5, indent: 12, endIndent: 12,),
                     itemCount: lista.length,
                     itemBuilder: (context, index) {
                       if (lista.isEmpty) {
@@ -95,17 +140,13 @@ class ViagensState extends State<Viagens> {
                         Viagem viagem = viagemController.read(id);
                         Cliente cliente =
                             clienteController.read(viagem.idCliente);
-                        String nome = cliente.nome;
-                        String destino = viagem.cidade!;
-                        String embarque = viagem.dataIda!;
-                        String desembarque = viagem.dataVolta!;
 
                         return ListTile(
                             title: ViagemListTile(
-                                nome: nome,
-                                destino: destino,
-                                embarque: embarque,
-                                desembarque: desembarque),
+                                nome: encurtaNome(cliente.nome),
+                                destino: viagem.cidade!,
+                                embarque: viagem.dataIda!,
+                                desembarque: viagem.dataVolta!),
                             onTap: () {
                               Navigator.push(
                                   context,
