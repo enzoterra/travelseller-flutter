@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/styles.dart';
 
 class TopBar extends StatelessWidget {
@@ -12,7 +13,7 @@ class TopBar extends StatelessWidget {
     final altura = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      height: altura * 0.2,
+      height: altura * CustomDimens.heightTopImages,
       child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(

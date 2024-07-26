@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 import '../../custom/styles.dart';
 
 class ClienteTile extends StatelessWidget {
@@ -19,8 +20,7 @@ class ClienteTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
     const double espaco = 50;
-    const double alturaFields = 60;
-
+    
     return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,7 +37,7 @@ class ClienteTile extends StatelessWidget {
               height: espaco - 20,
             ),
             SizedBox(
-                height: alturaFields,
+                height: CustomDimens.heightFields,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -59,7 +59,7 @@ class ClienteTile extends StatelessWidget {
                 )),
             const SizedBox(height: espaco),
             SizedBox(
-                height: alturaFields,
+                height: CustomDimens.heightFields,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -82,7 +82,7 @@ class ClienteTile extends StatelessWidget {
                 )),
             const SizedBox(height: espaco),
             SizedBox(
-                height: alturaFields,
+                height: CustomDimens.heightFields,
                 child: Row(
                   children: [
                     Column(

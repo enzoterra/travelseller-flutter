@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/styles.dart';
 
 class TopBarInterno extends StatelessWidget {
@@ -13,7 +14,7 @@ class TopBarInterno extends StatelessWidget {
     final largura = MediaQuery.of(context).size.width;
 
     return Container(
-      height: altura * 0.2,
+      height: altura * CustomDimens.heightTopImagesTiles,
       width: largura * 1,
       decoration: BoxDecoration(
           image: DecorationImage(
