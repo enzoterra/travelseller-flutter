@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/colors.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
@@ -102,11 +103,11 @@ class ViagensState extends State<Viagens> {
           ),
           Container(
             height: altura * 0.11,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Center(
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(CustomTitles.subTituloViagens,
                         style: CustomStyles.subTituloPagina),
@@ -123,14 +124,19 @@ class ViagensState extends State<Viagens> {
             ),
           ),
           Container(
-            height: altura * 0.59,
-            width: largura * 0.92,
+            height: altura * CustomDimens.heigthViagemList,
+            width: largura * CustomDimens.widthLists,
             decoration: CustomStyles.boxDecorationListas,
             child: Container(
                 decoration: CustomStyles.decorationTile,
                 child: ListView.separated(
                     padding: const EdgeInsets.only(top: 10, bottom: 7),
-                    separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 0.5, indent: 12, endIndent: 12,),
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(
+                          thickness: 0.5,
+                          indent: 12,
+                          endIndent: 12,
+                        ),
                     itemCount: lista.length,
                     itemBuilder: (context, index) {
                       if (lista.isEmpty) {

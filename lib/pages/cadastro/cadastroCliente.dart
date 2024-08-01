@@ -42,12 +42,13 @@ class CadastroClienteState extends State<CadastroCliente> {
           children: [
             const TopBarInterno(
                 imagem: CustomImages.imagemCadastro,
-                titulo: CustomTitles.tituloCadastro),
+                titulo: CustomTitles.tituloCadastro,
+                index: 0,),
             Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: SizedBox(
-                    height: altura * 0.69,
-                    width: largura * 0.85,
+                    height: altura * CustomDimens.heightListTiles,
+                    width: largura * CustomDimens.widthListTiles,
                     child: ListView(
                       children: [
                         ClienteTile(
@@ -67,8 +68,8 @@ class CadastroClienteState extends State<CadastroCliente> {
                 indexHome: 0,
                 isCadastro: true,
                 isViagem: false,
-                viagem: Object,
-                cliente: Object)
+                viagem: null,
+                cliente: null)
           ],
         ),
       ),

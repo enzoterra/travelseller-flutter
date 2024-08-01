@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/dimens.dart';
+import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/pages/principais/home.dart';
 
 class TopBarInterno extends StatelessWidget {
-  const TopBarInterno({super.key, required this.imagem, required this.titulo});
+  const TopBarInterno(
+      {super.key,
+      required this.imagem,
+      required this.titulo,
+      required this.index});
 
   final String imagem;
   final String titulo;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +21,7 @@ class TopBarInterno extends StatelessWidget {
     final largura = MediaQuery.of(context).size.width;
 
     return Container(
-      height: altura * 0.2,
+      height: altura * CustomDimens.heightTopImagesTiles,
       width: largura * 1,
       decoration: BoxDecoration(
           image: DecorationImage(
@@ -22,17 +30,32 @@ class TopBarInterno extends StatelessWidget {
               fit: BoxFit.cover,
               image: AssetImage(imagem))),
       child: Column(children: [
-        Flexible(
-          flex: 1,
-          child: Container(),
+        SizedBox(
+          height: 75,
+          width: largura * 0.97,
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => Home(
+                                    currentIndex: index,
+                                  ))));
+                    },
+                    icon: CustomIcons.iconBack),
+              ]),
         ),
-        Flexible(
-            flex: 5,
-            child: Center(
-                child: Text(
-              titulo,
-              style: CustomStyles.tituloCadastro,
-            )))
+        const SizedBox(height: 8,),
+        Center(
+          child: Text(
+            titulo,
+            style: CustomStyles.tituloCadastro,
+          )
+        )
       ]),
     );
   }

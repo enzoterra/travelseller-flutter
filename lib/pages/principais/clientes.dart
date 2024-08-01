@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
@@ -60,7 +61,7 @@ class ClientesState extends State<Clientes> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 10),
-            width: largura * 0.92,
+            width: largura * CustomDimens.widthLists,
             height: altura * 0.12,
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Center(
@@ -79,7 +80,7 @@ class ClientesState extends State<Clientes> {
           ),
           Container(
             height: altura * 0.57,
-            width: largura * 0.92,
+            width: largura * CustomDimens.widthLists,
             decoration: CustomStyles.boxDecorationListas,
             child: Container(
                 decoration: CustomStyles.decorationTile,

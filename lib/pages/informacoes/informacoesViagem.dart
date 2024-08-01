@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
+//import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
 import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
 import 'package:travelseller/components/tiles/dados/outras_informacoes_tile.dart';
 import 'package:travelseller/components/tiles/dados/viagem_tile.dart';
@@ -102,12 +103,14 @@ class InformacoesViagemState extends State<InformacoesViagem> {
           children: [
             const TopBarInterno(
                 imagem: CustomImages.imagemInformacoes,
-                titulo: CustomTitles.tituloInformacoes),
+                titulo: CustomTitles.tituloInformacoes,
+                index: 1,),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: SizedBox(
-                  width: largura * 0.85,
-                  child: ListView(
+                  height: altura * CustomDimens.heightListTiles,
+                  width: largura * CustomDimens.widthListTiles,
+                  child: Column(
                     children: [
                       ClienteTile(
                         nomeController: nomeController,
@@ -153,8 +156,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                         height: CustomDimens.marginTilesSmall,
                       ),
                     ],
-                  )),
-            ),
+                  ))),
             ActionButtonsCadastro(functionSave: salvar, functionDelete: deletar, indexHome: 1, isCadastro: false, isViagem: true, viagem: widget.viagem, cliente: widget.cliente)
           ],
         ),

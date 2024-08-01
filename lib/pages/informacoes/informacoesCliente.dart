@@ -61,12 +61,13 @@ class InformacoesClienteState extends State<InformacoesCliente> {
           children: [
             const TopBarInterno(
                 imagem: CustomImages.imagemInformacoes,
-                titulo: CustomTitles.tituloInformacoes),
+                titulo: CustomTitles.tituloInformacoes,
+                index: 0,),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: SizedBox(
-                  height: altura * 0.69,
-                  width: largura * 0.85,
+                  height: altura * CustomDimens.heightListTiles,
+                  width: largura * CustomDimens.widthListTiles,
                   child: ListView(
                     children: [
                       ClienteTile(
@@ -87,7 +88,7 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                 indexHome: 0,
                 isCadastro: false,
                 isViagem: false,
-                viagem: Object,
+                viagem: null,
                 cliente: widget.cliente)
           ],
         ),

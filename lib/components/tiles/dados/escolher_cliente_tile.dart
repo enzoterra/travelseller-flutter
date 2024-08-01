@@ -35,7 +35,7 @@ class EscolherClienteTile extends StatelessWidget {
                 },
                 style: const ButtonStyle(
                     backgroundColor:
-                        MaterialStatePropertyAll(CustomColors.verdeEscuro)),
+                        WidgetStatePropertyAll(CustomColors.verdeEscuro)),
                 child: const Text(
                   "Escolher cliente",
                   style: CustomStyles.textoBotoes,

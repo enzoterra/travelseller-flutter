@@ -3,8 +3,9 @@ import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import '../../pages/principais/home.dart';
 
+// ignore: must_be_immutable
 class ActionButtonsCadastro extends StatelessWidget {
-  const ActionButtonsCadastro({
+  ActionButtonsCadastro({
     super.key,
     required this.functionSave,
     required this.functionDelete,
@@ -12,7 +13,7 @@ class ActionButtonsCadastro extends StatelessWidget {
     required this.isCadastro,
     required this.isViagem,
     required this.viagem,
-    required this.cliente,
+    required this.cliente
   });
 
   final Function functionSave;
@@ -20,23 +21,26 @@ class ActionButtonsCadastro extends StatelessWidget {
   final int indexHome;
   final bool isCadastro;
   final bool isViagem;
-  final Object viagem;
-  final Object cliente;
+  var viagem;
+  var cliente;
 
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
+    double heightRow = 70;
+    double heightButtons = 40;
 
     //Verifica se a página de origem é de Cadastro ou Informações
     if (isCadastro) {
       return SizedBox(
-          height: 70,
+          height: heightRow,
           width: largura * 0.9,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                  height: 40,
+                  height: heightButtons,
                   width: 110,
                   child: TextButton(
                     onPressed: () {
@@ -57,7 +61,7 @@ class ActionButtonsCadastro extends StatelessWidget {
                     ),
                   )),
               SizedBox(
-                  height: 40,
+                  height: heightButtons,
                   width: 106,
                   child: TextButton(
                     onPressed: () {
@@ -82,17 +86,17 @@ class ActionButtonsCadastro extends StatelessWidget {
             ],
           ));
     } else {
-
       //Verifica se a página de informações é de Viagem ou Cliente
       if (isViagem) {
         return SizedBox(
-            height: 70,
+            height: heightRow,
             width: largura * 0.9,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                    height: 40,
+                    height: heightButtons,
                     width: 106,
                     child: TextButton(
                       onPressed: () {
@@ -135,7 +139,7 @@ class ActionButtonsCadastro extends StatelessWidget {
                       ),
                     )),
                 SizedBox(
-                    height: 40,
+                    height: heightButtons,
                     width: 106,
                     child: TextButton(
                       onPressed: () {
@@ -161,13 +165,14 @@ class ActionButtonsCadastro extends StatelessWidget {
             ));
       } else {
         return SizedBox(
-            height: 70,
+            height: heightRow,
             width: largura * 0.9,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                    height: 40,
+                    height: heightButtons,
                     width: 106,
                     child: TextButton(
                       onPressed: () {
@@ -211,7 +216,7 @@ class ActionButtonsCadastro extends StatelessWidget {
                       ),
                     )),
                 SizedBox(
-                    height: 40,
+                    height: heightButtons,
                     width: 106,
                     child: TextButton(
                       onPressed: () {
