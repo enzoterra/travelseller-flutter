@@ -28,13 +28,13 @@ class ClienteTile extends StatelessWidget {
               height: 10,
             ),
             const SizedBox(
-                height: espaco,
+                height: CustomDimens.spaceFields,
                 child: Text(
                   "Dados do Cliente",
                   style: CustomStyles.subTituloCadastro,
                 )),
             const SizedBox(
-              height: espaco - 20,
+              height: CustomDimens.spaceFields - 20,
             ),
             SizedBox(
                 height: CustomDimens.heightFields,
@@ -57,7 +57,7 @@ class ClienteTile extends StatelessWidget {
                         ))
                   ],
                 )),
-            const SizedBox(height: espaco),
+            const SizedBox(height: CustomDimens.spaceFields),
             SizedBox(
                 height: CustomDimens.heightFields,
                 child: Column(
@@ -80,7 +80,7 @@ class ClienteTile extends StatelessWidget {
                         ))
                   ],
                 )),
-            const SizedBox(height: espaco),
+            const SizedBox(height: CustomDimens.spaceFields),
             SizedBox(
                 height: CustomDimens.heightFields,
                 child: Row(

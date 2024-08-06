@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 
 import '../../custom/styles.dart';
 
@@ -16,24 +17,22 @@ class OutrasInformacoesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
-    const double espaco = 50;
-    const double alturaFields = 60;
 
     return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10,),
             const SizedBox(
-                height: espaco,
+                height: CustomDimens.spaceFields,
                 child: Text(
                   "Outras informações",
                   style: CustomStyles.subTituloCadastro,
                 )),
              const SizedBox(
-              height: espaco - 20,
+              height: CustomDimens.spaceFields - 20,
             ),
             SizedBox(
-                height: alturaFields,
+                height: CustomDimens.heightFields,
                 child: Row(
               children: [
                 Column(
@@ -81,7 +80,7 @@ class OutrasInformacoesTile extends StatelessWidget {
                 ),
               ],
             )),
-            const SizedBox(height: espaco),
+            const SizedBox(height: CustomDimens.spaceFields),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -103,7 +102,7 @@ class OutrasInformacoesTile extends StatelessWidget {
                       decoration:
                           const InputDecoration(border: OutlineInputBorder()),
                     )),
-                    const SizedBox(height: espaco),
+                    const SizedBox(height: CustomDimens.spaceFields),
               ],
             ),
             const SizedBox(height: 10,),

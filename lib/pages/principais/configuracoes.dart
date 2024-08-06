@@ -67,7 +67,8 @@ class ConfiguracoesState extends State<Configuracoes> {
         child: Column(children: [
           const TopBarInterno(
               imagem: CustomImages.imagemConfiguracoes,
-              titulo: CustomTitles.tituloConfiguracoes),
+              titulo: CustomTitles.tituloConfiguracoes,
+              index: 1,),
           Container(
               margin: const EdgeInsets.only(top: 25),
               padding: const EdgeInsets.all(30),

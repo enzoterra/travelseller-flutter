@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 
 import '../../custom/styles.dart';
 
@@ -24,9 +25,6 @@ class VooTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
-    const double espaco = 50;
-    const double espaco2 = 40;
-    const double alturaFields = 60;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,16 +32,16 @@ class VooTile extends StatelessWidget {
       children: [
         const SizedBox(height: 10,),
         const SizedBox(
-            height: espaco,
+            height: CustomDimens.spaceFields,
             child: Text(
               "Dados do Voo",
               style: CustomStyles.subTituloCadastro,
             )),
         const SizedBox(
-          height: espaco - 20,
+          height: CustomDimens.spaceFields - 20,
         ),
         SizedBox(
-            height: alturaFields,
+            height: CustomDimens.heightFields,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -52,7 +50,7 @@ class VooTile extends StatelessWidget {
                   style: CustomStyles.tituloAtributoCadastro,
                 ),
                 SizedBox(
-                    width: 80,
+                    width: 90,
                     height: 40,
                     child: TextFormField(
                       controller: localizadorController,
@@ -65,10 +63,10 @@ class VooTile extends StatelessWidget {
               ],
             )),
         const SizedBox(
-          height: espaco2,
+          height: CustomDimens.spaceFields - 10,
         ),
         SizedBox(
-            height: alturaFields,
+            height: CustomDimens.heightFields,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -90,10 +88,10 @@ class VooTile extends StatelessWidget {
               ],
             )),
         const SizedBox(
-          height: espaco2,
+          height: CustomDimens.spaceFields - 10,
         ),
         SizedBox(
-            height: alturaFields,
+            height: CustomDimens.heightFields,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -115,10 +113,10 @@ class VooTile extends StatelessWidget {
               ],
             )),
         const SizedBox(
-          height: espaco,
+          height: CustomDimens.spaceFields,
         ),
         SizedBox(
-            height: alturaFields + espaco,
+            height: CustomDimens.heightFields + CustomDimens.spaceFields,
             child: Row(
               children: [
                 Column(
@@ -126,7 +124,7 @@ class VooTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                        height: espaco,
+                        height: CustomDimens.spaceFields,
                         child: Text(
                           "Ida",
                           style: TextStyle(
@@ -185,9 +183,9 @@ class VooTile extends StatelessWidget {
                 ),
               ],
             )),
-        const SizedBox(height: espaco + 10),
+        const SizedBox(height: CustomDimens.spaceFields + 10),
         SizedBox(
-            height: alturaFields + espaco,
+            height: CustomDimens.heightFields + CustomDimens.spaceFields,
             child: Row(
               children: [
                 Column(
@@ -195,7 +193,7 @@ class VooTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                        height: espaco,
+                        height: CustomDimens.spaceFields,
                         child: Text(
                           "Volta",
                           style: TextStyle(

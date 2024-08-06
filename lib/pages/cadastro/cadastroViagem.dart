@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/images.dart';
-import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
+import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
 import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
 import 'package:travelseller/components/tiles/dados/escolher_cliente_tile.dart';
 import 'package:travelseller/components/tiles/dados/outras_informacoes_tile.dart';
@@ -12,7 +12,6 @@ import 'package:travelseller/components/top_bar_interno.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/pages/principais/home.dart';
 import '../../database/controllers/cliente_controller.dart';
 
 // ignore: must_be_immutable
@@ -81,26 +80,25 @@ class CadastroViagemState extends State<CadastroViagem> {
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    const double marginTiles = 70;
-    const double margin1 = 50;
-    const double margin2 = 30;
 
     verificarCliente();
 
     return Scaffold(
-        body: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Column(
-            children: [
-              const TopBarInterno(
-                  imagem: CustomImages.imagemCadastro,
-                  titulo: CustomTitles.tituloCadastro),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                    height: altura * 0.69,
-                    width: largura * 0.85,
-                    child: Scrollbar(
-                        child: ListView(
+        children: [
+          const TopBarInterno(
+            imagem: CustomImages.imagemCadastro,
+            titulo: CustomTitles.tituloCadastro,
+            index: 1,
+          ),
+          Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: SizedBox(
+                  height: altura * CustomDimens.heightListTiles,
+                  width: largura * CustomDimens.widthListTiles,
+                  child: Scrollbar(
+                    child: ListView(
                       children: [
                         ClienteTile(
                           nomeController: nomeController,
@@ -109,19 +107,22 @@ class CadastroViagemState extends State<CadastroViagem> {
                           nascimentoController: nascimentoController,
                         ),
                         const SizedBox(
-                          height: marginTiles,
+                          height: CustomDimens.marginTiles,
                         ),
-                        EscolherClienteTile(isCadastro: true, viagem: Viagem(idCliente: -1),),
-                        const SizedBox(height: margin1,),
-                        const Divider(),
-                        const SizedBox(height: margin2,),
+                        EscolherClienteTile(
+                          isCadastro: true,
+                          viagem: Viagem(idCliente: -1),
+                        ),
+                        const Divider(
+                          height: CustomDimens.heightDivider,
+                        ),
                         ViagemTile(
                           hotelController: hotelController,
                           cidadeController: cidadeController,
                         ),
-                        const SizedBox(height: margin1,),
-                        const Divider(),
-                        const SizedBox(height: margin2,),
+                        const Divider(
+                          height: CustomDimens.heightDivider,
+                        ),
                         VooTile(
                           localizadorController: localizadorController,
                           companhiaController: companhiaController,
@@ -131,80 +132,31 @@ class CadastroViagemState extends State<CadastroViagem> {
                           dataVoltaController: dataVoltaController,
                           horaVoltaController: horaVoltaController,
                         ),
-                        const SizedBox(height: margin1,),
-                        const Divider(),
-                        const SizedBox(height: margin2,),
+                        const Divider(
+                          height: CustomDimens.heightDivider,
+                        ),
                         OutrasInformacoesTile(
                           valorVendaController: valorVendaController,
                           comissaoController: comissaoController,
                           observacoesController: observacoesController,
                         ),
                         const SizedBox(
-                          height: margin2,
+                          height: CustomDimens.marginTilesSmall,
                         ),
+                        ActionButtonsCadastro(
+                            functionSave: salvar,
+                            functionDelete: () => {},
+                            indexHome: 1,
+                            isCadastro: true,
+                            isViagem: true,
+                            viagem: null,
+                            cliente: widget.cliente),
                       ],
-                    ))),
-              ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                  height: 70,
-                  width: largura * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                          height: 40,
-                          width: 110,
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => const Home(
-                                            currentIndex: 1,
-                                          ))));
-                            },
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  CustomColors.cinzaCancelar),
-                            ),
-                            child: const Text(
-                              "Cancelar",
-                              style: CustomStyles.cancelarTexto,
-                            ),
-                          )),
-                      SizedBox(
-                          height: 40,
-                          width: 106,
-                          child: TextButton(
-                            onPressed: () {
-                              salvar();
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => const Home(
-                                            currentIndex: 1,
-                                          ))));
-                            },
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  CustomColors.verdeSalvar),
-                            ),
-                            child: const Text(
-                              "Salvar",
-                              style: CustomStyles.textoBotoes,
-                            ),
-                          ))
-                    ],
-                  ))
-            ]));
+                    ),
+                  ))),
+        ],
+      )),
+    );
   }
 
   salvar() {

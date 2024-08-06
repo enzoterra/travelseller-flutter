@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/images.dart';
-import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
+import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
+//import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
 import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
 import 'package:travelseller/components/tiles/dados/outras_informacoes_tile.dart';
 import 'package:travelseller/components/tiles/dados/viagem_tile.dart';
@@ -11,7 +11,7 @@ import 'package:travelseller/components/top_bar_interno.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/pages/principais/home.dart';
+import '../../components/custom/dimens.dart';
 import '../../components/tiles/dados/escolher_cliente_tile.dart';
 import '../../database/controllers/cliente_controller.dart';
 
@@ -96,22 +96,21 @@ class InformacoesViagemState extends State<InformacoesViagem> {
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
-    const double marginTiles = 80;
-    const double margin1 = 50;
-    const double margin2 = 30;
 
     return Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const TopBarInterno(
-                  imagem: CustomImages.imagemInformacoes,
-                  titulo: CustomTitles.tituloInformacoes),
-              Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const TopBarInterno(
+              imagem: CustomImages.imagemInformacoes,
+              titulo: CustomTitles.tituloInformacoes,
+              index: 1,
+            ),
+            Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: SizedBox(
-                    height: altura * 0.69,
-                    width: largura * 0.85,
+                    height: altura * CustomDimens.heightListTiles,
+                    width: largura * CustomDimens.widthListTiles,
                     child: Scrollbar(
                         child: ListView(
                       children: [
@@ -122,29 +121,21 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           nascimentoController: nascimentoController,
                         ),
                         const SizedBox(
-                          height: marginTiles - 10,
+                          height: CustomDimens.marginTiles,
                         ),
                         EscolherClienteTile(
                           isCadastro: false,
                           viagem: widget.viagem,
                         ),
-                        const SizedBox(
-                          height: margin1,
-                        ),
-                        const Divider(),
-                        const SizedBox(
-                          height: margin2,
+                        const Divider(
+                          height: CustomDimens.heightDivider,
                         ),
                         ViagemTile(
                           hotelController: hotelController,
                           cidadeController: cidadeController,
                         ),
-                        const SizedBox(
-                          height: margin1,
-                        ),
-                        const Divider(),
-                        const SizedBox(
-                          height: margin2,
+                        const Divider(
+                          height: CustomDimens.heightDivider,
                         ),
                         VooTile(
                           localizadorController: localizadorController,
@@ -155,12 +146,8 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           dataVoltaController: dataVoltaController,
                           horaVoltaController: horaVoltaController,
                         ),
-                        const SizedBox(
-                          height: margin1,
-                        ),
-                        const Divider(),
-                        const SizedBox(
-                          height: margin2,
+                        const Divider(
+                          height: CustomDimens.heightDivider,
                         ),
                         OutrasInformacoesTile(
                           valorVendaController: valorVendaController,
@@ -168,94 +155,22 @@ class InformacoesViagemState extends State<InformacoesViagem> {
                           observacoesController: observacoesController,
                         ),
                         const SizedBox(
-                          height: margin2,
+                          height: CustomDimens.marginTilesSmall,
                         ),
+                        ActionButtonsCadastro(
+                            functionSave: salvar,
+                            functionDelete: deletar,
+                            indexHome: 1,
+                            isCadastro: false,
+                            isViagem: true,
+                            viagem: widget.viagem,
+                            cliente: widget.cliente)
                       ],
-                    ))),
-              ),
-            ],
-          ),
+                    )))),
+          ],
         ),
-        bottomNavigationBar: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                  height: 70,
-                  width: largura * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                          height: 40,
-                          width: 106,
-                          child: TextButton(
-                            onPressed: () {
-                              showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                  title: const Text('Deseja excluir?'),
-                                  content: const Text(
-                                      'Isso excluirá os dados da viagem, mas manterá os dados do cliente'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(context, 'Cancelar'),
-                                      child: const Text('Cancelar'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        deletar(widget.viagem);
-
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: ((context) =>
-                                                    const Home(
-                                                      currentIndex: 1,
-                                                    ))));
-                                      },
-                                      child: const Text('Excluir'),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  CustomColors.vermelhoExcluir),
-                            ),
-                            child: const Text(
-                              "Excluir",
-                              style: CustomStyles.textoBotoes,
-                            ),
-                          )),
-                      SizedBox(
-                          height: 40,
-                          width: 106,
-                          child: TextButton(
-                            onPressed: () {
-                              salvar(widget.viagem, widget.cliente);
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => const Home(
-                                            currentIndex: 1,
-                                          ))));
-                            },
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  CustomColors.verdeSalvar),
-                            ),
-                            child: const Text(
-                              "Salvar",
-                              style: CustomStyles.textoBotoes,
-                            ),
-                          ))
-                    ],
-                  ))
-            ]));
+      ),
+    );
   }
 
   salvar(Viagem viagem, Cliente cliente) {
