@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/colors.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 
 import '../../custom/styles.dart';
 
@@ -17,8 +18,6 @@ class InformacoesSalvasTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
-    const double espaco = 50;
-    const double alturaFields = 60;
 
     return SizedBox(
         height: 450,
@@ -27,16 +26,16 @@ class InformacoesSalvasTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-                height: 50,
+                height: CustomDimens.spaceFields,
                 child: Text(
                   "Outras informações",
                   style: CustomStyles.subTituloCadastro,
                 )),
              const SizedBox(
-              height: espaco,
+              height: CustomDimens.spaceFields,
             ),
             SizedBox(
-                height: alturaFields,
+                height: CustomDimens.heightFields,
                 child: Row(
               children: [
                 Column(

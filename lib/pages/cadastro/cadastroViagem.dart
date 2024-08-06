@@ -95,66 +95,65 @@ class CadastroViagemState extends State<CadastroViagem> {
           Container(
               margin: const EdgeInsets.only(top: 20),
               child: SizedBox(
-                height: altura * CustomDimens.heightListTiles,
-                width: largura * CustomDimens.widthListTiles,
-                child: Column(
-                  children: [
-                    ClienteTile(
-                      nomeController: nomeController,
-                      cpfController: cpfController,
-                      rgController: rgController,
-                      nascimentoController: nascimentoController,
+                  height: altura * CustomDimens.heightListTiles,
+                  width: largura * CustomDimens.widthListTiles,
+                  child: Scrollbar(
+                    child: ListView(
+                      children: [
+                        ClienteTile(
+                          nomeController: nomeController,
+                          cpfController: cpfController,
+                          rgController: rgController,
+                          nascimentoController: nascimentoController,
+                        ),
+                        const SizedBox(
+                          height: CustomDimens.marginTiles,
+                        ),
+                        EscolherClienteTile(
+                          isCadastro: true,
+                          viagem: Viagem(idCliente: -1),
+                        ),
+                        const Divider(
+                          height: CustomDimens.heightDivider,
+                        ),
+                        ViagemTile(
+                          hotelController: hotelController,
+                          cidadeController: cidadeController,
+                        ),
+                        const Divider(
+                          height: CustomDimens.heightDivider,
+                        ),
+                        VooTile(
+                          localizadorController: localizadorController,
+                          companhiaController: companhiaController,
+                          codigoController: codigoController,
+                          dataIdaController: dataIdaController,
+                          horaIdaController: horaIdaController,
+                          dataVoltaController: dataVoltaController,
+                          horaVoltaController: horaVoltaController,
+                        ),
+                        const Divider(
+                          height: CustomDimens.heightDivider,
+                        ),
+                        OutrasInformacoesTile(
+                          valorVendaController: valorVendaController,
+                          comissaoController: comissaoController,
+                          observacoesController: observacoesController,
+                        ),
+                        const SizedBox(
+                          height: CustomDimens.marginTilesSmall,
+                        ),
+                        ActionButtonsCadastro(
+                            functionSave: salvar,
+                            functionDelete: () => {},
+                            indexHome: 1,
+                            isCadastro: true,
+                            isViagem: true,
+                            viagem: null,
+                            cliente: widget.cliente),
+                      ],
                     ),
-                    const SizedBox(
-                      height: CustomDimens.marginTiles,
-                    ),
-                    EscolherClienteTile(
-                      isCadastro: true,
-                      viagem: Viagem(idCliente: -1),
-                    ),
-                    const Divider(
-                      height: CustomDimens.heightDivider,
-                    ),
-                    ViagemTile(
-                      hotelController: hotelController,
-                      cidadeController: cidadeController,
-                    ),
-                    const Divider(
-                      height: CustomDimens.heightDivider,
-                    ),
-                    VooTile(
-                      localizadorController: localizadorController,
-                      companhiaController: companhiaController,
-                      codigoController: codigoController,
-                      dataIdaController: dataIdaController,
-                      horaIdaController: horaIdaController,
-                      dataVoltaController: dataVoltaController,
-                      horaVoltaController: horaVoltaController,
-                    ),
-                    const Divider(
-                      height: CustomDimens.heightDivider,
-                    ),
-                    OutrasInformacoesTile(
-                      valorVendaController: valorVendaController,
-                      comissaoController: comissaoController,
-                      observacoesController: observacoesController,
-                    ),
-                    const SizedBox(
-                      height: CustomDimens.marginTilesSmall,
-                    ),
-                    ActionButtonsCadastro(
-                        functionSave: salvar,
-                        functionDelete: () => {},
-                        indexHome: 1,
-                        isCadastro: true,
-                        isViagem: true,
-                        viagem: null,
-                        cliente: widget.cliente),
-                  ],
-                ),
-              )),
-              ActionButtonsCadastro(functionSave: salvar, functionDelete: () => {}, indexHome: 1, isCadastro: false, isViagem: true, viagem: null, cliente: widget.cliente)
-          
+                  ))),
         ],
       )),
     );

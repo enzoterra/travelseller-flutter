@@ -1,7 +1,7 @@
 abstract class CustomDimens {
   static const double heightTopImages = 0.2;
   static const double heightTopImagesTiles = 0.22;
-  static const double heightListTiles = 0.77;
+  static const double heightListTiles = 0.75;
   static const double widthListTiles = 0.85;
   static const double heightFields = 70;
   static const double heightDivider = 100;

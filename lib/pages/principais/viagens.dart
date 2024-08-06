@@ -26,30 +26,32 @@ class Viagens extends StatefulWidget {
 
 void callbackDispatcher(BuildContext context) {
   Workmanager().executeTask((task, inputData) async {
-    checkTripsAndNotify(context);
+    await checkTripsAndNotify(context);
     return Future.value(true);
   });
 }
 
-void checkTripsAndNotify(BuildContext context) {
+Future checkTripsAndNotify(BuildContext context) async {
   int id = 0;
   var lista = ViagemController().readAll();
-  for (Viagem viagem in lista) {
-    var dataPreString = viagem.dataIda!.split("/");
-    var dataPreDate = dataPreString[2] + dataPreString[1] + dataPreString[0];
-    var data = DateTime.parse(dataPreDate);
-    var hoje = DateTime.now();
+  if (lista.isNotEmpty) {
+    for (Viagem viagem in lista) {
+      var dataPreString = viagem.dataIda!.split("/");
+      var dataPreDate = dataPreString[2] + dataPreString[1] + dataPreString[0];
+      var data = DateTime.parse(dataPreDate);
+      var hoje = DateTime.now();
 
-    if (data.year == hoje.year && data.month == hoje.month) {
-      if (data.day - hoje.day == 1) {
-        var cliente = ClienteController().read(viagem.idCliente);
-        String nome = encurtaNome(cliente.nome);
-        NotificationService().showNotification(
-            CustomNotification(
-                id: id, title: nome, body: "Irá viajar daqui há 1 dia!"),
-            context);
+      if (data.year == hoje.year && data.month == hoje.month) {
+        if (data.day - hoje.day == 1) {
+          var cliente = ClienteController().read(viagem.idCliente);
+          String nome = encurtaNome(cliente.nome);
+          NotificationService().showNotification(
+              CustomNotification(
+                  id: id, title: nome, body: "Irá viajar daqui há 1 dia!"),
+              context);
 
-        id++;
+          id++;
+        }
       }
     }
   }

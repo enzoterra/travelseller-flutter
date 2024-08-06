@@ -60,15 +60,17 @@ class InformacoesClienteState extends State<InformacoesCliente> {
         child: Column(
           children: [
             const TopBarInterno(
-                imagem: CustomImages.imagemInformacoes,
-                titulo: CustomTitles.tituloInformacoes,
-                index: 0,),
+              imagem: CustomImages.imagemInformacoes,
+              titulo: CustomTitles.tituloInformacoes,
+              index: 0,
+            ),
             Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: SizedBox(
+                margin: const EdgeInsets.only(top: 20),
+                child: SizedBox(
                   height: altura * CustomDimens.heightListTiles,
                   width: largura * CustomDimens.widthListTiles,
-                  child: ListView(
+                  child: Scrollbar(
+                      child: ListView(
                     children: [
                       ClienteTile(
                         nomeController: nomeController,
@@ -79,17 +81,17 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                       const SizedBox(
                         height: CustomDimens.marginTilesSmall,
                       ),
+                      ActionButtonsCadastro(
+                          functionSave: salvar,
+                          functionDelete: deletar,
+                          indexHome: 0,
+                          isCadastro: false,
+                          isViagem: false,
+                          viagem: null,
+                          cliente: widget.cliente)
                     ],
                   )),
-            ),
-            ActionButtonsCadastro(
-                functionSave: salvar,
-                functionDelete: deletar,
-                indexHome: 0,
-                isCadastro: false,
-                isViagem: false,
-                viagem: null,
-                cliente: widget.cliente)
+                )),
           ],
         ),
       ),

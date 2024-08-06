@@ -37,41 +37,41 @@ class CadastroClienteState extends State<CadastroCliente> {
     final altura = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const TopBarInterno(
-                imagem: CustomImages.imagemCadastro,
-                titulo: CustomTitles.tituloCadastro,
-                index: 0,),
-            Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                    height: altura * CustomDimens.heightListTiles,
-                    width: largura * CustomDimens.widthListTiles,
-                    child: ListView(
-                      children: [
-                        ClienteTile(
-                          nomeController: nomeController,
-                          cpfController: cpfController,
-                          rgController: rgController,
-                          nascimentoController: nascimentoController,
-                        ),
-                        const SizedBox(
-                          height: CustomDimens.marginTiles,
-                        ),
-                      ],
-                    ))),
-            ActionButtonsCadastro(
-                functionSave: salvar,
-                functionDelete: () => {},
-                indexHome: 0,
-                isCadastro: true,
-                isViagem: false,
-                viagem: null,
-                cliente: null)
-          ],
-        ),
+      body: Column(
+        children: [
+          const TopBarInterno(
+            imagem: CustomImages.imagemCadastro,
+            titulo: CustomTitles.tituloCadastro,
+            index: 0,
+          ),
+          Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: SizedBox(
+                  height: altura * CustomDimens.heightListTiles,
+                  width: largura * CustomDimens.widthListTiles,
+                  child: Scrollbar(
+                      child: ListView(
+                    children: [
+                      ClienteTile(
+                        nomeController: nomeController,
+                        cpfController: cpfController,
+                        rgController: rgController,
+                        nascimentoController: nascimentoController,
+                      ),
+                      const SizedBox(
+                        height: CustomDimens.marginTiles,
+                      ),
+                      ActionButtonsCadastro(
+                          functionSave: salvar,
+                          functionDelete: () => {},
+                          indexHome: 0,
+                          isCadastro: true,
+                          isViagem: false,
+                          viagem: null,
+                          cliente: null)
+                    ],
+                  )))),
+        ],
       ),
     );
   }
