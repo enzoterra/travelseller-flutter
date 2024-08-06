@@ -23,7 +23,9 @@ abstract class CustomColors {
 
   static const Color azulBotaoViagens = Color.fromARGB(255, 1, 50, 124);
 
-  static const Color verdeSalvar = Colors.green;
+  static const Color verdeSalvar = Color.fromARGB(255, 56, 129, 58);
+
+  static const Color verdeExportar = Color.fromARGB(255, 45, 117, 90);
 
   static const Color vermelhoExcluir = Colors.red;
 

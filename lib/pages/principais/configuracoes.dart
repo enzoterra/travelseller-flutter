@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/colors.dart';
+import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
@@ -60,50 +61,124 @@ class ConfiguracoesState extends State<Configuracoes> {
 
   @override
   Widget build(BuildContext context) {
+    final altura = MediaQuery.of(context).size.height;
+    final largura = MediaQuery.of(context).size.width;
     const double espaco = 20;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(children: [
-          const TopBarInterno(
-              imagem: CustomImages.imagemConfiguracoes,
-              titulo: CustomTitles.tituloConfiguracoes,
-              index: 1,),
-          Container(
-              margin: const EdgeInsets.only(top: 25),
-              padding: const EdgeInsets.all(30),
-              child: Column(children: [
-                //Tiles 1
-                SizedBox(
-                    height: 220,
-                    child: Column(
+      body: Column(children: [
+        const TopBarInterno(
+          imagem: CustomImages.imagemConfiguracoes,
+          titulo: CustomTitles.tituloConfiguracoes,
+          index: 1,
+        ),
+        SizedBox(
+            width: largura * CustomDimens.widthListTiles,
+            height: altura * 0.72,
+            child: Scrollbar(
+                child: ListView(children: [
+              const SizedBox(
+                height: espaco,
+              ),
+
+              //Tiles 1
+              SizedBox(
+                  height: 220,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Deseja receber lembretes de\nIda e Volta dos clientes?",
+                        style: CustomStyles.topicoConfiguracoes,
+                      ),
+                      const SizedBox(
+                        height: espaco,
+                      ),
+                      ListTile(
+                        selected: ida,
+                        onTap: () {
+                          setState(() {
+                            ida = !ida;
+                          });
+                        },
+                        iconColor: CustomColors.stateVerdePreto,
+                        textColor: CustomColors.stateVerdePreto,
+                        leading: CustomIcons.configuracaoIda,
+                        title: const Text('Lembrete de Ida'),
+                        trailing: Switch(
+                          onChanged: (bool? value) {
+                            setState(() {
+                              ida = value!;
+                            });
+                          },
+                          value: ida,
+                          activeColor: CustomColors.verdeEscuro,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: espaco,
+                      ),
+                      ListTile(
+                        selected: volta,
+                        onTap: () {
+                          setState(() {
+                            volta = !volta;
+                          });
+                        },
+                        iconColor: CustomColors.stateVerdePreto,
+                        textColor: CustomColors.stateVerdePreto,
+                        leading: CustomIcons.configuracaoVolta,
+                        title: const Text('Lembrete de Volta'),
+                        trailing: Switch(
+                          onChanged: (bool? value) {
+                            setState(() {
+                              volta = value!;
+                            });
+                          },
+                          value: volta,
+                          activeColor: CustomColors.verdeEscuro,
+                        ),
+                      ),
+                    ],
+                  )),
+              const Divider(
+                thickness: 0.4,
+              ),
+              const SizedBox(
+                height: espaco * 2,
+              ),
+
+              //Tiles 2
+              SizedBox(
+                  height: 220,
+                  child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Deseja receber lembretes de\nIda e Volta dos clientes?",
+                          "Com quanto tempo de antecedência deseja receber os lembretes?",
                           style: CustomStyles.topicoConfiguracoes,
                         ),
                         const SizedBox(
                           height: espaco,
                         ),
                         ListTile(
-                          selected: ida,
+                          selected: umDia,
                           onTap: () {
                             setState(() {
-                              ida = !ida;
+                              umDia = !umDia;
                             });
                           },
                           iconColor: CustomColors.stateVerdePreto,
                           textColor: CustomColors.stateVerdePreto,
-                          leading: CustomIcons.configuracaoIda,
-                          title: const Text('Lembrete de Ida'),
+                          leading: CustomIcons.configuracaoUmDia,
+                          title: const Text('1 dia antes'),
                           trailing: Switch(
                             onChanged: (bool? value) {
                               setState(() {
-                                ida = value!;
+                                umDia = value!;
                               });
                             },
-                            value: ida,
+                            value: umDia,
                             activeColor: CustomColors.verdeEscuro,
                           ),
                         ),
@@ -111,152 +186,122 @@ class ConfiguracoesState extends State<Configuracoes> {
                           height: espaco,
                         ),
                         ListTile(
-                          selected: volta,
+                          selected: doisDias,
                           onTap: () {
                             setState(() {
-                              volta = !volta;
+                              doisDias = !doisDias;
                             });
                           },
                           iconColor: CustomColors.stateVerdePreto,
                           textColor: CustomColors.stateVerdePreto,
-                          leading: CustomIcons.configuracaoVolta,
-                          title: const Text('Lembrete de Volta'),
+                          leading: CustomIcons.configuracaoDoisDias,
+                          title: const Text('2 dias antes'),
                           trailing: Switch(
                             onChanged: (bool? value) {
                               setState(() {
-                                volta = value!;
+                                doisDias = value!;
                               });
                             },
-                            value: volta,
+                            value: doisDias,
                             activeColor: CustomColors.verdeEscuro,
                           ),
                         ),
-                      ],
-                    )),
-                const Divider(thickness: 0.4,),
-                const SizedBox(
-                  height: espaco * 2,
-                ),
-                //Tiles 2
-                SizedBox(
-                    height: 220,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Com quanto tempo de antecedência deseja receber os lembretes?",
-                            style: CustomStyles.topicoConfiguracoes,
-                          ),
-                          const SizedBox(
-                            height: espaco,
-                          ),
-                          ListTile(
-                            selected: umDia,
-                            onTap: () {
-                              setState(() {
-                                umDia = !umDia;
-                              });
-                            },
-                            iconColor: CustomColors.stateVerdePreto,
-                            textColor: CustomColors.stateVerdePreto,
-                            leading: CustomIcons.configuracaoUmDia,
-                            title: const Text('1 dia antes'),
-                            trailing: Switch(
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  umDia = value!;
-                                });
-                              },
-                              value: umDia,
-                              activeColor: CustomColors.verdeEscuro,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: espaco,
-                          ),
-                          ListTile(
-                            selected: doisDias,
-                            onTap: () {
-                              setState(() {
-                                doisDias = !doisDias;
-                              });
-                            },
-                            iconColor: CustomColors.stateVerdePreto,
-                            textColor: CustomColors.stateVerdePreto,
-                            leading: CustomIcons.configuracaoDoisDias,
-                            title: const Text('2 dias antes'),
-                            trailing: Switch(
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  doisDias = value!;
-                                });
-                              },
-                              value: doisDias,
-                              activeColor: CustomColors.verdeEscuro,
-                            ),
-                          ),
-                        ])),
+                      ])),
 
-                const Divider(thickness: 0.4,),
-                const SizedBox(
-                  height: espaco * 2,
-                ),
+              const Divider(
+                thickness: 0.4,
+              ),
+              const SizedBox(
+                height: espaco * 2,
+              ),
 
-                //Buttons
-                SizedBox(
-                    height: 60,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //Tiles 3
+              SizedBox(
+                  height: 160,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                            height: 40,
-                            width: 106,
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) => const Home(
-                                              currentIndex: 1,
-                                            ))));
-                              },
-                              style: const ButtonStyle(
-                                backgroundColor: MaterialStatePropertyAll(
-                                    CustomColors.cinzaCancelar),
+                        const Text(
+                          "Exportar e Importar dados",
+                          style: CustomStyles.topicoConfiguracoes,
+                        ),
+                        const SizedBox(
+                          height: CustomDimens.spaceFields,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              height: 42,
+                              width: 110,
+                              child: TextButton(
+                                onPressed: exportar(),
+                                style: const ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      CustomColors.verdeExportar),
+                                ),
+                                child: const Text(
+                                  "Exportar",
+                                  style: CustomStyles.textoBotoesExport,
+                                ),
                               ),
-                              child: const Text(
-                                "Voltar",
-                                style: CustomStyles.cancelarTexto,
+                            ),
+                            SizedBox(
+                              height: 42,
+                              width: 110,
+                              child: TextButton(
+                                onPressed: importar(),
+                                style: const ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      CustomColors.verdeExportar),
+                                ),
+                                child: const Text(
+                                  "Importar",
+                                  style: CustomStyles.textoBotoesExport,
+                                ),
                               ),
-                            )),
-                        SizedBox(
-                            height: 40,
-                            width: 106,
-                            child: TextButton(
-                              onPressed: () {
-                                salvar(id);
+                            )
+                          ],
+                        )
+                      ])),
 
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) => const Home(
-                                              currentIndex: 1,
-                                            ))));
-                              },
-                              style: const ButtonStyle(
-                                backgroundColor: MaterialStatePropertyAll(
-                                    CustomColors.verdeSalvar),
-                              ),
-                              child: const Text(
-                                "Salvar",
-                                style: CustomStyles.textoBotoes,
-                              ),
-                            ))
-                      ],
-                    ))
-              ]))
-        ]),
-      ),
+              const Divider(
+                thickness: 0.4,
+              ),
+              const SizedBox(
+                height: espaco * 2,
+              ),
+
+              //Buttons
+              SizedBox(
+                  height: 40,
+                  width: 120,
+                  child: TextButton(
+                    onPressed: () {
+                      salvar(id);
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const Home(
+                                    currentIndex: 1,
+                                  ))));
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor:
+                          WidgetStatePropertyAll(CustomColors.verdeSalvar),
+                    ),
+                    child: const Text(
+                      "Salvar",
+                      style: CustomStyles.textoBotoes,
+                    ),
+                  )),
+
+              const SizedBox(
+                height: espaco,
+              ),
+            ])))
+      ]),
     );
   }
 
@@ -272,4 +317,8 @@ class ConfiguracoesState extends State<Configuracoes> {
     configuracao.id = id;
     configuracaoController.update(configuracao);
   }
+
+  exportar() {}
+
+  importar() {}
 }

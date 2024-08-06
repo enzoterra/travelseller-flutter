@@ -72,6 +72,13 @@ abstract class CustomStyles {
     letterSpacing: 1.2,
   );
 
+  static const TextStyle textoBotoesExport = TextStyle(
+    color: CustomColors.brancoTextoBotoes,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.2,
+  );
+
   static const TextStyle cancelarTexto = TextStyle(
     color: CustomColors.brancoTextoBotoes,
     fontSize: 18,
