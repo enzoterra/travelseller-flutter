@@ -79,7 +79,7 @@ class InformacoesClienteState extends State<InformacoesCliente> {
                         nascimentoController: nascimentoController,
                       ),
                       const SizedBox(
-                        height: CustomDimens.marginTilesSmall,
+                        height: CustomDimens.marginTiles,
                       ),
                       ActionButtonsCadastro(
                           functionSave: salvar,
