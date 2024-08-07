@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:csv/csv.dart';
 import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
@@ -332,7 +333,20 @@ class ConfiguracoesState extends State<Configuracoes> {
     });
   }
 
-  importar() {}
+  importar() {
+    getDir().then((dir) async {
+      dir = "$dir/TravelSeller";
+      
+      final dataViagens = await rootBundle.loadString('$dir/viagens.csv');
+      List<List<dynamic>> csvViagens = const CsvToListConverter().convert(dataViagens);
+
+      final dataClientes = await rootBundle.loadString('$dir/clientes.csv');
+      List<List<dynamic>> csvClientes = const CsvToListConverter().convert(dataClientes);
+
+      final dataConfiguracao = await rootBundle.loadString('$dir/configuracao.csv');
+      List<List<dynamic>> csvConfiguracao = const CsvToListConverter().convert(dataConfiguracao);
+    });
+  }
 
   exportarViagens(String dir) {
     List<Viagem> viagens = ViagemController().readAll();
@@ -393,7 +407,7 @@ class ConfiguracoesState extends State<Configuracoes> {
       ]);
     }
     String csv = const ListToCsvConverter().convert(lista);
-    File file = File("$dir/configuracoes.csv");
+    File file = File("$dir/configuracao.csv");
     file.writeAsString(csv);
   }
 }
