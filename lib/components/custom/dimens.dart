@@ -11,4 +11,5 @@ abstract class CustomDimens {
   static const double heightTextFields = 40;
   static const double heigthViagemList = 0.59;
   static const double widthLists = 0.92;
+  static const double heigthButtons = 42;
 }

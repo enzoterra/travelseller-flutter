@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/styles.dart';
-import 'package:travelseller/pages/principais/home.dart';
 
 class TopBarInterno extends StatelessWidget {
   const TopBarInterno(
@@ -38,25 +37,24 @@ class TopBarInterno extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => Home(
-                                    currentIndex: index,
-                                  ))));
-                    },
-                    icon: CustomIcons.iconBack,
-                    color: Colors.white,),
+                  onPressed: () {
+                    Navigator.pop(
+                      context,
+                    );
+                  },
+                  icon: CustomIcons.iconBack,
+                  color: Colors.white,
+                ),
               ]),
         ),
-        const SizedBox(height: 8,),
+        const SizedBox(
+          height: 8,
+        ),
         Center(
-          child: Text(
-            titulo,
-            style: CustomStyles.tituloCadastro,
-          )
-        )
+            child: Text(
+          titulo,
+          style: CustomStyles.tituloCadastro,
+        ))
       ]),
     );
   }

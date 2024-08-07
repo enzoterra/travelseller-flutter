@@ -99,7 +99,7 @@ abstract class CustomStyles {
       letterSpacing: 1.2);
 
   static BoxDecoration boxDecorationListas = BoxDecoration(
-    color: Colors.transparent,
+    color: Colors.white,
     borderRadius: const BorderRadius.all(Radius.circular(5)),
     boxShadow: [
       BoxShadow(

@@ -16,7 +16,6 @@ import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/configuracao.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/pages/principais/home.dart';
 
 class Configuracoes extends StatefulWidget {
   const Configuracoes({super.key});
@@ -29,13 +28,7 @@ class ConfiguracoesState extends State<Configuracoes> {
   ConfiguracaoController configuracaoController = ConfiguracaoController();
   List<Configuracao> configuracoes = [];
   int id = 0;
-  bool ida = true,
-      volta = true,
-      umaHora = false,
-      umDia = true,
-      doisDias = true,
-      limpar = false,
-      passar = false;
+  late bool ida, volta, umaHora, umDia, doisDias, limpar, passar;
 
   @override
   void initState() {
@@ -68,6 +61,13 @@ class ConfiguracoesState extends State<Configuracoes> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    // Função que executa quando sair da página
+    salvar(id);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
@@ -82,7 +82,7 @@ class ConfiguracoesState extends State<Configuracoes> {
         ),
         SizedBox(
             width: largura * CustomDimens.widthListTiles,
-            height: altura * 0.72,
+            height: altura * 0.75,
             child: Scrollbar(
                 child: ListView(children: [
               const SizedBox(
@@ -244,6 +244,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                               width: 110,
                               child: TextButton(
                                 onPressed: () {
+                                  exportar();
                                   SnackBar snackBar;
                                   try {
                                     exportar();
@@ -292,11 +293,11 @@ class ConfiguracoesState extends State<Configuracoes> {
                 thickness: 0.4,
               ),
               const SizedBox(
-                height: espaco * 2,
+                height: espaco,
               ),
 
               //Buttons
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              /*Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 SizedBox(
                     height: 40,
                     width: 120,
@@ -321,11 +322,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                         style: CustomStyles.textoBotoes,
                       ),
                     ))
-              ]),
-
-              const SizedBox(
-                height: espaco,
-              ),
+              ]),*/
             ])))
       ]),
     );
@@ -344,13 +341,23 @@ class ConfiguracoesState extends State<Configuracoes> {
     configuracaoController.update(configuracao);
   }
 
-  exportar() {
+  Future<String> getDir() {
     Future<String> dir = ExternalPath.getExternalStoragePublicDirectory(
         ExternalPath.DIRECTORY_DOCUMENTS);
+    return dir;
+  }
 
-    exportarViagens(dir.toString());
-    exportarClientes(dir.toString());
-    exportarConfiguracoes(dir.toString());
+  exportar() {
+    getDir().then((dir) async {
+      dir = "$dir/TravelSeller";
+      final folderPath = Directory(dir);
+      if (await folderPath.exists() == false) {
+        await folderPath.create(recursive: true);
+      }
+      exportarViagens(dir);
+      exportarClientes(dir);
+      exportarConfiguracoes(dir);
+    });
   }
 
   importar() {}

@@ -106,67 +106,65 @@ class InformacoesViagemState extends State<InformacoesViagem> {
               titulo: CustomTitles.tituloInformacoes,
               index: 1,
             ),
-            Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                    height: altura * CustomDimens.heightListTiles,
-                    width: largura * CustomDimens.widthListTiles,
-                    child: Scrollbar(
-                        child: ListView(
-                      children: [
-                        ClienteTile(
-                          nomeController: nomeController,
-                          cpfController: cpfController,
-                          rgController: rgController,
-                          nascimentoController: nascimentoController,
-                        ),
-                        const SizedBox(
-                          height: CustomDimens.marginTiles,
-                        ),
-                        EscolherClienteTile(
-                          isCadastro: false,
-                          viagem: widget.viagem,
-                        ),
-                        const Divider(
-                          height: CustomDimens.heightDivider,
-                        ),
-                        ViagemTile(
-                          hotelController: hotelController,
-                          cidadeController: cidadeController,
-                        ),
-                        const Divider(
-                          height: CustomDimens.heightDivider,
-                        ),
-                        VooTile(
-                          localizadorController: localizadorController,
-                          companhiaController: companhiaController,
-                          codigoController: codigoController,
-                          dataIdaController: dataIdaController,
-                          horaIdaController: horaIdaController,
-                          dataVoltaController: dataVoltaController,
-                          horaVoltaController: horaVoltaController,
-                        ),
-                        const Divider(
-                          height: CustomDimens.heightDivider,
-                        ),
-                        OutrasInformacoesTile(
-                          valorVendaController: valorVendaController,
-                          comissaoController: comissaoController,
-                          observacoesController: observacoesController,
-                        ),
-                        const SizedBox(
-                          height: CustomDimens.marginTilesSmall,
-                        ),
-                        ActionButtonsCadastro(
-                            functionSave: salvar,
-                            functionDelete: deletar,
-                            indexHome: 1,
-                            isCadastro: false,
-                            isViagem: true,
-                            viagem: widget.viagem,
-                            cliente: widget.cliente)
-                      ],
-                    )))),
+            SizedBox(
+                height: altura * CustomDimens.heightListTiles,
+                width: largura * CustomDimens.widthListTiles,
+                child: Scrollbar(
+                    child: ListView(
+                  children: [
+                    ClienteTile(
+                      nomeController: nomeController,
+                      cpfController: cpfController,
+                      rgController: rgController,
+                      nascimentoController: nascimentoController,
+                    ),
+                    const SizedBox(
+                      height: CustomDimens.marginTiles,
+                    ),
+                    EscolherClienteTile(
+                      isCadastro: false,
+                      viagem: widget.viagem,
+                    ),
+                    const Divider(
+                      height: CustomDimens.heightDivider,
+                    ),
+                    ViagemTile(
+                      hotelController: hotelController,
+                      cidadeController: cidadeController,
+                    ),
+                    const Divider(
+                      height: CustomDimens.heightDivider,
+                    ),
+                    VooTile(
+                      localizadorController: localizadorController,
+                      companhiaController: companhiaController,
+                      codigoController: codigoController,
+                      dataIdaController: dataIdaController,
+                      horaIdaController: horaIdaController,
+                      dataVoltaController: dataVoltaController,
+                      horaVoltaController: horaVoltaController,
+                    ),
+                    const Divider(
+                      height: CustomDimens.heightDivider,
+                    ),
+                    OutrasInformacoesTile(
+                      valorVendaController: valorVendaController,
+                      comissaoController: comissaoController,
+                      observacoesController: observacoesController,
+                    ),
+                    const SizedBox(
+                      height: CustomDimens.marginTilesSmall,
+                    ),
+                    ActionButtonsCadastro(
+                        functionSave: salvar,
+                        functionDelete: deletar,
+                        indexHome: 1,
+                        isCadastro: false,
+                        isViagem: true,
+                        viagem: widget.viagem,
+                        cliente: widget.cliente)
+                  ],
+                ))),
           ],
         ),
       ),

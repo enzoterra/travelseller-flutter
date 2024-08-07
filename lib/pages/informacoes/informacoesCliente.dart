@@ -64,34 +64,32 @@ class InformacoesClienteState extends State<InformacoesCliente> {
               titulo: CustomTitles.tituloInformacoes,
               index: 0,
             ),
-            Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                  height: altura * CustomDimens.heightListTiles,
-                  width: largura * CustomDimens.widthListTiles,
-                  child: Scrollbar(
-                      child: ListView(
-                    children: [
-                      ClienteTile(
-                        nomeController: nomeController,
-                        cpfController: cpfController,
-                        rgController: rgController,
-                        nascimentoController: nascimentoController,
-                      ),
-                      const SizedBox(
-                        height: CustomDimens.marginTiles,
-                      ),
-                      ActionButtonsCadastro(
-                          functionSave: salvar,
-                          functionDelete: deletar,
-                          indexHome: 0,
-                          isCadastro: false,
-                          isViagem: false,
-                          viagem: null,
-                          cliente: widget.cliente)
-                    ],
-                  )),
-                )),
+            SizedBox(
+              height: altura * CustomDimens.heightListTiles,
+              width: largura * CustomDimens.widthListTiles,
+              child: Scrollbar(
+                  child: ListView(
+                children: [
+                  ClienteTile(
+                    nomeController: nomeController,
+                    cpfController: cpfController,
+                    rgController: rgController,
+                    nascimentoController: nascimentoController,
+                  ),
+                  const SizedBox(
+                    height: CustomDimens.marginTiles,
+                  ),
+                  ActionButtonsCadastro(
+                      functionSave: salvar,
+                      functionDelete: deletar,
+                      indexHome: 0,
+                      isCadastro: false,
+                      isViagem: false,
+                      viagem: null,
+                      cliente: widget.cliente)
+                ],
+              )),
+            ),
           ],
         ),
       ),
