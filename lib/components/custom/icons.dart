@@ -37,7 +37,6 @@ abstract class CustomIcons {
 
   static const Icon iconBack = Icon(
     Icons.arrow_back_rounded,
-    color: Colors.white,
   );
 
   static const String notification = "@mipmap/plane";

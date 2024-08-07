@@ -9,12 +9,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ObjectBox.create();
 
-  var status = await Permission.notification.status;
-  if (status.isDenied) {
-    Permission.notification.request();
-  }
+  requestPermissions();
 
   runApp(const App());
+}
+
+requestPermissions() async {
+  if (await Permission.notification.status.isDenied) {
+    Permission.notification.request();
+  }
+  if (await Permission.storage.status.isDenied) {
+    Permission.storage.request();
+  }
 }
 
 class App extends StatelessWidget {

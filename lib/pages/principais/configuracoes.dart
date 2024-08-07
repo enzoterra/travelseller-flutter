@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:csv/csv.dart';
+import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/dimens.dart';
@@ -6,8 +10,12 @@ import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
 import 'package:travelseller/components/top_bar_interno.dart';
+import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/configuracao_controller.dart';
+import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/configuracao.dart';
+import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/principais/home.dart';
 
 class Configuracoes extends StatefulWidget {
@@ -215,7 +223,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                 height: espaco * 2,
               ),
 
-              //Tiles 3
+              //Tiles Export
               SizedBox(
                   height: 160,
                   child: Column(
@@ -235,10 +243,24 @@ class ConfiguracoesState extends State<Configuracoes> {
                               height: 42,
                               width: 110,
                               child: TextButton(
-                                onPressed: exportar(),
-                                style: const ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
+                                onPressed: () {
+                                  SnackBar snackBar;
+                                  try {
+                                    exportar();
+                                    snackBar = const SnackBar(
+                                        content: Text('Dados exportados!'));
+                                  } catch (error) {
+                                    snackBar = SnackBar(
+                                        content: Text(
+                                            "Erro na exportação - $error"));
+                                  }
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor: const WidgetStatePropertyAll(
                                       CustomColors.verdeExportar),
+                                  shape: CustomStyles.buttonStyle,
                                 ),
                                 child: const Text(
                                   "Exportar",
@@ -251,9 +273,10 @@ class ConfiguracoesState extends State<Configuracoes> {
                               width: 110,
                               child: TextButton(
                                 onPressed: importar(),
-                                style: const ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
+                                style: ButtonStyle(
+                                  backgroundColor: const WidgetStatePropertyAll(
                                       CustomColors.verdeExportar),
+                                  shape: CustomStyles.buttonStyle,
                                 ),
                                 child: const Text(
                                   "Importar",
@@ -273,29 +296,32 @@ class ConfiguracoesState extends State<Configuracoes> {
               ),
 
               //Buttons
-              SizedBox(
-                  height: 40,
-                  width: 120,
-                  child: TextButton(
-                    onPressed: () {
-                      salvar(id);
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                SizedBox(
+                    height: 40,
+                    width: 120,
+                    child: TextButton(
+                      onPressed: () {
+                        salvar(id);
 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const Home(
-                                    currentIndex: 1,
-                                  ))));
-                    },
-                    style: const ButtonStyle(
-                      backgroundColor:
-                          WidgetStatePropertyAll(CustomColors.verdeSalvar),
-                    ),
-                    child: const Text(
-                      "Salvar",
-                      style: CustomStyles.textoBotoes,
-                    ),
-                  )),
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => const Home(
+                                      currentIndex: 1,
+                                    ))));
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(
+                            CustomColors.verdeSalvar),
+                        shape: CustomStyles.buttonStyle,
+                      ),
+                      child: const Text(
+                        "Salvar",
+                        style: CustomStyles.textoBotoes,
+                      ),
+                    ))
+              ]),
 
               const SizedBox(
                 height: espaco,
@@ -318,7 +344,77 @@ class ConfiguracoesState extends State<Configuracoes> {
     configuracaoController.update(configuracao);
   }
 
-  exportar() {}
+  exportar() {
+    Future<String> dir = ExternalPath.getExternalStoragePublicDirectory(
+        ExternalPath.DIRECTORY_DOCUMENTS);
+
+    exportarViagens(dir.toString());
+    exportarClientes(dir.toString());
+    exportarConfiguracoes(dir.toString());
+  }
 
   importar() {}
+
+  exportarViagens(String dir) {
+    List<Viagem> viagens = ViagemController().readAll();
+    List<List<dynamic>> lista = [];
+    for (Viagem v in viagens) {
+      lista.add([
+        v.id,
+        v.codigoVenda,
+        v.localizador,
+        v.companhiaAerea,
+        v.cidade,
+        v.hotel,
+        v.dataIda,
+        v.horaIda,
+        v.dataVolta,
+        v.horaVolta,
+        v.observacoes,
+        v.valorTotal,
+        v.valorComissao,
+        v.idCliente
+      ]);
+    }
+    String csv = const ListToCsvConverter().convert(lista);
+    File file = File("$dir/viagens.csv");
+    file.writeAsString(csv);
+  }
+
+  exportarClientes(String dir) {
+    List<Cliente> clientes = ClienteController().readAll();
+    List<List<dynamic>> lista = [];
+    for (Cliente c in clientes) {
+      lista.add([
+        c.id,
+        c.nome,
+        c.cpf,
+        c.rg,
+        c.dataNascimento,
+      ]);
+    }
+    String csv = const ListToCsvConverter().convert(lista);
+    File file = File("$dir/clientes.csv");
+    file.writeAsString(csv);
+  }
+
+  exportarConfiguracoes(String dir) {
+    List<Configuracao> configuracao = ConfiguracaoController().readAll();
+    List<List<dynamic>> lista = [];
+    for (Configuracao c in configuracao) {
+      lista.add([
+        c.id,
+        c.ida,
+        c.volta,
+        c.umaHora,
+        c.umDia,
+        c.doisDias,
+        c.limpar,
+        c.passar,
+      ]);
+    }
+    String csv = const ListToCsvConverter().convert(lista);
+    File file = File("$dir/configuracoes.csv");
+    file.writeAsString(csv);
+  }
 }

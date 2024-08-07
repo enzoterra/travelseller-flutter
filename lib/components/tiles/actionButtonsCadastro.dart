@@ -5,16 +5,15 @@ import '../../pages/principais/home.dart';
 
 // ignore: must_be_immutable
 class ActionButtonsCadastro extends StatelessWidget {
-  ActionButtonsCadastro({
-    super.key,
-    required this.functionSave,
-    required this.functionDelete,
-    required this.indexHome,
-    required this.isCadastro,
-    required this.isViagem,
-    required this.viagem,
-    required this.cliente
-  });
+  ActionButtonsCadastro(
+      {super.key,
+      required this.functionSave,
+      required this.functionDelete,
+      required this.indexHome,
+      required this.isCadastro,
+      required this.isViagem,
+      required this.viagem,
+      required this.cliente});
 
   final Function functionSave;
   final Function functionDelete;
@@ -51,9 +50,10 @@ class ActionButtonsCadastro extends StatelessWidget {
                                     currentIndex: indexHome,
                                   ))));
                     },
-                    style: const ButtonStyle(
-                      backgroundColor:
-                          WidgetStatePropertyAll(CustomColors.cinzaCancelar),
+                    style: ButtonStyle(
+                      backgroundColor: const WidgetStatePropertyAll(
+                          CustomColors.cinzaCancelar),
+                      shape: CustomStyles.buttonStyle,
                     ),
                     child: const Text(
                       "Cancelar",
@@ -74,9 +74,10 @@ class ActionButtonsCadastro extends StatelessWidget {
                                     currentIndex: indexHome,
                                   ))));
                     },
-                    style: const ButtonStyle(
-                      backgroundColor:
-                          WidgetStatePropertyAll(CustomColors.verdeSalvar),
+                    style: ButtonStyle(
+                      backgroundColor: const WidgetStatePropertyAll(
+                          CustomColors.verdeSalvar),
+                      shape: CustomStyles.buttonStyle,
                     ),
                     child: const Text(
                       "Salvar",
@@ -129,9 +130,10 @@ class ActionButtonsCadastro extends StatelessWidget {
                           ),
                         );
                       },
-                      style: const ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(
                             CustomColors.vermelhoExcluir),
+                        shape: CustomStyles.buttonStyle,
                       ),
                       child: const Text(
                         "Excluir",
@@ -152,9 +154,10 @@ class ActionButtonsCadastro extends StatelessWidget {
                                       currentIndex: indexHome,
                                     ))));
                       },
-                      style: const ButtonStyle(
-                        backgroundColor:
-                            WidgetStatePropertyAll(CustomColors.verdeSalvar),
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(
+                            CustomColors.verdeSalvar),
+                        shape: CustomStyles.buttonStyle,
                       ),
                       child: const Text(
                         "Salvar",
@@ -206,9 +209,10 @@ class ActionButtonsCadastro extends StatelessWidget {
                           ),
                         );
                       },
-                      style: const ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(
                             CustomColors.vermelhoExcluir),
+                        shape: CustomStyles.buttonStyle,
                       ),
                       child: const Text(
                         "Excluir",
@@ -229,9 +233,10 @@ class ActionButtonsCadastro extends StatelessWidget {
                                       currentIndex: 1,
                                     ))));
                       },
-                      style: const ButtonStyle(
-                        backgroundColor:
-                            WidgetStatePropertyAll(CustomColors.verdeSalvar),
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(
+                            CustomColors.verdeSalvar),
+                        shape: CustomStyles.buttonStyle,
                       ),
                       child: const Text(
                         "Salvar",

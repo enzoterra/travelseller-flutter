@@ -46,7 +46,8 @@ class TopBarInterno extends StatelessWidget {
                                     currentIndex: index,
                                   ))));
                     },
-                    icon: CustomIcons.iconBack),
+                    icon: CustomIcons.iconBack,
+                    color: Colors.white,),
               ]),
         ),
         const SizedBox(height: 8,),

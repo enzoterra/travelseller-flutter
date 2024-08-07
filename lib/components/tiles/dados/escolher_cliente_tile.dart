@@ -33,9 +33,11 @@ class EscolherClienteTile extends StatelessWidget {
                                 isCadastro: isCadastro,
                               ))));
                 },
-                style: const ButtonStyle(
-                    backgroundColor:
-                        WidgetStatePropertyAll(CustomColors.verdeEscuro)),
+                style: ButtonStyle(
+                  backgroundColor:
+                      const WidgetStatePropertyAll(CustomColors.verdeEscuro),
+                  shape: CustomStyles.buttonStyle,
+                ),
                 child: const Text(
                   "Escolher cliente",
                   style: CustomStyles.textoBotoes,

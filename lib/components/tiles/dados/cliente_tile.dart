@@ -19,7 +19,6 @@ class ClienteTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.of(context).size.width;
-    const double espaco = 50;
     
     return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

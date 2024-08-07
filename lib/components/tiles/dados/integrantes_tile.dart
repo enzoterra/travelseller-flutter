@@ -31,58 +31,58 @@ class InformacoesSalvasTile extends StatelessWidget {
                   "Outras informações",
                   style: CustomStyles.subTituloCadastro,
                 )),
-             const SizedBox(
+            const SizedBox(
               height: CustomDimens.spaceFields,
             ),
             SizedBox(
                 height: CustomDimens.heightFields,
                 child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Valor da Venda",
-                      style: CustomStyles.tituloAtributoCadastro,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Valor da Venda",
+                          style: CustomStyles.tituloAtributoCadastro,
+                        ),
+                        SizedBox(
+                            width: 100,
+                            height: 40,
+                            child: TextFormField(
+                              controller: valorVendaController,
+                              keyboardType: TextInputType.number,
+                              style: CustomStyles.textoAtributoCadastro,
+                              decoration: const InputDecoration(
+                                  hintText: "Ex. 5000",
+                                  border: UnderlineInputBorder()),
+                            ))
+                      ],
                     ),
                     SizedBox(
-                        width: 100,
-                        height: 40,
-                        child: TextFormField(
-                          controller: valorVendaController,
-                          keyboardType: TextInputType.number,
-                          style: CustomStyles.textoAtributoCadastro,
-                          decoration: const InputDecoration(
-                              hintText: "Ex. 5000",
-                              border: UnderlineInputBorder()),
-                        ))
-                  ],
-                ),
-                SizedBox(
-                  width: largura * 0.2,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Comissão",
-                      style: CustomStyles.tituloAtributoCadastro,
+                      width: largura * 0.2,
                     ),
-                    SizedBox(
-                        width: 100,
-                        height: 40,
-                        child: TextFormField(
-                          controller: comissaoController,
-                          keyboardType: TextInputType.number,
-                          style: CustomStyles.textoAtributoCadastro,
-                          decoration: const InputDecoration(
-                              hintText: "Ex. 300",
-                              border: UnderlineInputBorder()),
-                        ))
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Comissão",
+                          style: CustomStyles.tituloAtributoCadastro,
+                        ),
+                        SizedBox(
+                            width: 100,
+                            height: 40,
+                            child: TextFormField(
+                              controller: comissaoController,
+                              keyboardType: TextInputType.number,
+                              style: CustomStyles.textoAtributoCadastro,
+                              decoration: const InputDecoration(
+                                  hintText: "Ex. 300",
+                                  border: UnderlineInputBorder()),
+                            ))
+                      ],
+                    ),
                   ],
-                ),
-              ],
-            )),
+                )),
             const SizedBox(height: 0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,9 +114,11 @@ class InformacoesSalvasTile extends StatelessWidget {
                   width: 140,
                   child: TextButton(
                       onPressed: () {},
-                      style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                              CustomColors.verdeEscuro)),
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(
+                            CustomColors.verdeEscuro),
+                        shape: CustomStyles.buttonStyle,
+                      ),
                       child: const Text(
                         "Integrantes",
                         style: CustomStyles.textoBotoes,

@@ -99,7 +99,7 @@ abstract class CustomStyles {
       letterSpacing: 1.2);
 
   static BoxDecoration boxDecorationListas = BoxDecoration(
-    color: Colors.white,
+    color: Colors.transparent,
     borderRadius: const BorderRadius.all(Radius.circular(5)),
     boxShadow: [
       BoxShadow(
@@ -110,4 +110,8 @@ abstract class CustomStyles {
       ),
     ],
   );
+
+  static WidgetStateProperty<OutlinedBorder> buttonStyle =
+      WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)));
 }
