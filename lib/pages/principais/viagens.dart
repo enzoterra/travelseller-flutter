@@ -95,7 +95,9 @@ class ViagensState extends State<Viagens> {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
 
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
       body: SingleChildScrollView(
           child: Column(
         children: [
@@ -183,6 +185,6 @@ class ViagensState extends State<Viagens> {
         backgroundColor: CustomColors.azulBotaoViagens,
         child: const Icon(Icons.add),
       ),
-    );
+    ));
   }
 }

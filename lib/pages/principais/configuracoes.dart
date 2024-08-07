@@ -240,7 +240,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             SizedBox(
-                              height: 42,
+                              height: CustomDimens.heigthButtons,
                               width: 110,
                               child: TextButton(
                                 onPressed: () {
@@ -270,7 +270,7 @@ class ConfiguracoesState extends State<Configuracoes> {
                               ),
                             ),
                             SizedBox(
-                              height: 42,
+                              height: CustomDimens.heigthButtons,
                               width: 110,
                               child: TextButton(
                                 onPressed: importar(),
@@ -295,34 +295,6 @@ class ConfiguracoesState extends State<Configuracoes> {
               const SizedBox(
                 height: espaco,
               ),
-
-              //Buttons
-              /*Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                SizedBox(
-                    height: 40,
-                    width: 120,
-                    child: TextButton(
-                      onPressed: () {
-                        salvar(id);
-
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => const Home(
-                                      currentIndex: 1,
-                                    ))));
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: const WidgetStatePropertyAll(
-                            CustomColors.verdeSalvar),
-                        shape: CustomStyles.buttonStyle,
-                      ),
-                      child: const Text(
-                        "Salvar",
-                        style: CustomStyles.textoBotoes,
-                      ),
-                    ))
-              ]),*/
             ])))
       ]),
     );

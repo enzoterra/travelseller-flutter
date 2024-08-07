@@ -13,11 +13,13 @@ class Estatisticas extends StatefulWidget {
 class EstatisticasState extends State<Estatisticas> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: TopBar(
-        imagem: CustomImages.imagemEstatisticas,
-        titulo: CustomTitles.tituloEstatisticas,
-      ),
-    );
+    return const PopScope(
+        canPop: false,
+        child: Scaffold(
+          body: TopBar(
+            imagem: CustomImages.imagemEstatisticas,
+            titulo: CustomTitles.tituloEstatisticas,
+          ),
+        ));
   }
 }
