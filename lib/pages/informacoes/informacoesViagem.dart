@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
+import 'package:travelseller/components/buttons/actionButtonsCadastro.dart';
 //import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
 import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
 import 'package:travelseller/components/tiles/dados/outras_informacoes_tile.dart';
 import 'package:travelseller/components/tiles/dados/viagem_tile.dart';
 import 'package:travelseller/components/tiles/dados/voo_tile.dart';
-import 'package:travelseller/components/top_bar_interno.dart';
+import 'package:travelseller/components/topbar/intern_topbar.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
@@ -101,7 +101,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const TopBarInterno(
+            const InternTopbar(
               imagem: CustomImages.imagemInformacoes,
               titulo: CustomTitles.tituloInformacoes,
               index: 1,

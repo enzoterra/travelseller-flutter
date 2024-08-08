@@ -1,12 +1,12 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class Configuracao {
+class Settings {
   int id = 0;
 
   bool ida, volta, umaHora, umDia, doisDias, limpar, passar;
 
-  Configuracao(
+  Settings(
       {required this.ida,
       required this.volta,
       required this.umaHora,

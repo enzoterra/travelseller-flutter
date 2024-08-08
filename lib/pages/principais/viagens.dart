@@ -5,7 +5,7 @@ import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/top_bar.dart';
+import 'package:travelseller/components/topbar/top_bar.dart';
 import 'package:travelseller/components/tiles/lista_viagem_tile.dart';
 import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
@@ -13,7 +13,7 @@ import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/notifications_service.dart';
 import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
-import 'package:travelseller/pages/principais/configuracoes.dart';
+import 'package:travelseller/pages/principais/settings.dart';
 import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -121,7 +121,7 @@ class ViagensState extends State<Viagens> {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) =>
-                                      const Configuracoes())));
+                                      const SettingsPage())));
                         },
                         icon: CustomIcons.iconeConfiguracao),
                   ]),

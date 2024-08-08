@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
+import 'package:travelseller/components/buttons/actionButtonsCadastro.dart';
 import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
-import 'package:travelseller/components/top_bar_interno.dart';
+import 'package:travelseller/components/topbar/intern_topbar.dart';
 import '../../database/controllers/cliente_controller.dart';
 
 class CadastroCliente extends StatefulWidget {
@@ -39,7 +39,7 @@ class CadastroClienteState extends State<CadastroCliente> {
     return Scaffold(
       body: Column(
         children: [
-          const TopBarInterno(
+          const InternTopbar(
             imagem: CustomImages.imagemCadastro,
             titulo: CustomTitles.tituloCadastro,
             index: 0,

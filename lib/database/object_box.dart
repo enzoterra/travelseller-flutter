@@ -1,6 +1,6 @@
 import 'package:travelseller/database/data/objectbox.g.dart';
 import 'package:travelseller/database/model/cliente.dart';
-import 'package:travelseller/database/model/configuracao.dart';
+import 'package:travelseller/database/model/settings.dart';
 import 'package:travelseller/database/model/estatistica.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import 'package:path/path.dart' as p;
@@ -35,7 +35,7 @@ class ObjectBox {
   static late final Box<Viagem> viagemBox;
   static late final Box<Cliente> clienteBox;
   static late final Box<Estatistica> estatisticaBox;
-  static late final Box<Configuracao> configuracaoBox;
+  static late final Box<Settings> configuracaoBox;
 
   ObjectBox._create(this.store) {
     // Adicione qualquer código de configuração adicional,
@@ -52,6 +52,6 @@ class ObjectBox {
     viagemBox = store.box<Viagem>();
     clienteBox = store.box<Cliente>();
     estatisticaBox = store.box<Estatistica>();
-    configuracaoBox = store.box<Configuracao>();
+    configuracaoBox = store.box<Settings>();
   }
 }

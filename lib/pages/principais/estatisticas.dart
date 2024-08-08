@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/top_bar.dart';
+import 'package:travelseller/components/topbar/top_bar.dart';
 
 class Estatisticas extends StatefulWidget {
   const Estatisticas({super.key});

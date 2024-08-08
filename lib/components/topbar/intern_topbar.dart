@@ -4,8 +4,8 @@ import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/pages/principais/home.dart';
 
-class TopBarInterno extends StatelessWidget {
-  const TopBarInterno(
+class InternTopbar extends StatelessWidget {
+  const InternTopbar(
       {super.key,
       required this.imagem,
       required this.titulo,

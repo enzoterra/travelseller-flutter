@@ -4,7 +4,7 @@ import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
 import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/top_bar.dart';
+import 'package:travelseller/components/topbar/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/cadastro/cadastroCliente.dart';
 import 'package:travelseller/pages/informacoes/informacoesCliente.dart';
