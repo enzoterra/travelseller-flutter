@@ -32,6 +32,7 @@ class DiaLembretesState extends State<DiaLembretes> {
             selected: widget.umDia,
             onTap: () {
               setState(() {
+                //SettingsPageState().toggleSwitch('umDia');
                 widget.umDia = !widget.umDia;
               });
             },
@@ -42,6 +43,7 @@ class DiaLembretesState extends State<DiaLembretes> {
             trailing: Switch(
               onChanged: (bool? value) {
                 setState(() {
+                  //SettingsPageState().toggleSwitch('umDia');
                   widget.umDia = value!;
                 });
               },
@@ -56,6 +58,7 @@ class DiaLembretesState extends State<DiaLembretes> {
             selected: widget.doisDias,
             onTap: () {
               setState(() {
+                //SettingsPageState().toggleSwitch('doisDias');
                 widget.doisDias = !widget.doisDias;
               });
             },

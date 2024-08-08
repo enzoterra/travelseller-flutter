@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/dimens.dart';
+import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/images.dart';
+import 'package:travelseller/components/custom/styles.dart';
 import 'package:travelseller/components/custom/titles.dart';
-import 'package:travelseller/components/tiles/settings/dia_lembretes.dart';
 import 'package:travelseller/components/tiles/settings/export_import.dart';
-import 'package:travelseller/components/tiles/settings/ida_volta_lembrete.dart';
 import 'package:travelseller/components/tiles/settings/small_space_tiles.dart';
 import 'package:travelseller/components/tiles/settings/space_tiles.dart';
 import 'package:travelseller/components/topbar/intern_topbar.dart';
@@ -22,7 +23,13 @@ class SettingsPageState extends State<SettingsPage> {
   SettingsController settingsController = SettingsController();
   List<Settings> settings = [];
   int id = 0;
-  late bool ida, volta, umaHora, umDia, doisDias, limpar, passar;
+  bool ida = true,
+      volta = true,
+      umaHora = true,
+      umDia = true,
+      doisDias = true,
+      limpar = true,
+      passar = true;
 
   @override
   void initState() {
@@ -56,46 +63,171 @@ class SettingsPageState extends State<SettingsPage> {
 
   @override
   void dispose() {
-    super.dispose();
-    // Função que executa quando sair da página
     salvar(id);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
+    double espaco = 20;
 
-    return Scaffold(
-      body: Column(children: [
-        const InternTopbar(
-          imagem: CustomImages.imagemConfiguracoes,
-          titulo: CustomTitles.tituloConfiguracoes,
-          index: 1,
-        ),
-        SizedBox(
-            width: largura * CustomDimens.widthListTiles,
-            height: altura * 0.75,
-            child: Scrollbar(
-                child: ListView(children: [
-              const SizedBox(
-                height: 20,
-              ),
+    return PopScope(
+        // Função que executa quando sair da página
+        onPopInvoked: (bool didPop) {
+          if(didPop){
+            return;
+          }
+          Navigator.pop(context, true);
+        },
+        canPop: false,
+        child: Scaffold(
+          body: Column(children: [
+            const InternTopbar(
+              imagem: CustomImages.imagemConfiguracoes,
+              titulo: CustomTitles.tituloConfiguracoes,
+              index: 1,
+            ),
+            SizedBox(
+                width: largura * CustomDimens.widthListTiles,
+                height: altura * 0.75,
+                child: Scrollbar(
+                    child: ListView(children: [
+                  SizedBox(
+                    height: espaco,
+                  ),
 
-              //Tiles Lembretes para ida e volta
-              IdaVoltaLembrete(ida: ida, volta: volta),
-              const SpaceTiles(),
+                  //Tiles Lembretes para ida e volta
+                  SizedBox(
+                      height: 220,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Com quanto tempo de antecedência deseja receber os lembretes?",
+                              style: CustomStyles.topicoConfiguracoes,
+                            ),
+                            SizedBox(
+                              height: espaco,
+                            ),
+                            ListTile(
+                              selected: umDia,
+                              onTap: () {
+                                setState(() {
+                                  umDia = !umDia;
+                                });
+                              },
+                              iconColor: CustomColors.stateVerdePreto,
+                              textColor: CustomColors.stateVerdePreto,
+                              leading: CustomIcons.configuracaoUmDia,
+                              title: const Text('1 dia antes'),
+                              trailing: Switch(
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    umDia = value!;
+                                  });
+                                },
+                                value: umDia,
+                                activeColor: CustomColors.verdeEscuro,
+                              ),
+                            ),
+                            SizedBox(
+                              height: espaco,
+                            ),
+                            ListTile(
+                              selected: doisDias,
+                              onTap: () {
+                                setState(() {
+                                  doisDias = !doisDias;
+                                });
+                              },
+                              iconColor: CustomColors.stateVerdePreto,
+                              textColor: CustomColors.stateVerdePreto,
+                              leading: CustomIcons.configuracaoDoisDias,
+                              title: const Text('2 dias antes'),
+                              trailing: Switch(
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    doisDias = value!;
+                                  });
+                                },
+                                value: doisDias,
+                                activeColor: CustomColors.verdeEscuro,
+                              ),
+                            ),
+                          ])),
 
-              //Tiles Dias para lembretes
-              DiaLembretes(umDia: umDia, doisDias: doisDias),
-              const SpaceTiles(),
+                  const SpaceTiles(),
 
-              //Tiles Export
-              const ExportImportSettings(),
-              const SmallSpaceTiles()
-            ])))
-      ]),
-    );
+                  //Tiles Dias para lembretes
+                  SizedBox(
+                      height: 220,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Deseja receber lembretes de\nIda e Volta dos clientes?",
+                            style: CustomStyles.topicoConfiguracoes,
+                          ),
+                          SizedBox(
+                            height: espaco,
+                          ),
+                          ListTile(
+                            selected: ida,
+                            onTap: () {
+                              setState(() {
+                                ida = !ida;
+                              });
+                            },
+                            iconColor: CustomColors.stateVerdePreto,
+                            textColor: CustomColors.stateVerdePreto,
+                            leading: CustomIcons.configuracaoIda,
+                            title: const Text('Lembrete de Ida'),
+                            trailing: Switch(
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  ida = value!;
+                                });
+                              },
+                              value: ida,
+                              activeColor: CustomColors.verdeEscuro,
+                            ),
+                          ),
+                          SizedBox(
+                            height: espaco,
+                          ),
+                          ListTile(
+                            selected: volta,
+                            onTap: () {
+                              setState(() {
+                                volta = !volta;
+                              });
+                            },
+                            iconColor: CustomColors.stateVerdePreto,
+                            textColor: CustomColors.stateVerdePreto,
+                            leading: CustomIcons.configuracaoVolta,
+                            title: const Text('Lembrete de Volta'),
+                            trailing: Switch(
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  volta = value!;
+                                });
+                              },
+                              value: volta,
+                              activeColor: CustomColors.verdeEscuro,
+                            ),
+                          ),
+                        ],
+                      )),
+                  const SpaceTiles(),
+
+                  //Tiles Export
+                  const ExportImportSettings(),
+                  const SmallSpaceTiles()
+                ])))
+          ]),
+        ));
   }
 
   salvar(int id) {
