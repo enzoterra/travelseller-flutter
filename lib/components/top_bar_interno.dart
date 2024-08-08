@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
 import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/pages/principais/home.dart';
 
 class TopBarInterno extends StatelessWidget {
   const TopBarInterno(
@@ -38,9 +39,12 @@ class TopBarInterno extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pop(
-                      context,
-                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => Home(
+                                  currentIndex: index,
+                                ))));
                   },
                   icon: CustomIcons.iconBack,
                   color: Colors.white,

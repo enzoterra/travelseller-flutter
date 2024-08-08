@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:csv/csv.dart';
 import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
@@ -17,6 +15,7 @@ import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/configuracao.dart';
 import 'package:travelseller/database/model/viagem.dart';
+import 'package:travelseller/pages/principais/home.dart';
 
 class Configuracoes extends StatefulWidget {
   const Configuracoes({super.key});
@@ -245,19 +244,13 @@ class ConfiguracoesState extends State<Configuracoes> {
                               width: 110,
                               child: TextButton(
                                 onPressed: () {
-                                  exportar();
-                                  SnackBar snackBar;
                                   try {
                                     exportar();
-                                    snackBar = const SnackBar(
-                                        content: Text('Dados exportados!'));
+                                    createSnackBar('Dados exportados!');
                                   } catch (error) {
-                                    snackBar = SnackBar(
-                                        content: Text(
-                                            "Erro na exportação - $error"));
+                                    createSnackBar(
+                                        "Erro na exportação - $error");
                                   }
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackBar);
                                 },
                                 style: ButtonStyle(
                                   backgroundColor: const WidgetStatePropertyAll(
@@ -274,7 +267,15 @@ class ConfiguracoesState extends State<Configuracoes> {
                               height: CustomDimens.heigthButtons,
                               width: 110,
                               child: TextButton(
-                                onPressed: importar(),
+                                onPressed: () {
+                                  try {
+                                    importar();
+                                    createSnackBar('Dados importados!');
+                                  } catch (error) {
+                                    createSnackBar(
+                                        "Erro na importação - $error");
+                                  }
+                                },
                                 style: ButtonStyle(
                                   backgroundColor: const WidgetStatePropertyAll(
                                       CustomColors.verdeExportar),
@@ -314,100 +315,179 @@ class ConfiguracoesState extends State<Configuracoes> {
     configuracaoController.update(configuracao);
   }
 
-  Future<String> getDir() {
-    Future<String> dir = ExternalPath.getExternalStoragePublicDirectory(
-        ExternalPath.DIRECTORY_DOCUMENTS);
-    return dir;
-  }
-
   exportar() {
     getDir().then((dir) async {
       dir = "$dir/TravelSeller";
+      String viagens = 'viagens';
+      String clientes = 'clientes';
+      String settings = 'settings';
+
       final folderPath = Directory(dir);
       if (await folderPath.exists() == false) {
         await folderPath.create(recursive: true);
       }
-      exportarViagens(dir);
-      exportarClientes(dir);
-      exportarConfiguracoes(dir);
+      setState(() async {
+        exportarDados(dir, viagens);
+        exportarDados(dir, clientes);
+        exportarDados(dir, settings);
+      });
     });
   }
 
   importar() {
     getDir().then((dir) async {
       dir = "$dir/TravelSeller";
-      
-      final dataViagens = await rootBundle.loadString('$dir/viagens.csv');
-      List<List<dynamic>> csvViagens = const CsvToListConverter().convert(dataViagens);
+      String viagens = 'viagens';
+      String clientes = 'clientes';
+      String settings = 'settings';
 
-      final dataClientes = await rootBundle.loadString('$dir/clientes.csv');
-      List<List<dynamic>> csvClientes = const CsvToListConverter().convert(dataClientes);
+      try {
+        final dataViagens = await getFile(dir, viagens);
+        List<List<dynamic>> csvViagens =
+            const CsvToListConverter().convert(dataViagens);
+        importarDados(viagens, csvViagens);
 
-      final dataConfiguracao = await rootBundle.loadString('$dir/configuracao.csv');
-      List<List<dynamic>> csvConfiguracao = const CsvToListConverter().convert(dataConfiguracao);
+        final dataClientes = await getFile(dir, clientes);
+        List<List<dynamic>> csvClientes =
+            const CsvToListConverter().convert(dataClientes);
+        importarDados(clientes, csvClientes);
+
+        final dataConfiguracao = await getFile(dir, settings);
+        List<List<dynamic>> csvConfiguracao =
+            const CsvToListConverter().convert(dataConfiguracao);
+        importarDados(settings, csvConfiguracao);
+      } catch (error) {
+        createSnackBar("Erro na importação - $error");
+      }
     });
   }
 
-  exportarViagens(String dir) {
-    List<Viagem> viagens = ViagemController().readAll();
-    List<List<dynamic>> lista = [];
-    for (Viagem v in viagens) {
-      lista.add([
-        v.id,
-        v.codigoVenda,
-        v.localizador,
-        v.companhiaAerea,
-        v.cidade,
-        v.hotel,
-        v.dataIda,
-        v.horaIda,
-        v.dataVolta,
-        v.horaVolta,
-        v.observacoes,
-        v.valorTotal,
-        v.valorComissao,
-        v.idCliente
-      ]);
+  importarDados(String origem, List<List<dynamic>> lista) {
+    if (lista.isNotEmpty) {
+      if (origem == 'viagens') {
+        for (var v in lista) {
+          ViagemController().create(
+            v[1].toString(),
+            v[2].toString(),
+            v[3].toString(),
+            v[4].toString(),
+            v[5].toString(),
+            v[6].toString(),
+            v[7].toString(),
+            v[8].toString(),
+            v[9].toString(),
+            v[10].toString(),
+            double.parse(v[11].toString()),
+            double.parse(v[12].toString()),
+            int.parse(v[13].toString()),
+          );
+          createSnackBar('viagens certo');
+        }
+      } else if (origem == 'clientes') {
+        for (var v in lista) {
+          ClienteController().create(v[1].toString(), v[2].toString(),
+              v[3].toString(), v[4].toString());
+          createSnackBar('clientes certo');
+        }
+      } else if (origem == 'settings') {
+        for (var v in lista) {
+          Configuracao configuracao = Configuracao(
+              ida: bool.parse(v[1]),
+              volta: bool.parse(v[2]),
+              umaHora: bool.parse(v[3]),
+              umDia: bool.parse(v[4]),
+              doisDias: bool.parse(v[5]),
+              limpar: bool.parse(v[6]),
+              passar: bool.parse(v[7]));
+          configuracao.id = 0;
+          ConfiguracaoController().update(configuracao);
+          createSnackBar('settings certo');
+        }
+      }
     }
+  }
+
+  exportarDados(String dir, String fileName) {
+    List<List<dynamic>> lista = [];
+    if (fileName == 'viagens') {
+      List<Viagem> viagens = ViagemController().readAll();
+      for (Viagem v in viagens) {
+        lista.add([
+          v.id,
+          v.codigoVenda,
+          v.localizador,
+          v.companhiaAerea,
+          v.cidade,
+          v.hotel,
+          v.dataIda,
+          v.horaIda,
+          v.dataVolta,
+          v.horaVolta,
+          v.observacoes,
+          v.valorTotal,
+          v.valorComissao,
+          v.idCliente
+        ]);
+      }
+    } else if (fileName == 'clientes') {
+      List<Cliente> clientes = ClienteController().readAll();
+      for (Cliente c in clientes) {
+        lista.add([
+          c.id,
+          c.nome,
+          c.cpf,
+          c.rg,
+          c.dataNascimento,
+        ]);
+      }
+    } else if (fileName == 'settings') {
+      List<Configuracao> configuracao = ConfiguracaoController().readAll();
+      for (Configuracao c in configuracao) {
+        lista.add([
+          c.id,
+          c.ida,
+          c.volta,
+          c.umaHora,
+          c.umDia,
+          c.doisDias,
+          c.limpar,
+          c.passar,
+        ]);
+      }
+    }
+    createCsv(lista, dir, fileName);
+  }
+
+  Future<String> getDir() {
+    Future<String> dir = ExternalPath.getExternalStoragePublicDirectory(
+        ExternalPath.DIRECTORY_DOCUMENTS);
+    return dir;
+  }
+
+  getFile(String dir, String document) async {
+    var path = "$dir/$document.csv";
+
+    if (FileSystemEntity.typeSync(path) != FileSystemEntityType.notFound) {
+      try {
+        final file = File(path);
+        final data = await file.readAsString();
+        return data;
+      } catch (error) {
+        createSnackBar('Erro na importação');
+      }
+    } else {
+      createSnackBar('Sem arquivos para importar');
+    }
+  }
+
+  createCsv(List<List<dynamic>> lista, String dir, String fileName) {
     String csv = const ListToCsvConverter().convert(lista);
-    File file = File("$dir/viagens.csv");
+    File file = File("$dir/$fileName.csv");
     file.writeAsString(csv);
   }
 
-  exportarClientes(String dir) {
-    List<Cliente> clientes = ClienteController().readAll();
-    List<List<dynamic>> lista = [];
-    for (Cliente c in clientes) {
-      lista.add([
-        c.id,
-        c.nome,
-        c.cpf,
-        c.rg,
-        c.dataNascimento,
-      ]);
-    }
-    String csv = const ListToCsvConverter().convert(lista);
-    File file = File("$dir/clientes.csv");
-    file.writeAsString(csv);
-  }
-
-  exportarConfiguracoes(String dir) {
-    List<Configuracao> configuracao = ConfiguracaoController().readAll();
-    List<List<dynamic>> lista = [];
-    for (Configuracao c in configuracao) {
-      lista.add([
-        c.id,
-        c.ida,
-        c.volta,
-        c.umaHora,
-        c.umDia,
-        c.doisDias,
-        c.limpar,
-        c.passar,
-      ]);
-    }
-    String csv = const ListToCsvConverter().convert(lista);
-    File file = File("$dir/configuracao.csv");
-    file.writeAsString(csv);
+  createSnackBar(String text) {
+    SnackBar snackBar = SnackBar(content: Text(text));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
