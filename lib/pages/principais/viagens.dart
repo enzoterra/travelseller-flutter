@@ -11,10 +11,10 @@ import 'package:travelseller/database/controllers/cliente_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import 'package:travelseller/notifications_service.dart';
 import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
 import 'package:travelseller/pages/principais/settings.dart';
 import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
+import 'package:travelseller/scripts/viagens.dart';
 import 'package:workmanager/workmanager.dart';
 
 class Viagens extends StatefulWidget {
@@ -24,49 +24,6 @@ class Viagens extends StatefulWidget {
   ViagensState createState() => ViagensState();
 }
 
-void callbackDispatcher(BuildContext context) {
-  Workmanager().executeTask((task, inputData) async {
-    await checkTripsAndNotify(context);
-    return Future.value(true);
-  });
-}
-
-Future checkTripsAndNotify(BuildContext context) async {
-  int id = 0;
-  List<Viagem> lista = ViagemController().readAll();
-  if (lista.isNotEmpty) {
-    for (Viagem viagem in lista) {
-      var dataPreString = viagem.dataIda!.split("/");
-      var dataPreDate = dataPreString[2] + dataPreString[1] + dataPreString[0];
-      var data = DateTime.parse(dataPreDate);
-      var hoje = DateTime.now();
-
-      if (data.year == hoje.year && data.month == hoje.month) {
-        if (data.day - hoje.day == 1) {
-          var cliente = ClienteController().read(viagem.idCliente);
-          String nome = encurtaNome(cliente.nome);
-          NotificationService().showNotification(
-              CustomNotification(
-                  id: id, title: nome, body: "Irá viajar daqui há 1 dia!"),
-              context);
-
-          id++;
-        }
-      }
-    }
-  }
-}
-
-String encurtaNome(String nome) {
-  var nomeSplit = nome.split(" ");
-  if (nomeSplit.first == nomeSplit.last) {
-    nome = nomeSplit.first;
-  } else {
-    nome = nomeSplit.first + (" ") + nomeSplit.last;
-  }
-  return nome;
-}
-
 class ViagensState extends State<Viagens> {
   final viagemController = ViagemController();
   final clienteController = ClienteController();
@@ -74,20 +31,19 @@ class ViagensState extends State<Viagens> {
 
   @override
   void initState() {
-    setState(() {
-      lista = viagemController.readAll();
-    });
+    super.initState();
 
     // Initialize Workmanager
-    Workmanager().initialize(callbackDispatcher);
-    Workmanager().registerPeriodicTask(
+    Workmanager().registerOneOffTask(
       "1",
       "checkTripsTask",
       //frequency: Duration(days: 1),
       initialDelay: Duration.zero,
     );
 
-    super.initState();
+    setState(() {
+      lista = viagemController.readAll();
+    });
   }
 
   @override
@@ -117,6 +73,13 @@ class ViagensState extends State<Viagens> {
                             style: CustomStyles.subTituloPagina),
                         IconButton(
                             onPressed: () {
+                              // Initialize Workmanager
+                              Workmanager().registerOneOffTask(
+                                "1",
+                                "checkTripsTask",
+                                //frequency: Duration(days: 1),
+                                initialDelay: Duration(seconds: 2),
+                              );
                               goToSettings();
                             },
                             icon: CustomIcons.iconeConfiguracao),
@@ -150,7 +113,8 @@ class ViagensState extends State<Viagens> {
 
                             return ListTile(
                                 title: ViagemListTile(
-                                    nome: encurtaNome(cliente.nome),
+                                    nome: ViagensScripts()
+                                        .encurtaNome(cliente.nome),
                                     destino: viagem.cidade!,
                                     embarque: viagem.dataIda!,
                                     desembarque: viagem.dataVolta!),

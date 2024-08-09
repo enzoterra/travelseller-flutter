@@ -95,12 +95,12 @@ class SettingsPageState extends State<SettingsPage> {
                 child: Scrollbar(
                     child: ListView(children: [
                   SizedBox(
-                    height: espaco,
+                    height: espaco / 2,
                   ),
 
                   //Tiles Lembretes para ida e volta
                   SizedBox(
-                      height: 220,
+                      height: altura * 0.29,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -162,7 +162,7 @@ class SettingsPageState extends State<SettingsPage> {
 
                   //Tiles Dias para lembretes
                   SizedBox(
-                      height: 220,
+                      height: altura * 0.28,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

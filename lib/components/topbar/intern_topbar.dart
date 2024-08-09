@@ -20,40 +20,44 @@ class InternTopbar extends StatelessWidget {
     final largura = MediaQuery.of(context).size.width;
 
     return Container(
-      height: altura * CustomDimens.heightTopImagesTiles,
-      width: largura * 1,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              colorFilter: const ColorFilter.mode(
-                  Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
-              fit: BoxFit.cover,
-              image: AssetImage(imagem))),
-      child: Column(children: [
-        SizedBox(
-          height: 75,
-          width: largura * 0.97,
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context, true);
-                  },
-                  icon: CustomIcons.iconBack,
-                  color: Colors.white,
+        height: altura * CustomDimens.heightTopImagesTiles,
+        width: largura * 1,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                colorFilter: const ColorFilter.mode(
+                    Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.medium,
+                image: AssetImage(imagem))),
+        child: SizedBox(
+            height: altura * CustomDimens.heightTopImagesTiles,
+            child: Center(
+              child: Column(children: [
+                SizedBox(
+                  height: altura * 0.105,
+                  width: largura * 0.97,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context, true);
+                          },
+                          icon: CustomIcons.iconBack,
+                          color: Colors.white,
+                        ),
+                      ]),
                 ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Center(
+                    child: Text(
+                  titulo,
+                  style: CustomStyles.tituloCadastro,
+                ))
               ]),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Center(
-            child: Text(
-          titulo,
-          style: CustomStyles.tituloCadastro,
-        ))
-      ]),
-    );
+            )));
   }
 }

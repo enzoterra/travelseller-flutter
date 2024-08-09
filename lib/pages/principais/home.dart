@@ -52,7 +52,7 @@ class HomeState extends State<Home> {
                   color: const Color.fromARGB(255, 51, 51, 51),
                   activeColor: Colors.white,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   gap: 10,
                   tabBorderRadius: 6,
                   tabs: const [

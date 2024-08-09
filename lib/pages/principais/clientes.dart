@@ -81,7 +81,7 @@ class ClientesState extends State<Clientes> {
                 ),
               ),
               Container(
-                height: altura * 0.57,
+                height: altura * 0.58,
                 width: largura * CustomDimens.widthLists,
                 decoration: CustomStyles.boxDecorationListas,
                 child: Container(
