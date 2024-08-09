@@ -45,7 +45,7 @@ class _MesPageState extends State<MesPage> {
     ViagemController viagemController = ViagemController();
     ClienteController clienteController = ClienteController();
     final altura = MediaQuery.of(context).size.height;
-    //final largura = MediaQuery.of(context).size.width;
+    final largura = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Column(
@@ -56,7 +56,8 @@ class _MesPageState extends State<MesPage> {
             index: 0,
           ),
           Container(
-              height: altura * .7,
+              height: altura * 0.7,
+              width: largura * 0.9,
               padding: const EdgeInsets.all(20),
               child: Container(
                 decoration: CustomStyles.boxDecorationListas,

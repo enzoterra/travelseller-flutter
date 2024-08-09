@@ -88,9 +88,16 @@ class EstatisticasState extends State<Estatisticas> {
                     } else {
                       return ListTile(
                           leading: CustomIcons.calendar,
-                          title: Text(anos[index], style: CustomStyles.topicoConfiguracoes,),
+                          title: Text(
+                            anos[index],
+                            style: CustomStyles.topicoConfiguracoes,
+                          ),
                           onTap: () {
-                            AnosPage(ano: anos[index]);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        AnosPage(ano: anos[index]))));
                           });
                     }
                   }))

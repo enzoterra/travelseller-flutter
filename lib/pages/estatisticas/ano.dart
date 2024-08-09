@@ -57,8 +57,8 @@ class AnosPageState extends State<AnosPage> {
           Container(
               padding: EdgeInsets.all(20),
               child: SizedBox(
-                  height: altura * CustomDimens.heightListTiles,
-                  width: largura * CustomDimens.widthListTiles,
+                  height: altura * 0.7,
+                  width: largura * 0.9,
                   child: Container(
                     decoration: CustomStyles.boxDecorationListas,
                     child: ListView.separated(
@@ -78,7 +78,11 @@ class AnosPageState extends State<AnosPage> {
                                 leading: CustomIcons.calendar,
                                 title: Text(meses[index]),
                                 onTap: () {
-                                  MesPage(mes: meses[index]);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              MesPage(mes: meses[index]))));
                                 });
                           }
                         }),
