@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 
@@ -30,7 +31,9 @@ class VooTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         const SizedBox(
             height: CustomDimens.spaceFields,
             child: Text(
@@ -151,6 +154,7 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00/00/0000",
                                       border: UnderlineInputBorder()),
+                                  inputFormatters: [DataInputFormatter()],
                                 ))
                           ],
                         ),
@@ -174,6 +178,7 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00:00",
                                       border: UnderlineInputBorder()),
+                                  inputFormatters: [HoraInputFormatter()],
                                 ))
                           ],
                         )
@@ -220,6 +225,7 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00/00/0000",
                                       border: UnderlineInputBorder()),
+                                  inputFormatters: [DataInputFormatter()],
                                 ))
                           ],
                         ),
@@ -243,6 +249,7 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00:00",
                                       border: UnderlineInputBorder()),
+                                  inputFormatters: [HoraInputFormatter()],
                                 ))
                           ],
                         )
@@ -252,7 +259,9 @@ class VooTile extends StatelessWidget {
                 ),
               ],
             )),
-            const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
       ],
     );
   }

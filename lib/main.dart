@@ -18,12 +18,18 @@ void main() async {
   runApp(const App());
 }
 
+@pragma('vm:entry-point')
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     //checkTripsAndNotify(context);
     print('ahhhhhhhhhhhhhhhh');
     return Future.value(true);
   });
+  /*Workmanager().executeTask((task, inputData) {
+      checkTripsAndNotify(context);
+      markTaskAsCompleted(inputData?['taskName']);
+      return Future.value(true);
+    });*/
 }
 
 requestPermissions() async {

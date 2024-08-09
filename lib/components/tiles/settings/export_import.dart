@@ -27,14 +27,30 @@ class ExportImportSettings extends StatelessWidget {
                 width: 110,
                 child: TextButton(
                   onPressed: () {
-                    try {
-                      SettingsScripts().exportar();
-                      SettingsScripts()
-                          .createSnackBar('Dados exportados!', context);
-                    } catch (error) {
-                      SettingsScripts().createSnackBar(
-                          "Erro na exportação - $error", context);
-                    }
+                    AlertDialog(
+                      title: const Text('Deseja exportar os dados?'),
+                      content: const Text(
+                          'Serão exportados para uma pasta chamada TravelSeller na pasta de documentos do aparelho'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancelar'),
+                          child: const Text('Cancelar'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            try {
+                              SettingsScripts().exportar();
+                              SettingsScripts()
+                                  .createSnackBar('Dados exportados!', context);
+                            } catch (error) {
+                              SettingsScripts().createSnackBar(
+                                  "Erro na exportação - $error", context);
+                            }
+                          },
+                          child: const Text('Excluir'),
+                        ),
+                      ],
+                    );
                   },
                   style: ButtonStyle(
                     backgroundColor: const WidgetStatePropertyAll(
@@ -52,14 +68,30 @@ class ExportImportSettings extends StatelessWidget {
                 width: 110,
                 child: TextButton(
                   onPressed: () {
-                    try {
-                      SettingsScripts().importar(context);
-                      SettingsScripts()
-                          .createSnackBar('Dados importados!', context);
-                    } catch (error) {
-                      SettingsScripts().createSnackBar(
-                          "Erro na importação - $error", context);
-                    }
+                    AlertDialog(
+                      title: const Text('Deseja importar os dados?'),
+                      content: const Text(
+                          'Serão importadors dados de Viagens, Clientes e Configurações'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancelar'),
+                          child: const Text('Cancelar'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            try {
+                              SettingsScripts().importar(context);
+                              SettingsScripts()
+                                  .createSnackBar('Dados importados!', context);
+                            } catch (error) {
+                              SettingsScripts().createSnackBar(
+                                  "Erro na importação - $error", context);
+                            }
+                          },
+                          child: const Text('Excluir'),
+                        ),
+                      ],
+                    );
                   },
                   style: ButtonStyle(
                     backgroundColor: const WidgetStatePropertyAll(

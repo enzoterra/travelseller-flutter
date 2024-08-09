@@ -14,6 +14,7 @@ import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/cadastro/cadastroViagem.dart';
 import 'package:travelseller/pages/principais/settings.dart';
 import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
+import 'package:travelseller/scripts/checkNotifications.dart';
 import 'package:travelseller/scripts/viagens.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -24,22 +25,33 @@ class Viagens extends StatefulWidget {
   ViagensState createState() => ViagensState();
 }
 
+GlobalKey<NavigatorState> viagensContextGlobal = GlobalKey<NavigatorState>();
+
 class ViagensState extends State<Viagens> {
   final viagemController = ViagemController();
   final clienteController = ClienteController();
   List<Viagem> lista = [];
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
 
-    // Initialize Workmanager
-    Workmanager().registerOneOffTask(
-      "1",
-      "checkTripsTask",
-      //frequency: Duration(days: 1),
-      initialDelay: Duration.zero,
-    );
+    String taskName = "checkTripsTask";
+
+    bool isPending = await CheckNotifications().isTaskPending(taskName);
+    if (!isPending) {
+      // Agendar a tarefa, pois ainda não foi agendada ou já foi cumprida
+
+      // Initialize Workmanager
+      Workmanager().registerPeriodicTask("1", taskName,
+          frequency: const Duration(days: 1), // Frequência da tarefa
+          initialDelay: CheckNotifications()
+              .calculateInitialDelay(), // Define o delay inicial, para todo dia às 8h
+          inputData: {'taskName': taskName});
+
+      // Salvar o status da tarefa como pendente
+      CheckNotifications.saveTaskStatus(taskName);
+    }
 
     setState(() {
       lista = viagemController.readAll();
@@ -72,13 +84,12 @@ class ViagensState extends State<Viagens> {
                         const Text(CustomTitles.subTituloViagens,
                             style: CustomStyles.subTituloPagina),
                         IconButton(
-                            onPressed: () {
+                            onPressed: () async {
                               // Initialize Workmanager
-                              Workmanager().registerOneOffTask(
-                                "1",
-                                "checkTripsTask",
-                                //frequency: Duration(days: 1),
-                                initialDelay: Duration(seconds: 2),
+                              await Workmanager().registerOneOffTask(
+                                "2",
+                                "testeTask",
+                                initialDelay: Duration(seconds: 1),
                               );
                               goToSettings();
                             },

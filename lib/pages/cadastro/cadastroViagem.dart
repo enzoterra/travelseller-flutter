@@ -158,49 +158,74 @@ class CadastroViagemState extends State<CadastroViagem> {
   }
 
   salvar() {
-    double valorVenda = 0;
-    double comissao = 0;
-    if (valorVendaController.text != "") {
-      double.parse(valorVendaController.text);
-    }
-
-    if (comissaoController.text != "") {
-      double.parse(comissaoController.text);
-    }
-
-    if (widget.jaTemCliente == 1) {
-      viagemController.create(
-          codigoController.text,
-          localizadorController.text,
-          companhiaController.text,
-          cidadeController.text,
-          hotelController.text,
-          dataIdaController.text,
-          horaIdaController.text,
-          dataVoltaController.text,
-          horaVoltaController.text,
-          observacoesController.text,
-          valorVenda,
-          comissao,
-          widget.cliente.id);
+    if (cidadeController.text == "" && dataIdaController.text == "") {
+      AlertDialog(
+        title: const Text(
+            'A cidade, hotel e/ou data de embarque precisam ser preenchidos'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancelar'),
+            child: const Text('Ok'),
+          ),
+        ],
+      );
     } else {
-      int idCliente = clienteController.create(nomeController.text,
-          cpfController.text, rgController.text, nascimentoController.text);
+      double valorVenda = 0;
+      double comissao = 0;
+      if (valorVendaController.text != "") {
+        double.parse(valorVendaController.text);
+      }
 
-      viagemController.create(
-          codigoController.text,
-          localizadorController.text,
-          companhiaController.text,
-          cidadeController.text,
-          hotelController.text,
-          dataIdaController.text,
-          horaIdaController.text,
-          dataVoltaController.text,
-          horaVoltaController.text,
-          observacoesController.text,
-          valorVenda,
-          comissao,
-          idCliente);
+      if (comissaoController.text != "") {
+        double.parse(comissaoController.text);
+      }
+
+      if (widget.jaTemCliente == 1) {
+        viagemController.create(
+            codigoController.text,
+            localizadorController.text,
+            companhiaController.text,
+            cidadeController.text,
+            hotelController.text,
+            dataIdaController.text,
+            horaIdaController.text,
+            dataVoltaController.text,
+            horaVoltaController.text,
+            observacoesController.text,
+            valorVenda,
+            comissao,
+            widget.cliente.id);
+      } else {
+        if (nomeController.text == "") {
+          AlertDialog(
+            title: const Text('O nome do cliente precisa ser preenchido'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancelar'),
+                child: const Text('Ok'),
+              ),
+            ],
+          );
+        } else {
+          int idCliente = clienteController.create(nomeController.text,
+              cpfController.text, rgController.text, nascimentoController.text);
+
+          viagemController.create(
+              codigoController.text,
+              localizadorController.text,
+              companhiaController.text,
+              cidadeController.text,
+              hotelController.text,
+              dataIdaController.text,
+              horaIdaController.text,
+              dataVoltaController.text,
+              horaVoltaController.text,
+              observacoesController.text,
+              valorVenda,
+              comissao,
+              idCliente);
+        }
+      }
     }
   }
 }

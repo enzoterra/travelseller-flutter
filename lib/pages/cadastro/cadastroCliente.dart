@@ -45,37 +45,49 @@ class CadastroClienteState extends State<CadastroCliente> {
             index: 0,
           ),
           SizedBox(
-               height: altura * CustomDimens.heightListTiles,
-               width: largura * CustomDimens.widthListTiles,
-               child: Scrollbar(
-                   child: ListView(
-                 children: [
-                   ClienteTile(
-                     nomeController: nomeController,
-                     cpfController: cpfController,
-                     rgController: rgController,
-                     nascimentoController: nascimentoController,
-                   ),
-                   const SizedBox(
-                     height: CustomDimens.marginTiles,
-                   ),
-                   ActionButtonsCadastro(
-                       functionSave: salvar,
-                       functionDelete: () => {},
-                       indexHome: 0,
-                       isCadastro: true,
-                       isViagem: false,
-                       viagem: null,
-                       cliente: null)
-                 ],
-               ))),
+              height: altura * CustomDimens.heightListTiles,
+              width: largura * CustomDimens.widthListTiles,
+              child: Scrollbar(
+                  child: ListView(
+                children: [
+                  ClienteTile(
+                    nomeController: nomeController,
+                    cpfController: cpfController,
+                    rgController: rgController,
+                    nascimentoController: nascimentoController,
+                  ),
+                  const SizedBox(
+                    height: CustomDimens.marginTiles,
+                  ),
+                  ActionButtonsCadastro(
+                      functionSave: salvar,
+                      functionDelete: () => {},
+                      indexHome: 0,
+                      isCadastro: true,
+                      isViagem: false,
+                      viagem: null,
+                      cliente: null)
+                ],
+              ))),
         ],
       ),
     );
   }
 
   salvar() {
-    clienteController.create(nomeController.text, cpfController.text,
-        rgController.text, nascimentoController.text);
+    if (nomeController.text == "") {
+      AlertDialog(
+        title: const Text('O nome precisa ser preenchido'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancelar'),
+            child: const Text('Ok'),
+          ),
+        ],
+      );
+    } else {
+      clienteController.create(nomeController.text, cpfController.text,
+          rgController.text, nascimentoController.text);
+    }
   }
 }
