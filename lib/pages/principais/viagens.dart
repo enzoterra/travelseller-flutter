@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelseller/components/custom/colors.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 import 'package:travelseller/components/custom/icons.dart';
@@ -33,29 +34,51 @@ class ViagensState extends State<Viagens> {
   List<Viagem> lista = [];
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
 
     String taskName = "checkTripsTask";
 
-    bool isPending = await CheckNotifications().isTaskPending(taskName);
-    if (!isPending) {
-      // Agendar a tarefa, pois ainda não foi agendada ou já foi cumprida
+    // Chama função assíncrona
+    Future.delayed(Duration.zero, () {
+      isTaskPending(taskName).then((isPending) {
+        // Agendar a tarefa, pois ainda não foi agendada ou já foi cumprida
+        if (isPending) {
+          // Initialize Workmanager
+          Workmanager().registerPeriodicTask("1", taskName,
+              frequency: const Duration(days: 1),
+              initialDelay:
+                  Duration.zero, //CheckNotifications().calculateInitialDelay(),
+              inputData: {'taskName': taskName});
 
-      // Initialize Workmanager
-      Workmanager().registerPeriodicTask("1", taskName,
-          frequency: const Duration(days: 1), // Frequência da tarefa
-          initialDelay: CheckNotifications()
-              .calculateInitialDelay(), // Define o delay inicial, para todo dia às 8h
-          inputData: {'taskName': taskName});
-
-      // Salvar o status da tarefa como pendente
-      CheckNotifications.saveTaskStatus(taskName);
-    }
+          // Salvar o status da tarefa como pendente
+          CheckNotifications.saveTaskStatus(taskName);
+        }
+      });
+    });
 
     setState(() {
       lista = viagemController.readAll();
+
+      // Filtrar viagens que não foram feitas
+      List<Viagem> secondList = [];
+      for (Viagem viagem in lista) {
+        var today = DateTime.now();
+        var dataPreString = viagem.dataVolta!.split("/");
+        var dataPreDate =
+            dataPreString[2] + dataPreString[1] + dataPreString[0];
+        DateTime data = DateTime.parse(dataPreDate);
+        if (today.isBefore(data)) {
+          secondList.add(viagem);
+        }
+      }
+      lista = secondList;
     });
+  }
+
+  Future<bool> isTaskPending(String taskName) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(taskName) ?? false;
   }
 
   @override
@@ -85,12 +108,6 @@ class ViagensState extends State<Viagens> {
                             style: CustomStyles.subTituloPagina),
                         IconButton(
                             onPressed: () async {
-                              // Initialize Workmanager
-                              await Workmanager().registerOneOffTask(
-                                "2",
-                                "testeTask",
-                                initialDelay: Duration(seconds: 1),
-                              );
                               goToSettings();
                             },
                             icon: CustomIcons.iconeConfiguracao),
@@ -101,46 +118,42 @@ class ViagensState extends State<Viagens> {
                 height: altura * CustomDimens.heigthViagemList,
                 width: largura * CustomDimens.widthLists,
                 decoration: CustomStyles.boxDecorationListas,
-                child: Container(
-                    decoration: CustomStyles.decorationTile,
-                    child: ListView.separated(
-                        padding: const EdgeInsets.only(top: 10, bottom: 7),
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(
-                              thickness: 0.5,
-                              indent: 12,
-                              endIndent: 12,
-                            ),
-                        itemCount: lista.length,
-                        itemBuilder: (context, index) {
-                          if (lista.isEmpty) {
-                            return const Center(
-                                child: Text("Sem clientes ..."));
-                          } else {
-                            int id = lista[index].id;
-                            Viagem viagem = viagemController.read(id);
-                            Cliente cliente =
-                                clienteController.read(viagem.idCliente);
+                child: ListView.separated(
+                    padding: const EdgeInsets.only(top: 10, bottom: 7),
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(
+                          thickness: 0.5,
+                          indent: 12,
+                          endIndent: 12,
+                        ),
+                    itemCount: lista.length,
+                    itemBuilder: (context, index) {
+                      if (lista.isEmpty) {
+                        return const Center(child: Text("Sem clientes ..."));
+                      } else {
+                        int id = lista[index].id;
+                        Viagem viagem = viagemController.read(id);
+                        Cliente cliente =
+                            clienteController.read(viagem.idCliente);
 
-                            return ListTile(
-                                title: ViagemListTile(
-                                    nome: ViagensScripts()
-                                        .encurtaNome(cliente.nome),
-                                    destino: viagem.cidade!,
-                                    embarque: viagem.dataIda!,
-                                    desembarque: viagem.dataVolta!),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) =>
-                                              InformacoesViagem(
-                                                viagem: viagem,
-                                                cliente: cliente,
-                                              ))));
-                                });
-                          }
-                        })),
+                        return ListTile(
+                            title: ViagemListTile(
+                                nome:
+                                    ViagensScripts().encurtaNome(cliente.nome),
+                                destino: viagem.cidade!,
+                                embarque: viagem.dataIda!,
+                                desembarque: viagem.dataVolta!),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => InformacoesViagem(
+                                            viagem: viagem,
+                                            cliente: cliente,
+                                          ))));
+                            });
+                      }
+                    }),
               ),
             ],
           )),

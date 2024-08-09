@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:travelseller/components/custom/dimens.dart';
 
 import '../../custom/styles.dart';
@@ -154,7 +155,10 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00/00/0000",
                                       border: UnderlineInputBorder()),
-                                  inputFormatters: [DataInputFormatter()],
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    DataInputFormatter()
+                                  ],
                                 ))
                           ],
                         ),
@@ -178,7 +182,10 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00:00",
                                       border: UnderlineInputBorder()),
-                                  inputFormatters: [HoraInputFormatter()],
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    HoraInputFormatter()
+                                  ],
                                 ))
                           ],
                         )
@@ -225,7 +232,10 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00/00/0000",
                                       border: UnderlineInputBorder()),
-                                  inputFormatters: [DataInputFormatter()],
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    DataInputFormatter()
+                                  ],
                                 ))
                           ],
                         ),
@@ -249,7 +259,10 @@ class VooTile extends StatelessWidget {
                                   decoration: const InputDecoration(
                                       hintText: "00:00",
                                       border: UnderlineInputBorder()),
-                                  inputFormatters: [HoraInputFormatter()],
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    HoraInputFormatter()
+                                  ],
                                 ))
                           ],
                         )

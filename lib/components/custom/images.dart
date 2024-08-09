@@ -11,4 +11,6 @@ abstract class CustomImages {
   static const String imagemInformacoes = "assets/images/montanhas.jpg";
 
   static const String imagemConfiguracoes = "assets/images/aeroporto.jpg";
+
+  static const String imagemInternEstatisticas = "assets/images/passageiros-aeroporto.jpg";
 }

@@ -78,7 +78,10 @@ class ClienteTile extends StatelessWidget {
                       decoration: const InputDecoration(
                           hintText: "000.000.000-00",
                           border: UnderlineInputBorder()),
-                      inputFormatters: [CpfInputFormatter()],
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter()
+                      ],
                     ))
               ],
             )),
@@ -127,7 +130,10 @@ class ClienteTile extends StatelessWidget {
                           decoration: const InputDecoration(
                               hintText: "00/00/0000",
                               border: UnderlineInputBorder()),
-                          inputFormatters: [DataInputFormatter()],
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            DataInputFormatter()
+                          ],
                         ))
                   ],
                 )

@@ -73,7 +73,7 @@ class HomeState extends State<Home> {
                       ]),
                     ),
                     GButton(
-                      icon: Icons.calendar_today,
+                      icon: Icons.analytics,
                       text: "Estatísticas",
                       backgroundGradient: LinearGradient(colors: [
                         CustomColors.cor1Estatisticas,

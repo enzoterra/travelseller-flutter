@@ -84,41 +84,35 @@ class ClientesState extends State<Clientes> {
                 height: altura * 0.58,
                 width: largura * CustomDimens.widthLists,
                 decoration: CustomStyles.boxDecorationListas,
-                child: Container(
-                    decoration: CustomStyles.decorationTile,
-                    child: ListView.separated(
-                        padding: const EdgeInsets.all(10),
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(
-                              thickness: 0.5,
-                              indent: 10,
-                              endIndent: 10,
-                            ),
-                        itemCount: displayLista.length,
-                        itemBuilder: (context, index) {
-                          if (displayLista.isEmpty) {
-                            return const Center(
-                                child: Text("Sem clientes ..."));
-                          } else {
-                            int id = displayLista[index].id;
-                            return ListTile(
-                                leading: CustomIcons.iconeClienteTile,
-                                title:
-                                    Text(displayLista[index].nome.toString()),
-                                onTap: () {
-                                  Cliente cliente =
-                                      ClienteController().read(id);
+                child: ListView.separated(
+                    padding: const EdgeInsets.all(10),
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(
+                          thickness: 0.5,
+                          indent: 5,
+                          endIndent: 5,
+                        ),
+                    itemCount: displayLista.length,
+                    itemBuilder: (context, index) {
+                      if (displayLista.isEmpty) {
+                        return const Center(child: Text("Sem clientes ..."));
+                      } else {
+                        int id = displayLista[index].id;
+                        return ListTile(
+                            leading: CustomIcons.iconeClienteTile,
+                            title: Text(displayLista[index].nome.toString()),
+                            onTap: () {
+                              Cliente cliente = ClienteController().read(id);
 
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) =>
-                                              InformacoesCliente(
-                                                cliente: cliente,
-                                              ))));
-                                });
-                          }
-                        })),
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => InformacoesCliente(
+                                            cliente: cliente,
+                                          ))));
+                            });
+                      }
+                    }),
               ),
             ],
           )),

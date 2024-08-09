@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelseller/database/controllers/cliente_controller.dart';
+import 'package:travelseller/database/controllers/settings_controller.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
+import 'package:travelseller/database/model/settings.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/scripts/notifications_service.dart';
 import 'package:travelseller/pages/principais/viagens.dart';
@@ -9,8 +11,10 @@ import 'package:travelseller/scripts/viagens.dart';
 import 'package:workmanager/workmanager.dart';
 
 class CheckNotifications {
-  static void callbackDispatcher() {
+  @pragma('vm:entry-point')
+  static callbackDispatcher() {
     Workmanager().executeTask((task, inputData) {
+      print("ta bom, ta indo!!!!!");
       checkTripsAndNotify();
       markTaskAsCompleted(inputData?['taskName']);
       return Future.value(true);
@@ -19,25 +23,77 @@ class CheckNotifications {
 
   static Future checkTripsAndNotify() async {
     BuildContext context = viagensContextGlobal.currentContext!;
-    int id = 0;
     List<Viagem> lista = ViagemController().readAll();
+    Settings settings = SettingsController().read(0);
+    int id = 0;
     if (lista.isNotEmpty) {
       for (Viagem viagem in lista) {
-        var dataPreString = viagem.dataIda!.split("/");
-        var dataPreDate =
-            dataPreString[2] + dataPreString[1] + dataPreString[0];
-        var data = DateTime.parse(dataPreDate);
-        var hoje = DateTime.now();
+        sendDayNotification(viagem, id, settings, context);
+        id += 4;
+      }
+    }
+  }
 
-        if (data.year == hoje.year && data.month == hoje.month) {
-          if (data.day - hoje.day == 1) {
+  static sendDayNotification(
+      Viagem viagem, int id, Settings settings, BuildContext context) {
+    if (settings.ida) {
+      var dataPreString = viagem.dataIda!.split("/");
+      var dataPreDate = dataPreString[2] + dataPreString[1] + dataPreString[0];
+      var data = DateTime.parse(dataPreDate);
+      var hoje = DateTime.now();
+
+      final difference = data.difference(hoje);
+
+      if (settings.umDia) {
+        if (difference.inDays == 1) {
+          var cliente = ClienteController().read(viagem.idCliente);
+          String nome = ViagensScripts().encurtaNome(cliente.nome);
+          NotificationService().showNotification(
+              CustomNotification(
+                  id: id, title: nome, body: "Irá viajar daqui há 1 dia!"),
+              context);
+          id++;
+        }
+        if (settings.doisDias) {
+          if (difference.inDays == 2) {
             var cliente = ClienteController().read(viagem.idCliente);
             String nome = ViagensScripts().encurtaNome(cliente.nome);
             NotificationService().showNotification(
                 CustomNotification(
-                    id: id, title: nome, body: "Irá viajar daqui há 1 dia!"),
+                    id: id, title: nome, body: "Irá viajar daqui há 2 dias!"),
                 context);
+            id++;
+          }
+        }
+      }
+    }
 
+    if (settings.volta) {
+      var dataPreString = viagem.dataVolta!.split("/");
+      var dataPreDate = dataPreString[2] + dataPreString[1] + dataPreString[0];
+      var data = DateTime.parse(dataPreDate);
+      var hoje = DateTime.now();
+
+      final difference = data.difference(hoje);
+
+      if (settings.umDia) {
+        if (difference.inDays == 1) {
+          var cliente = ClienteController().read(viagem.idCliente);
+          String nome = ViagensScripts().encurtaNome(cliente.nome);
+          NotificationService().showNotification(
+              CustomNotification(
+                  id: id, title: nome, body: "Irá voltar daqui há 1 dia!"),
+              context);
+          id++;
+        }
+        if (settings.doisDias) {
+          if (difference.inDays == 2) {
+            var cliente = ClienteController().read(viagem.idCliente);
+            String nome = ViagensScripts().encurtaNome(cliente.nome);
+            NotificationService().showNotification(
+                CustomNotification(
+                    id: id, title: nome, body: "Irá voltar daqui há 2 dias!"),
+                context);
             id++;
           }
         }

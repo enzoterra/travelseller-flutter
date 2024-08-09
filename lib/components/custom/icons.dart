@@ -39,5 +39,9 @@ abstract class CustomIcons {
     Icons.arrow_back_rounded,
   );
 
+  static const Icon calendar = Icon(
+    Icons.calendar_today,
+  );
+
   static const String notification = "@mipmap/plane";
 }

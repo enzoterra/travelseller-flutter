@@ -8,7 +8,8 @@ abstract class CustomTitles {
   static const String subTituloClientes = "Próximas Viagens";
 
   static const String tituloEstatisticas = "Financeiro e\nEstatísticas";
-  static const String subTituloEstatisticas = "Próximas Viagens";
+  static const String subTituloEstatisticas = "Lista de anos";
+  static const String subTituloEstatisticas2 = "Financeiro por ano";
 
   static const String tituloCadastro = "Novo cadastro";
   static const String tituloInformacoes = "Informações";
