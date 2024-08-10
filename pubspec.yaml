@@ -38,7 +38,7 @@ dependencies:
   external_path: ^1.0.3
   shared_preferences: ^2.3.1
   brasil_fields: ^1.15.0
-  fl_chart: ^0.68.0
+  #fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:

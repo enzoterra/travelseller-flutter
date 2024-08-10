@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/dimens.dart';
-import 'package:travelseller/components/custom/icons.dart';
-import 'package:travelseller/components/custom/images.dart';
-import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/custom/dimens.dart';
+import 'package:travelseller/custom/icons.dart';
+import 'package:travelseller/custom/images.dart';
+import 'package:travelseller/custom/styles.dart';
 import 'package:travelseller/components/topbar/intern_topbar.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/viagem.dart';

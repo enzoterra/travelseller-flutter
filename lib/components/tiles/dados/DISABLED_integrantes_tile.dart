@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
-import 'package:travelseller/components/custom/dimens.dart';
+import 'package:travelseller/custom/colors.dart';
+import 'package:travelseller/custom/dimens.dart';
 
-import '../../custom/styles.dart';
+import '../../../custom/styles.dart';
 
 class InformacoesSalvasTile extends StatelessWidget {
   const InformacoesSalvasTile(

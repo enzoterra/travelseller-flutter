@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:travelseller/components/custom/icons.dart';
+import 'package:travelseller/custom/icons.dart';
 import 'package:travelseller/pages/principais/home.dart';
 
 class CustomNotification {
@@ -20,10 +20,10 @@ class NotificationService {
     localNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const android = AndroidInitializationSettings(CustomIcons.notification);
     const ios = DarwinInitializationSettings(
-            requestAlertPermission: true,
-            requestBadgePermission: true,
-            requestSoundPermission: true,
-            );
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+    );
 
     await localNotificationsPlugin.initialize(
       const InitializationSettings(android: android, iOS: ios),
@@ -40,8 +40,8 @@ class NotificationService {
 
     //const IOSFlutterLocalNotificationsPlugin iosDetails;
 
-    platformChannelSpecifics =
-        const NotificationDetails(android: androidDetails, iOS: DarwinNotificationDetails());
+    platformChannelSpecifics = const NotificationDetails(
+        android: androidDetails, iOS: DarwinNotificationDetails());
   }
 
   showNotification(

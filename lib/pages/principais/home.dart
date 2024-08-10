@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:travelseller/components/custom/colors.dart';
+import 'package:travelseller/custom/colors.dart';
 import 'package:travelseller/pages/principais/clientes.dart';
 import 'package:travelseller/pages/principais/estatisticas.dart';
 import 'package:travelseller/pages/principais/viagens.dart';

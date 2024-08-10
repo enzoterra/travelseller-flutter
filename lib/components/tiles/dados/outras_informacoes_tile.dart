@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/dimens.dart';
+import 'package:travelseller/custom/dimens.dart';
 
-import '../../custom/styles.dart';
+import '../../../custom/styles.dart';
 
 class OutrasInformacoesTile extends StatelessWidget {
   const OutrasInformacoesTile(
@@ -19,21 +19,23 @@ class OutrasInformacoesTile extends StatelessWidget {
     final largura = MediaQuery.of(context).size.width;
 
     return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10,),
-            const SizedBox(
-                height: CustomDimens.spaceFields,
-                child: Text(
-                  "Outras informações",
-                  style: CustomStyles.subTituloCadastro,
-                )),
-             const SizedBox(
-              height: CustomDimens.spaceFields - 20,
-            ),
-            SizedBox(
-                height: CustomDimens.heightFields,
-                child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        const SizedBox(
+            height: CustomDimens.spaceFields,
+            child: Text(
+              "Outras informações",
+              style: CustomStyles.subTituloCadastro,
+            )),
+        const SizedBox(
+          height: CustomDimens.spaceFields - 20,
+        ),
+        SizedBox(
+            height: CustomDimens.heightFields,
+            child: Row(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,33 +82,35 @@ class OutrasInformacoesTile extends StatelessWidget {
                 ),
               ],
             )),
-            const SizedBox(height: CustomDimens.spaceFields),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Observações",
-                  style: CustomStyles.tituloAtributoCadastro,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                    width: largura * 1,
-                    height: 120,
-                    child: TextField(
-                      controller: observacoesController,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 20,
-                      style: CustomStyles.textoAtributoCadastro,
-                      decoration:
-                          const InputDecoration(border: OutlineInputBorder()),
-                    )),
-                    const SizedBox(height: CustomDimens.spaceFields),
-              ],
+        const SizedBox(height: CustomDimens.spaceFields),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Observações",
+              style: CustomStyles.tituloAtributoCadastro,
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+                width: largura * 1,
+                height: 120,
+                child: TextField(
+                  controller: observacoesController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 20,
+                  style: CustomStyles.textoAtributoCadastro,
+                  decoration:
+                      const InputDecoration(border: OutlineInputBorder()),
+                )),
+            const SizedBox(height: CustomDimens.spaceFields),
           ],
-        );
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+      ],
+    );
   }
 }

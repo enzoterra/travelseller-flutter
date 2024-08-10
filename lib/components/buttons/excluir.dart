@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
-import 'package:travelseller/components/custom/dimens.dart';
-import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/custom/colors.dart';
+import 'package:travelseller/custom/dimens.dart';
+import 'package:travelseller/custom/styles.dart';
 import 'package:travelseller/pages/principais/home.dart';
 
 // ignore: must_be_immutable
@@ -56,7 +56,7 @@ class ExcluirButton extends StatelessWidget {
                   ],
                 ),
               );
-            } 
+            }
             //Excluir para Cliente
             else {
               //ALTERAR PARA VERIFICAR SE EXISTE VIAGEM DO CLIENTE AINDA PARA SER REALIZADA

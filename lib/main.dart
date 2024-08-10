@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:travelseller/components/custom/titles.dart';
+import 'package:travelseller/custom/titles.dart';
 import 'package:travelseller/database/object_box.dart';
 import 'package:travelseller/pages/principais/home.dart';
 import 'package:travelseller/scripts/checkNotifications.dart';
 import 'package:workmanager/workmanager.dart';
-import 'components/custom/theme.dart';
+import 'custom/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +14,8 @@ void main() async {
   await requestPermissions();
 
   // Initialize Workmanager
-  Workmanager().initialize(CheckNotifications.callbackDispatcher, isInDebugMode: true);
+  Workmanager()
+      .initialize(CheckNotifications.callbackDispatcher, isInDebugMode: true);
 
   runApp(const App());
 }

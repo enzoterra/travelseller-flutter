@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
+import 'package:travelseller/custom/colors.dart';
 
 abstract class CustomStyles {
   static const TextStyle dataViagemTile = TextStyle(fontSize: 12);

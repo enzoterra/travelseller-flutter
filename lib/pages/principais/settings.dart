@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
-import 'package:travelseller/components/custom/dimens.dart';
-import 'package:travelseller/components/custom/icons.dart';
-import 'package:travelseller/components/custom/images.dart';
-import 'package:travelseller/components/custom/styles.dart';
-import 'package:travelseller/components/custom/titles.dart';
+import 'package:travelseller/custom/colors.dart';
+import 'package:travelseller/custom/dimens.dart';
+import 'package:travelseller/custom/icons.dart';
+import 'package:travelseller/custom/images.dart';
+import 'package:travelseller/custom/styles.dart';
+import 'package:travelseller/custom/titles.dart';
 import 'package:travelseller/components/tiles/settings/export_import.dart';
 import 'package:travelseller/components/tiles/settings/small_space_tiles.dart';
 import 'package:travelseller/components/tiles/settings/space_tiles.dart';
@@ -76,7 +76,7 @@ class SettingsPageState extends State<SettingsPage> {
     return PopScope(
         // Função que executa quando sair da página
         onPopInvoked: (bool didPop) {
-          if(didPop){
+          if (didPop) {
             return;
           }
           Navigator.pop(context, true);

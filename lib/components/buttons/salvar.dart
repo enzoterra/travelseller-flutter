@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
-import 'package:travelseller/components/custom/dimens.dart';
-import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/custom/colors.dart';
+import 'package:travelseller/custom/dimens.dart';
+import 'package:travelseller/custom/styles.dart';
 import 'package:travelseller/pages/principais/home.dart';
 
 // ignore: must_be_immutable
@@ -34,7 +34,7 @@ class SalvarButton extends StatelessWidget {
             if (isCadastro) {
               functionSave();
             } else {
-              // Verifica se o Salvar está na tela de Viagem ou de Cliente 
+              // Verifica se o Salvar está na tela de Viagem ou de Cliente
               if (isViagem) {
                 functionSave(viagem, cliente);
               } else {

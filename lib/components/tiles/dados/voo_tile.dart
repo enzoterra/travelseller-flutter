@@ -1,9 +1,9 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:travelseller/components/custom/dimens.dart';
+import 'package:travelseller/custom/dimens.dart';
 
-import '../../custom/styles.dart';
+import '../../../custom/styles.dart';
 
 class VooTile extends StatelessWidget {
   const VooTile(

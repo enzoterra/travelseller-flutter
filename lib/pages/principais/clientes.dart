@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/dimens.dart';
-import 'package:travelseller/components/custom/icons.dart';
-import 'package:travelseller/components/custom/images.dart';
-import 'package:travelseller/components/custom/styles.dart';
-import 'package:travelseller/components/custom/titles.dart';
+import 'package:travelseller/custom/dimens.dart';
+import 'package:travelseller/custom/icons.dart';
+import 'package:travelseller/custom/images.dart';
+import 'package:travelseller/custom/styles.dart';
+import 'package:travelseller/custom/titles.dart';
 import 'package:travelseller/components/topbar/top_bar.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/pages/cadastro/cadastroCliente.dart';

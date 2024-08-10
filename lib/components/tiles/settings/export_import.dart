@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/colors.dart';
-import 'package:travelseller/components/custom/dimens.dart';
-import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/custom/colors.dart';
+import 'package:travelseller/custom/dimens.dart';
+import 'package:travelseller/custom/styles.dart';
 import 'package:travelseller/scripts/settings.dart';
 
 class ExportImportSettings extends StatelessWidget {

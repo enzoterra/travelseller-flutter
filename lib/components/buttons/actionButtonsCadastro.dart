@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travelseller/components/buttons/cancelar.dart';
 import 'package:travelseller/components/buttons/excluir.dart';
 import 'package:travelseller/components/buttons/salvar.dart';
-import 'package:travelseller/components/custom/dimens.dart';
+import 'package:travelseller/custom/dimens.dart';
 
 // ignore: must_be_immutable
 class ActionButtonsCadastro extends StatelessWidget {

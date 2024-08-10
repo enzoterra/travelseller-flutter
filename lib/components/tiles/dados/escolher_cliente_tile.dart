@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import '../../../pages/listaclientes/listaClientes.dart';
-import '../../custom/colors.dart';
-import '../../custom/styles.dart';
+import '../../../custom/colors.dart';
+import '../../../custom/styles.dart';
 
 class EscolherClienteTile extends StatelessWidget {
   const EscolherClienteTile({

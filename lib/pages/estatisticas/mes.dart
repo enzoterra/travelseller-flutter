@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/images.dart';
-import 'package:travelseller/components/custom/styles.dart';
+import 'package:travelseller/custom/images.dart';
+import 'package:travelseller/custom/styles.dart';
 import 'package:travelseller/components/tiles/lista_viagem_tile.dart';
 import 'package:travelseller/components/topbar/intern_topbar.dart';
 import 'package:travelseller/database/controllers/cliente_controller.dart';

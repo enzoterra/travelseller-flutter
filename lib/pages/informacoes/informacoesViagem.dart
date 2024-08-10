@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/components/custom/images.dart';
-import 'package:travelseller/components/custom/titles.dart';
+import 'package:travelseller/custom/images.dart';
+import 'package:travelseller/custom/titles.dart';
 import 'package:travelseller/components/buttons/actionButtonsCadastro.dart';
 //import 'package:travelseller/components/tiles/actionButtonsCadastro.dart';
 import 'package:travelseller/components/tiles/dados/cliente_tile.dart';
@@ -11,7 +11,7 @@ import 'package:travelseller/components/topbar/intern_topbar.dart';
 import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
-import '../../components/custom/dimens.dart';
+import '../../custom/dimens.dart';
 import '../../components/tiles/dados/escolher_cliente_tile.dart';
 import '../../database/controllers/cliente_controller.dart';
 
