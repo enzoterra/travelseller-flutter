@@ -15,7 +15,7 @@ void main() async {
 
   // Initialize Workmanager
   Workmanager()
-      .initialize(CheckNotifications.callbackDispatcher, isInDebugMode: true);
+      .initialize(CheckNotifications.callbackDispatcher);
 
   runApp(const App());
 }
