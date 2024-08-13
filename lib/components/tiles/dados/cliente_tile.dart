@@ -26,7 +26,7 @@ class ClienteTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-          height: 30,
+          height: 25,
         ),
         const SizedBox(
             height: CustomDimens.spaceFields,

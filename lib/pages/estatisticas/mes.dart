@@ -41,6 +41,7 @@ class _MesPageState extends State<MesPage> {
                 width: largura * 0.9,
                 decoration: CustomStyles.boxDecorationListas,
                 child: ListView.separated(
+                    padding: const EdgeInsets.only(top: 10, bottom: 7),
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(
                           thickness: 0.5,

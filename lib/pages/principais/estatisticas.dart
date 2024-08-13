@@ -81,6 +81,7 @@ class EstatisticasState extends State<Estatisticas> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: CustomStyles.boxDecorationListas,
               child: ListView.separated(
+                  padding: const EdgeInsets.only(top: 10, bottom: 7),
                   separatorBuilder: (BuildContext context, int index) =>
                       const Divider(
                         thickness: 0.5,
