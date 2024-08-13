@@ -78,7 +78,7 @@ class EstatisticasState extends State<Estatisticas> {
           Container(
               height: altura * 0.6,
               width: largura * CustomDimens.widthLists,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: CustomStyles.boxDecorationListas,
               child: ListView.separated(
                   padding: const EdgeInsets.only(top: 10, bottom: 7),
