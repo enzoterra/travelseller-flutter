@@ -75,7 +75,9 @@ class CadastroClienteState extends State<CadastroCliente> {
   }
 
   salvar() {
-    if (nomeController.text == "") {
+    print(nomeController.text.length);
+    print(nomeController.text + "a");
+    if (nomeController.text.length == 0) {
       AlertDialog(
         title: const Text('O nome precisa ser preenchido'),
         actions: <Widget>[

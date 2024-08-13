@@ -43,7 +43,8 @@ class ViagensState extends State<Viagens> {
     Future.delayed(Duration.zero, () {
       isTaskPending(taskName).then((isPending) {
         // Agendar a tarefa, pois ainda não foi agendada ou já foi cumprida
-        if (isPending) {
+        print(isPending);
+        if (!isPending) {
           // Initialize Workmanager
           Workmanager().registerPeriodicTask("1", taskName,
               frequency: const Duration(days: 1),

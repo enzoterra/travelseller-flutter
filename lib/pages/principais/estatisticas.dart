@@ -18,9 +18,10 @@ class Estatisticas extends StatefulWidget {
 
 class EstatisticasState extends State<Estatisticas> {
   List<Viagem> lista = [];
+  var listaAno = [];
   List<String> anos = [];
-  List<double> meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  List<double> qtd = [];
+  //List<double> meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  //List<double> qtd = [];
 
   @override
   void initState() {
@@ -33,6 +34,7 @@ class EstatisticasState extends State<Estatisticas> {
       if (!anos.contains(ano)) {
         anos.add(ano);
       }
+      listaAno.add({ano: viagem});
       /*else {
         double qtdMes = qtd.last;
         qtdMes += 1;
@@ -96,7 +98,7 @@ class EstatisticasState extends State<Estatisticas> {
                                 context,
                                 MaterialPageRoute(
                                     builder: ((context) =>
-                                        AnosPage(ano: anos[index]))));
+                                        AnosPage(ano: anos[index], listaAno: listaAno,))));
                           });
                     }
                   }))

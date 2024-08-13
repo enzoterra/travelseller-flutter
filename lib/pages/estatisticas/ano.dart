@@ -1,44 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:travelseller/custom/dimens.dart';
 import 'package:travelseller/custom/icons.dart';
 import 'package:travelseller/custom/images.dart';
 import 'package:travelseller/custom/styles.dart';
 import 'package:travelseller/components/topbar/intern_topbar.dart';
-import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/estatisticas/mes.dart';
 
 class AnosPage extends StatefulWidget {
-  const AnosPage({super.key, required this.ano});
+  const AnosPage({super.key, required this.ano, required this.listaAno});
 
   final String ano;
+  final List<dynamic> listaAno;
 
   @override
   AnosPageState createState() => AnosPageState();
 }
 
 class AnosPageState extends State<AnosPage> {
-  List<Viagem> viagens = [];
+  List viagensAno = [];
   List<String> meses = [];
+  var listaMeses = [
+    {
+      '01': 'Janeiro',
+      '02': 'Fevereiro',
+      '03': 'Março',
+      '04': 'Abril',
+      '05': 'Maio',
+      '06': 'Junho',
+      '07': 'Julho',
+      '08': 'Agosto',
+      '09': 'Setembro',
+      '10': 'Outubro',
+      '11': 'Novembro',
+      '12': 'Dezembro'
+    }
+  ];
+  var mesesStr = [];
 
   @override
   void initState() {
     super.initState();
 
-    viagens = ViagemController().readAll();
-    for (Viagem viagem in viagens) {
-      var mes = viagem.dataIda!.split("/")[1];
-      var ano = viagem.dataIda!.split("/")[2];
-      if (ano == widget.ano) {
-        if (!mes.contains(mes)) {
-          meses.add(mes);
-        }
+    viagensAno = widget.listaAno.map((v) => v[widget.ano]).toList();
+
+    for (var viagemMap in viagensAno) {
+      Viagem viagem = viagemMap;
+      var string = viagem.dataIda!.split("/");
+      var mes = string[1];
+      if (!meses.contains(mes)) {
+        meses.add(mes);
       }
     }
 
-    setState(() {
-      meses = meses;
-    });
+    meses.sort((a, b) => a.compareTo(b));
+    for (int i = 0; i < meses.length; i++) {
+      listaMeses.map((m) => mesesStr.add(m[meses[i]])).toList();
+    }
+    print(mesesStr);
   }
 
   @override
@@ -60,6 +78,7 @@ class AnosPageState extends State<AnosPage> {
                   height: altura * 0.7,
                   width: largura * 0.9,
                   child: Container(
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     decoration: CustomStyles.boxDecorationListas,
                     child: ListView.separated(
                         separatorBuilder: (BuildContext context, int index) =>
@@ -76,13 +95,21 @@ class AnosPageState extends State<AnosPage> {
                           } else {
                             return ListTile(
                                 leading: CustomIcons.calendar,
-                                title: Text(meses[index]),
+                                title: Text(mesesStr[index]),
                                 onTap: () {
+                                  List listaMes = [];
+                                  for (Viagem viagem in viagensAno) {
+                                    var string = viagem.dataIda!.split("/");
+                                    var mes = string[1];
+                                    if (mes == meses[index]) {
+                                      listaMes.add(viagem);
+                                    }
+                                  }
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: ((context) =>
-                                              MesPage(mes: meses[index]))));
+                                              MesPage(mes: mesesStr[index], listaMes: listaMes,))));
                                 });
                           }
                         }),

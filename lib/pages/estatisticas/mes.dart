@@ -4,45 +4,24 @@ import 'package:travelseller/custom/styles.dart';
 import 'package:travelseller/components/tiles/lista_viagem_tile.dart';
 import 'package:travelseller/components/topbar/intern_topbar.dart';
 import 'package:travelseller/database/controllers/cliente_controller.dart';
-import 'package:travelseller/database/controllers/viagem_controller.dart';
 import 'package:travelseller/database/model/cliente.dart';
 import 'package:travelseller/database/model/viagem.dart';
 import 'package:travelseller/pages/informacoes/informacoesViagem.dart';
 import 'package:travelseller/scripts/viagens.dart';
 
 class MesPage extends StatefulWidget {
-  const MesPage({super.key, required this.mes});
+  const MesPage({super.key, required this.mes, required this.listaMes});
 
   final String mes;
+  final List listaMes;
 
   @override
   State<MesPage> createState() => _MesPageState();
 }
 
 class _MesPageState extends State<MesPage> {
-  List<Viagem> viagens = [];
-  List<Viagem> lista = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    viagens = ViagemController().readAll();
-    for (Viagem viagem in viagens) {
-      var mes = viagem.dataIda!.split("/")[1];
-      if (mes == widget.mes) {
-        lista.add(viagem);
-      }
-    }
-
-    setState(() {
-      viagens = lista;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    ViagemController viagemController = ViagemController();
     ClienteController clienteController = ClienteController();
     final altura = MediaQuery.of(context).size.height;
     final largura = MediaQuery.of(context).size.width;
@@ -56,10 +35,10 @@ class _MesPageState extends State<MesPage> {
             index: 0,
           ),
           Container(
-              height: altura * 0.7,
-              width: largura * 0.9,
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
               child: Container(
+                height: altura * 0.7,
+                width: largura * 0.9,
                 decoration: CustomStyles.boxDecorationListas,
                 child: ListView.separated(
                     separatorBuilder: (BuildContext context, int index) =>
@@ -68,13 +47,12 @@ class _MesPageState extends State<MesPage> {
                           indent: 5,
                           endIndent: 5,
                         ),
-                    itemCount: viagens.length,
+                    itemCount: widget.listaMes.length,
                     itemBuilder: (context, index) {
-                      if (viagens.isEmpty) {
+                      if (widget.listaMes.isEmpty) {
                         return const Center(child: Text("Sem clientes ..."));
                       } else {
-                        int id = viagens[index].id;
-                        Viagem viagem = viagemController.read(id);
+                        Viagem viagem = widget.listaMes[index];
                         Cliente cliente =
                             clienteController.read(viagem.idCliente);
 

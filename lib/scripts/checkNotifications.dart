@@ -16,7 +16,7 @@ class CheckNotifications {
     Workmanager().executeTask((task, inputData) {
       print("ta bom, ta indo!!!!!");
       checkTripsAndNotify();
-      markTaskAsCompleted(inputData?['taskName']);
+      //markTaskAsCompleted(inputData?['taskName']);
       return Future.value(true);
     });
   }
