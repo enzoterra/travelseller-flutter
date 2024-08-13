@@ -43,13 +43,11 @@ class ViagensState extends State<Viagens> {
     Future.delayed(Duration.zero, () {
       isTaskPending(taskName).then((isPending) {
         // Agendar a tarefa, pois ainda não foi agendada ou já foi cumprida
-        print(isPending);
         if (!isPending) {
           // Initialize Workmanager
           Workmanager().registerPeriodicTask("1", taskName,
               frequency: const Duration(days: 1),
-              initialDelay:
-                  Duration.zero, //CheckNotifications().calculateInitialDelay(),
+              initialDelay: CheckNotifications().calculateInitialDelay(),
               inputData: {'taskName': taskName});
 
           // Salvar o status da tarefa como pendente
@@ -58,21 +56,20 @@ class ViagensState extends State<Viagens> {
       });
     });
 
-    setState(() {
-      lista = viagemController.readAll();
+    lista = viagemController.readAll();
 
-      // Filtrar viagens que não foram feitas
-      List<Viagem> secondList = [];
-      for (Viagem viagem in lista) {
-        var today = DateTime.now();
-        var dataPreString = viagem.dataVolta!.split("/");
-        var dataPreDate =
-            dataPreString[2] + dataPreString[1] + dataPreString[0];
-        DateTime data = DateTime.parse(dataPreDate);
-        if (today.isBefore(data)) {
-          secondList.add(viagem);
-        }
+    // Filtrar viagens que não foram feitas
+    List<Viagem> secondList = [];
+    for (Viagem viagem in lista) {
+      var today = DateTime.now();
+      var dataPreString = viagem.dataVolta!.split("/");
+      var dataPreDate = dataPreString[2] + dataPreString[1] + dataPreString[0];
+      DateTime data = DateTime.parse(dataPreDate);
+      if (today.isBefore(data)) {
+        secondList.add(viagem);
       }
+    }
+    setState(() {
       lista = secondList;
     });
   }

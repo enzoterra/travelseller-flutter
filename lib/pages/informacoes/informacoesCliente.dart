@@ -102,6 +102,7 @@ class InformacoesClienteState extends State<InformacoesCliente> {
     cliente.rg = rgController.text;
     cliente.dataNascimento = nascimentoController.text;
     clienteController.update(cliente);
+    return true;
   }
 
   deletar(Cliente cliente) {

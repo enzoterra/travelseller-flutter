@@ -75,21 +75,24 @@ class CadastroClienteState extends State<CadastroCliente> {
   }
 
   salvar() {
-    print(nomeController.text.length);
-    print(nomeController.text + "a");
-    if (nomeController.text.length == 0) {
-      AlertDialog(
-        title: const Text('O nome precisa ser preenchido'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'Cancelar'),
-            child: const Text('Ok'),
-          ),
-        ],
-      );
+    if (nomeController.text.isEmpty) {
+      showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: const Text('Atenção'),
+                content: const Text('O nome precisa ser preenchido'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancelar'),
+                    child: const Text('Ok'),
+                  ),
+                ],
+              ));
+      return false;
     } else {
       clienteController.create(nomeController.text, cpfController.text,
           rgController.text, nascimentoController.text);
+      return true;
     }
   }
 }

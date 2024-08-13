@@ -14,7 +14,6 @@ class CheckNotifications {
   @pragma('vm:entry-point')
   static callbackDispatcher() {
     Workmanager().executeTask((task, inputData) {
-      print("ta bom, ta indo!!!!!");
       checkTripsAndNotify();
       //markTaskAsCompleted(inputData?['taskName']);
       return Future.value(true);

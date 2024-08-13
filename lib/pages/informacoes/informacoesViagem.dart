@@ -174,12 +174,12 @@ class InformacoesViagemState extends State<InformacoesViagem> {
   salvar(Viagem viagem, Cliente cliente) {
     double valorVenda = 0;
     double comissao = 0;
-    if (valorVendaController.text != "") {
-      double.parse(valorVendaController.text);
+    if (valorVendaController.text.isNotEmpty) {
+      valorVenda = double.parse(valorVendaController.text);
     }
 
-    if (comissaoController.text != "") {
-      double.parse(comissaoController.text);
+    if (comissaoController.text.isNotEmpty) {
+      comissao = double.parse(comissaoController.text);
     }
 
     cliente.nome = nomeController.text;
@@ -203,6 +203,7 @@ class InformacoesViagemState extends State<InformacoesViagem> {
 
     clienteController.update(cliente);
     viagemController.update(viagem);
+    return true;
   }
 
   deletar(Viagem viagem) {

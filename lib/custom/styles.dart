@@ -98,6 +98,12 @@ abstract class CustomStyles {
       fontWeight: FontWeight.bold,
       letterSpacing: 1.2);
 
+  static const TextStyle textoEstatisticas = TextStyle(
+      color: Colors.black87,
+      fontSize: 14,
+      fontWeight: FontWeight.bold,
+      letterSpacing: 1.2);
+
   static BoxDecoration boxDecorationListas = BoxDecoration(
     color: CustomColors.cinzaListas,
     borderRadius: const BorderRadius.all(Radius.circular(5)),

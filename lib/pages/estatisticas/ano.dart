@@ -19,6 +19,7 @@ class AnosPage extends StatefulWidget {
 class AnosPageState extends State<AnosPage> {
   List viagensAno = [];
   List<String> meses = [];
+  Map<String, List<double>> valores = {};
   var listaMeses = [
     {
       '01': 'Janeiro',
@@ -50,13 +51,18 @@ class AnosPageState extends State<AnosPage> {
       if (!meses.contains(mes)) {
         meses.add(mes);
       }
+
+      if (valores.containsKey(mes)) {
+        valores[mes]!.add(viagem.valorComissao!.toDouble());
+      } else {
+        valores[mes] = [viagem.valorComissao!.toDouble()];
+      }
     }
 
     meses.sort((a, b) => a.compareTo(b));
     for (int i = 0; i < meses.length; i++) {
       listaMeses.map((m) => mesesStr.add(m[meses[i]])).toList();
     }
-    print(mesesStr);
   }
 
   @override
@@ -73,12 +79,12 @@ class AnosPageState extends State<AnosPage> {
             index: 0,
           ),
           Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: SizedBox(
                   height: altura * 0.7,
                   width: largura * 0.9,
                   child: Container(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     decoration: CustomStyles.boxDecorationListas,
                     child: ListView.separated(
                         separatorBuilder: (BuildContext context, int index) =>
@@ -93,9 +99,20 @@ class AnosPageState extends State<AnosPage> {
                             return const Center(
                                 child: Text("Sem clientes ..."));
                           } else {
+                            double valorTotal = 0;
+
+                            var lista = valores[meses[index]];
+                            lista?.forEach(
+                              (element) => valorTotal += element,
+                            );
+
                             return ListTile(
                                 leading: CustomIcons.calendar,
                                 title: Text(mesesStr[index]),
+                                trailing: Text(
+                                  "R\$ ${valorTotal}",
+                                  style: CustomStyles.textoEstatisticas,
+                                ),
                                 onTap: () {
                                   List listaMes = [];
                                   for (Viagem viagem in viagensAno) {
@@ -108,8 +125,10 @@ class AnosPageState extends State<AnosPage> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: ((context) =>
-                                              MesPage(mes: mesesStr[index], listaMes: listaMes,))));
+                                          builder: ((context) => MesPage(
+                                                mes: mesesStr[index],
+                                                listaMes: listaMes,
+                                              ))));
                                 });
                           }
                         }),

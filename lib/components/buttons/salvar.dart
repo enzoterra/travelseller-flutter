@@ -25,6 +25,7 @@ class SalvarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool worked;
     return SizedBox(
         height: CustomDimens.heigthButtons,
         width: 106,
@@ -32,22 +33,24 @@ class SalvarButton extends StatelessWidget {
           onPressed: () {
             // Verifica se o salvar está na tela de Cadastro ou de Informações
             if (isCadastro) {
-              functionSave();
+              worked = functionSave();
             } else {
               // Verifica se o Salvar está na tela de Viagem ou de Cliente
               if (isViagem) {
-                functionSave(viagem, cliente);
+                worked = functionSave(viagem, cliente);
               } else {
-                functionSave(cliente);
+                worked = functionSave(cliente);
               }
             }
 
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: ((context) => Home(
-                          currentIndex: indexHome,
-                        ))));
+            if (worked) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => Home(
+                            currentIndex: indexHome,
+                          ))));
+            }
           },
           style: ButtonStyle(
             backgroundColor:

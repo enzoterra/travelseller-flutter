@@ -35,7 +35,7 @@ class _MesPageState extends State<MesPage> {
             index: 0,
           ),
           Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Container(
                 height: altura * 0.7,
                 width: largura * 0.9,
@@ -61,8 +61,8 @@ class _MesPageState extends State<MesPage> {
                                 nome:
                                     ViagensScripts().encurtaNome(cliente.nome),
                                 destino: viagem.cidade!,
-                                embarque: viagem.dataIda!,
-                                desembarque: viagem.dataVolta!),
+                                embarque: viagem.dataVolta!,
+                                desembarque: 'R\$ ${viagem.valorComissao.toString()}'),
                             onTap: () {
                               Navigator.push(
                                   context,

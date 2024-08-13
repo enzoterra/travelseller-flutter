@@ -158,17 +158,21 @@ class CadastroViagemState extends State<CadastroViagem> {
   }
 
   salvar() {
-    if (cidadeController.text == "" && dataIdaController.text == "") {
-      AlertDialog(
-        title: const Text(
-            'A cidade, hotel e/ou data de embarque precisam ser preenchidos'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'Cancelar'),
-            child: const Text('Ok'),
-          ),
-        ],
-      );
+    if (cidadeController.text.isEmpty && dataIdaController.text.isEmpty) {
+      showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: const Text('Atenção'),
+                content: const Text(
+                    'A cidade, hotel e/ou data de embarque precisam ser preenchidos'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancelar'),
+                    child: const Text('Ok'),
+                  ),
+                ],
+              ));
+      return false;
     } else {
       double valorVenda = 0;
       double comissao = 0;
@@ -196,16 +200,21 @@ class CadastroViagemState extends State<CadastroViagem> {
             comissao,
             widget.cliente.id);
       } else {
-        if (nomeController.text == "") {
-          AlertDialog(
-            title: const Text('O nome do cliente precisa ser preenchido'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancelar'),
-                child: const Text('Ok'),
-              ),
-            ],
-          );
+        if (nomeController.text.isEmpty) {
+          showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Atenção'),
+                    content:
+                        const Text('O nome do cliente precisa ser preenchido'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancelar'),
+                        child: const Text('Ok'),
+                      ),
+                    ],
+                  ));
+          return false;
         } else {
           int idCliente = clienteController.create(nomeController.text,
               cpfController.text, rgController.text, nascimentoController.text);
@@ -226,6 +235,7 @@ class CadastroViagemState extends State<CadastroViagem> {
               idCliente);
         }
       }
+      return true;
     }
   }
 }

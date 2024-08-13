@@ -20,8 +20,7 @@ class EstatisticasState extends State<Estatisticas> {
   List<Viagem> lista = [];
   var listaAno = [];
   List<String> anos = [];
-  //List<double> meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  //List<double> qtd = [];
+  Map<String, List<double>> valores = {};
 
   @override
   void initState() {
@@ -35,6 +34,12 @@ class EstatisticasState extends State<Estatisticas> {
         anos.add(ano);
       }
       listaAno.add({ano: viagem});
+
+      if (valores.containsKey(ano)) {
+        valores[ano]!.add(viagem.valorComissao!.toDouble());
+      } else {
+        valores[ano] = [viagem.valorComissao!.toDouble()];
+      }
       /*else {
         double qtdMes = qtd.last;
         qtdMes += 1;
@@ -87,18 +92,31 @@ class EstatisticasState extends State<Estatisticas> {
                     if (anos.isEmpty) {
                       return const Center(child: Text("Sem clientes ..."));
                     } else {
+                      double valorTotal = 0;
+
+                      var lista = valores[anos[index]];
+                      lista?.forEach(
+                        (element) => valorTotal += element,
+                      );
+
                       return ListTile(
                           leading: CustomIcons.calendar,
                           title: Text(
                             anos[index],
                             style: CustomStyles.topicoConfiguracoes,
                           ),
+                          trailing: Text(
+                            "R\$ ${valorTotal}",
+                            style: CustomStyles.textoEstatisticas,
+                          ),
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        AnosPage(ano: anos[index], listaAno: listaAno,))));
+                                    builder: ((context) => AnosPage(
+                                          ano: anos[index],
+                                          listaAno: listaAno,
+                                        ))));
                           });
                     }
                   }))
